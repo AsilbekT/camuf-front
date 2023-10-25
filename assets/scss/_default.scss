@@ -1,0 +1,136 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  padding: 22px 0;
+  z-index: 4;
+  .container {
+    display: flex;
+    align-items: center;
+  }
+  .site-logo {
+    margin-right: auto;
+  }
+  &-nav-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 70px;
+    a {
+      @include font(600,30px,1.2);
+      color: var(--play-color);
+    }
+  }
+  &-nav {
+    margin-right: 110px;
+  }
+  &-menu-btn {
+    display: flex;
+    flex-direction: column;
+    width: 48px;
+    height: 19px;
+    justify-content: space-between;
+    align-items: flex-end;
+    cursor: pointer;
+    span {
+      background: var(--play-color);
+      height: 3px;
+      &:first-child {
+        width: 70%;
+      }
+      &:last-child {
+        width: 70%;
+      }
+      &:nth-child(2) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.site-logo {
+  img {
+    width: 90px;
+    height: 90px;
+  }
+}
+.fixed-header {
+  background: var(--bg-color);
+  animation: animationheader 0.5s ease;
+  box-shadow: 0px 7px 23px 0px var(--hero-item-shadow);
+}
+@keyframes animationheader {
+  0% {
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.footer {
+  padding-bottom: 120px;
+  .container {
+    display: flex;
+  }
+  .site-logo {
+    margin-right: auto;
+    flex-shrink: 0;
+  }
+  &__list {
+    width: 292px;
+    margin-right: 140px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    a {
+      @include font(600, 22px, 1.2);
+      color: var(--play-color);
+    }
+  }
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 496px;
+    &-title {
+      margin-bottom: 6px;
+      @include font(700, 22px, 1.2);
+      color: var(--play-color);
+    }
+    &-desc {
+      @include font(400, 16px, 1);
+      margin-bottom: 22px;
+      color: var(--footer-desc);
+    }
+    &-form {
+      width: 400px;
+      align-items: center;
+      display: flex;
+      input {
+        background: transparent;
+        padding: 12px 20px;
+        border: 1px solid var(--footer-form);
+        color: var(--footer-desc);
+        @include font(400, 18px, 1.2);
+      }
+      button {
+        background: var(--footer-form);
+        color: #fff;
+        padding: 12px 24px;
+        @include font(700, 18px, 1.2);
+        height: 100%;
+      }
+    }
+  }
+}
+
+.dark-mode {
+  position: fixed;
+  transform: rotate(90deg);
+  right: 10px;
+  top: 160px;
+  z-index: 10;
+}

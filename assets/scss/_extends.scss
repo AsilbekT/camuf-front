@@ -1,0 +1,16 @@
+%pr-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 33px;
+  width: 100%;
+  @include font(700, 22px, 1.2);
+  color: var(--play-color);
+  border: 1px solid var(--play-color);
+  transition: all .3s ease;
+  &:hover {
+    background: var(--pr-color);
+    color: #fff;
+    border-color: var(--pr-color);
+  }
+}
