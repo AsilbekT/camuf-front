@@ -14,13 +14,13 @@
                         Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться.
                     </p>
                 </div>
-                <button class="hero__play-video">
+                <!-- <button class="hero__play-video">
                     <svg xmlns="http://www.w3.org/2000/svg" width="11" height="13" viewBox="0 0 11 13" fill="none">
                         <path
                             d="M10.5 5.63398C11.1667 6.01888 11.1667 6.98113 10.5 7.36603L2.25 12.1292C1.58333 12.5141 0.75 12.0329 0.75 11.2631L0.750001 1.73686C0.750001 0.967059 1.58333 0.485934 2.25 0.870835L10.5 5.63398Z"
                             fill="white" />
                     </svg>
-                </button>
+                </button> -->
             </div>
         </div>
         <div class="hero-bottom">
