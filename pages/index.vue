@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="hero__text-wrapper">
                     <h2 class="hero__title">Открой мир знаний в
-                        Университете central hello world
+                        Университете central
                         asian medical university</h2>
                     <p class="hero__desc">
                         Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться.
