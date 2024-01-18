@@ -13,3 +13,8 @@
         color: var(--pr-color);
     }
 }
+@mixin media($w) {
+    @media (max-width: $w) {
+        @content;
+    }
+}

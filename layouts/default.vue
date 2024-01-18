@@ -21,7 +21,6 @@
             </div>
         </div>
     </header>
-
     <label class="relative inline-flex items-center cursor-pointer dark-mode">
         <input type="checkbox" value="" class="sr-only peer" :checked="dark" @change="darkChange()">
         <div
@@ -89,7 +88,7 @@ function darkChange() {
         document.querySelector('body').classList.add('dark')
     }
 }
-if(localStorage.getItem('dark')) {
+if (localStorage.getItem('dark')) {
     document.querySelector('body').classList.add('dark')
 }
 onMounted(() => {

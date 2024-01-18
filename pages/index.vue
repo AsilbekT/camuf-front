@@ -1,7 +1,10 @@
 <template>
     <div class="hero">
         <div class="hero-bg">
-            <img src="@/assets/images/jpg/hero-bg.jpg" alt="">
+            <video-player loop muted playsinline crossorigin :autoplay="true" class="hero__video" src="item?.trailer_url"
+                :plugins="{
+                    aspectRatio: '16:8'
+                }" />
         </div>
         <div class="hero-top">
             <div class="container">
@@ -71,7 +74,7 @@
                 Последние новости
             </NuxtLink>
             <div class="latest-news__list">
-                <NewsCard v-for="item in 6" :key="item" :item="item"/>
+                <NewsCard v-for="item in 6" :key="item" :item="item" />
             </div>
         </div>
     </div>
@@ -145,6 +148,15 @@
 </template>
 
 <script setup>
+import Service from '~/services/Service';
+const news = ref([])
+
+async function getNews() {
+    const res = await Service.getAllNews()
+    news.value = res.data
+    console.log(res?.data);
+}
+getNews()
 onMounted(() => {
     document.querySelectorAll('.video-clips__item').forEach(el => {
         el.addEventListener('mousemove', (e) => {
