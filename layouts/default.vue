@@ -63,6 +63,8 @@
             </div>
         </div>
     </footer>
+
+    <!-- comment from akademik -->
 </template>
 
 <script setup>
