@@ -2,9 +2,7 @@
     <div class="hero">
         <div class="hero-bg">
             <video-player loop muted playsinline crossorigin :autoplay="true" class="hero__video" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
-                :plugins="{
-                    aspectRatio: '16:9'
-                }" />
+             />
         </div>
         <div class="hero-top">
             <div class="container">
@@ -154,7 +152,6 @@ const news = ref([])
 async function getNews() {
     const res = await Service.getAllNews()
     news.value = res.data
-    console.log(res?.data);
 }
 getNews()
 onMounted(() => {

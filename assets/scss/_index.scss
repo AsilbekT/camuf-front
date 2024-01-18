@@ -22,19 +22,19 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 997px;
+    height: 1100px !important;
     @include media(1160px) {
-      height: 570px;
+      height: 570px !important;
     }
-    .video-js {
+    .hero__video {
+      position: absolute;
       width: 100% !important;
       height: 100% !important;
+      z-index: -1;
     }
     video {
-      width: 100% !important;
-      height: 100% !important;
+      pointer-events: none;
       object-fit: cover;
-      z-index: -1;
     }
     &::after {
       content: "";
