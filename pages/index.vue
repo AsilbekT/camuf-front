@@ -1,16 +1,16 @@
 <template>
     <div class="hero">
         <div class="hero-bg">
-            <video-player loop muted playsinline crossorigin :autoplay="true" class="hero__video" src="item?.trailer_url"
+            <video-player loop muted playsinline crossorigin :autoplay="true" class="hero__video" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
                 :plugins="{
-                    aspectRatio: '16:8'
+                    aspectRatio: '16:9'
                 }" />
         </div>
         <div class="hero-top">
             <div class="container">
                 <div class="hero__text-wrapper">
                     <h2 class="hero__title">Открой мир знаний в
-                        Университете central
+                        Университете central hello world
                         asian medical university</h2>
                     <p class="hero__desc">
                         Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться.
