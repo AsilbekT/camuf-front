@@ -1,17 +1,15 @@
 <template>
     <div class="hero">
-        <div class="hero-bg">
-            <video-player loop muted playsinline crossorigin :autoplay="true" class="hero__video" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
-             />
-        </div>
-        <div class="hero-top">
+        <div class="hero-top" v-for="item in banners?.results?.slice(0,1)" :key="item">
+            <div class="hero-bg">
+                <video-player loop muted playsinline crossorigin :autoplay="true" class="hero__video"
+                    :src="item?.video_url" />
+            </div>
             <div class="container">
                 <div class="hero__text-wrapper">
-                    <h2 class="hero__title">Открой мир знаний в
-                        Университете central
-                        asian medical university</h2>
+                    <h2 class="hero__title">{{ item?.title }}</h2>
                     <p class="hero__desc">
-                        Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться.
+                        {{ item?.description }}
                     </p>
                 </div>
                 <!-- <button class="hero__play-video">
@@ -81,8 +79,11 @@
         <div class="container">
             <h2 class="video-clips__title">видеоклипы</h2>
             <div class="video-clips__wrapper">
-                <div class="video-clips__item" v-for="item in 4" :key="item">
-                    <img :src="`https://source.unsplash.com/random/${item}`" alt="">
+                <div class="video-clips__item" @mousemove="hover($event)" @mouseleave="leave($event)"
+                    v-for="item in studentsVideos?.results?.slice(0, 4)" :key="item">
+                    <video-player loop playsinline crossorigin :plugins="{
+                        aspectRatio: '9:16'
+                    }" :src="item?.video_url" />
                 </div>
             </div>
         </div>
@@ -106,11 +107,11 @@
                 <NuxtLink class="speciality__btn" to="/courses">Барча йўналишлар</NuxtLink>
             </div>
             <div class="speciality__list">
-                <div class="speciality__item" v-for="item in 6" :key="item">
+                <div class="speciality__item" v-for="(item, index) in courses?.results?.slice(0, 6)" :key="item">
                     <h4 class="speciality__item-num">
-                        {{ item < 10 ? '0' + item : item }} </h4>
+                        {{ index < 10 ? '0' + index : index }} </h4>
                             <h2 class="speciality__item-title">
-                                Стоматология
+                                {{ item?.title_uz }}
                             </h2>
                             <div class="speciality__item-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
@@ -121,7 +122,7 @@
                                 </svg>
                             </div>
                             <div class="speciality__item-img">
-                                <img :src="`https://source.unsplash.com/random/${item}`" alt="">
+                                <img :src="item?.image" alt="">
                             </div>
                 </div>
             </div>
@@ -146,33 +147,58 @@
 </template>
 
 <script setup>
+import videojs from 'video.js';
 import Service from '~/services/Service';
 const news = ref([])
-
+const banners = ref([])
+const courses = ref({})
+const studentsVideos = ref({})
 async function getNews() {
     const res = await Service.getAllNews()
     news.value = res.data
 }
+async function getBanners() {
+    const res = await Service.getBanners()
+    banners.value = res.data
+}
+async function getCourses() {
+    const res = await Service.getCourses()
+    courses.value = res.data
+}
+async function getStudentsVideos() {
+    const res = await Service.getStudentsVideos()
+    studentsVideos.value = res.data
+}
+
+getBanners()
 getNews()
-onMounted(() => {
-    document.querySelectorAll('.video-clips__item').forEach(el => {
-        el.addEventListener('mousemove', (e) => {
-            document.querySelectorAll('.video-clips__item').forEach(item => {
-                if (e.target === item) {
-                    e.target.style.transform = 'scale(1.1)'
-                    e.target.style.filter = 'blur(0)'
-                } else {
-                    item.style.filter = 'blur(5px)'
-                }
-            })
-        })
-        el.addEventListener('mouseleave', (e) => {
-            document.querySelectorAll('.video-clips__item').forEach(item => {
-                item.style.transform = 'scale(1)'
-                item.style.filter = 'blur(0)'
-            })
-        })
+getStudentsVideos()
+getCourses()
+
+function hover(e) {
+    document.querySelectorAll('.video-clips__item').forEach(item => {
+        if (e.target === item) {
+            e.target.style.transform = 'scale(1.1)'
+            e.target.style.filter = 'blur(0)'
+            const player = videojs(e.target.childNodes[0])
+            player.play()
+        } else {
+            item.style.filter = 'blur(5px)'
+            const player = videojs(item.childNodes[0])
+            player.pause()
+        }
     })
+}
+function leave(e) {
+    document.querySelectorAll('.video-clips__item').forEach(item => {
+        item.style.transform = 'scale(1)'
+        item.style.filter = 'blur(0)'
+        const player = videojs(item.childNodes[0])
+        player.pause()
+    })
+}
+onMounted(() => {
+   
 })
 </script>
 
