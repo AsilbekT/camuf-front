@@ -27,43 +27,144 @@
     </header>
 
     <div class="header-menu" :class="{ active: isOpenMenu }" ref="header_menu">
-        <div class="header-menu__main flex items-start flex-wrap gap-2">
+        <div class="header-menu__main flex items-start">
             <button class="header-menu__close" @click="isOpenMenu = false">
-                <img src="~/assets/images/svg/close.svg" alt="" />
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        :fill="dark ? '#fff' : '000'"
+                        d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275q-.275-.275-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7q.275-.275.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275q.275.275.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275z"
+                    />
+                </svg>
             </button>
-            <div class="header-menu__item" v-for="(menu, index) in menus" :key="`${index}`">
-                <NuxtLink to="/" v-if="menu.isLink">{{
-                    menu.name
-                }}</NuxtLink>
-                <div class="accordion" v-else>
-                    <div class="accordion-item">
-                        <div class="accordion-header">{{ menu.name }}</div>
-                        <div class="accordion-content">
-                            <div v-for="(item, itemIndex) in menu.sub" :key="`0${index}${itemIndex}`">
-                                <NuxtLink to="/" v-if="!!item.isLink">
-                                    {{ item.name }}</NuxtLink
-                                >
-                                <div class="accordion sub" v-else>
-                                    <div class="accordion-item">
-                                        <div class="accordion-header">
-                                            {{ item.name }}
-                                        </div>
-                                        <div class="accordion-content" v-for="sub_item in item.sub" :key="sub_item">
-                                            <div>
-                                                <NuxtLink
-                                                    to="/"
-                                                    v-if="sub_item.isLink"
-                                                >
-                                                    {{
-                                                        sub_item.name
-                                                    }}</NuxtLink
-                                                >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="header-menu__list h-full first-col">
+                <h3 class="header-menu__title">Menyular</h3>
+                <div
+                    class="header-menu__item"
+                    v-for="(menu, index) in menus"
+                    :key="`${index}`"
+                >
+                    <NuxtLink
+                        class="header-menu__btn"
+                        to="/"
+                        v-if="menu.isLink"
+                        >{{ menu.name }}</NuxtLink
+                    >
+                    <button
+                        v-else
+                        class="header-menu__btn"
+                        @mouseenter="
+                            (activeMenu.one = menu),
+                                (activeMenu.two = ''),
+                                (activeMenu.three = ''),
+                                (activeMenu.four = '')
+                        "
+                    >
+                        {{ menu.name }}
+                        <img src="~/assets/images/svg/arrow-right.svg" />
+                    </button>
+                </div>
+            </div>
+            <div class="header-menu__list menu-main h-full">
+                <h3 class="header-menu__title">{{ activeMenu.one.name }}</h3>
+                <div class="header-menu__items">
+                    <div
+                        class="header-menu__item"
+                        v-for="item in activeMenu.one.sub"
+                    >
+                        <NuxtLink
+                            class="header-menu__btn"
+                            to="/"
+                            v-if="item.isLink"
+                            >{{ item.name }}</NuxtLink
+                        >
+                        <!-- item -->
+                        <button
+                            v-else
+                            class="header-menu__btn"
+                            @mouseenter="
+                                (activeMenu.two = item),
+                                    (activeMenu.three = ''),
+                                    (activeMenu.four = '')
+                            "
+                        >
+                            {{ item.name }}
+                            <img src="~/assets/images/svg/arrow-right.svg" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="header-menu__list menu-main h-full">
+                <h3 class="header-menu__title">{{ activeMenu.two.name }}</h3>
+                <div class="header-menu__items">
+                    <div
+                        class="header-menu__item"
+                        v-for="item in activeMenu.two.sub"
+                    >
+                        <NuxtLink
+                            class="header-menu__btn"
+                            to="/"
+                            v-if="item.isLink"
+                            >{{ item.name }}</NuxtLink
+                        >
+                        <!-- item -->
+                        <button
+                            v-else
+                            class="header-menu__btn"
+                            @mouseenter="
+                                (activeMenu.three = item),
+                                    (activeMenu.four = '')
+                            "
+                        >
+                            {{ item.name }}
+                            <img src="~/assets/images/svg/arrow-right.svg" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="header-menu__list menu-main h-full">
+                <h3 class="header-menu__title">{{ activeMenu.three.name }}</h3>
+                <div class="header-menu__items">
+                    <div
+                        class="header-menu__item"
+                        v-for="item in activeMenu.three.sub"
+                    >
+                        <NuxtLink
+                            class="header-menu__btn"
+                            to="/"
+                            v-if="item.isLink"
+                            >{{ item.name }}</NuxtLink
+                        >
+                        <!-- item -->
+                        <button
+                            v-else
+                            class="header-menu__btn"
+                            @mouseenter="activeMenu.four = item"
+                        >
+                            {{ item.name }}
+                            <img src="~/assets/images/svg/arrow-right.svg" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="header-menu__list menu-main h-full">
+                <h3 class="header-menu__title">{{ activeMenu.four.name }}</h3>
+                <div class="header-menu__items">
+                    <div
+                        class="header-menu__item"
+                        v-for="item in activeMenu.four.sub"
+                    >
+                        <NuxtLink
+                            class="header-menu__btn"
+                            to="/"
+                            v-if="item.isLink"
+                            >{{ item.name }}</NuxtLink
+                        >
+                        <!-- item -->
                     </div>
                 </div>
             </div>
@@ -117,6 +218,37 @@
     </footer>
 
     <!-- comment from akademik -->
+    <!-- <div class="accordion" v-else>
+                        <div class="accordion-item">
+                            <div class="accordion-header">{{ menu.name }}</div>
+                            <div class="accordion-content">
+                                <div v-for="(item, itemIndex) in menu.sub" :key="`0${index}${itemIndex}`">
+                                    <NuxtLink to="/" v-if="!!item.isLink">
+                                        {{ item.name }}</NuxtLink
+                                    >
+                                    <div class="accordion sub" v-else>
+                                        <div class="accordion-item">
+                                            <div class="accordion-header">
+                                                {{ item.name }}
+                                            </div>
+                                            <div class="accordion-content" v-for="sub_item in item.sub" :key="sub_item">
+                                                <div>
+                                                    <NuxtLink
+                                                        to="/"
+                                                        v-if="sub_item.isLink"
+                                                    >
+                                                        {{
+                                                            sub_item.name
+                                                        }}</NuxtLink
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
 </template>
 
 <script setup>
@@ -147,23 +279,6 @@ if (localStorage.getItem('dark')) {
 }
 onMounted(() => {
     window.addEventListener('scroll', updateScroll);
-
-    // accordion
-    const accordionItems = document.querySelectorAll('.accordion-item');
-    console.log(accordionItems);
-
-    accordionItems.forEach((item) => {
-        const header = item.querySelector('.accordion-header');
-        const content = item.querySelector('.accordion-content');
-
-        header.addEventListener('click', () => {
-            item.classList.toggle('active');
-            const maxHeight = item.classList.contains('active')
-                ? `${content.scrollHeight}px`
-                : '0';
-            content.style.maxHeight = maxHeight;
-        });
-    });
 });
 
 //============================================ header menu ============================================
@@ -173,50 +288,74 @@ const menus = ref([
         isLink: true,
         name: 'Asosiy Sahifa',
     },
-    // [
-    //     'Universitet haqida',
-    //     [
-    //         'Rahbariyat',
-    //         'Xalqaro bo`lim',
-    //         'Ma’naviyat bo’limi',
-    //         [
-    //             'Ilmiy bo`lim',
-    //             [
-    //                 'Ilmiy yo`nalishlar',
-    //                 [
-    //                     'Ilmiy jurnal',
-    //                     [
-    //                         'ActaCAMU ilmiy jurnali',
-    //                         'ActaCAMu Arxiv',
-    //                         'Jurnal talablari',
-    //                     ],
-    //                 ],
-    //                 'Ilmiy anjumanlaar',
-    //                 'Normativ hujjatlar',
-    //             ],
-    //         ],
-    //         [
-    //             'Fakultetlar',
-    //             [
-    //                 'Tibbiyot fakulteti',
-    //                 [
-    //                     'Kafedralar',
-    //                     [
-    //                         'Ijtimoiy fanlar va jismoniy madaniyat',
-    //                         'Anatomiya va mikroanatomiya',
-    //                         'Tibbiy biologiya va kimyo',
-    //                         'Gigiyenik va tibbiy jarayonlarni modellashtirish',
-    //                         'Patologiya asoslari va sud tibbiyoti',
-    //                         'Xirurgik kasalliklar',
-    //                         'Terapevtik va xirurgik stomatologiya',
-    //                         'Ichki kasalliklar',
-    //                         'Pediatriya_va_bolalar_xirurgiyasi',
-    //                     ],
-    //                 ],
-    //             ],
-    //         ],
-    //     ],
-    // ],
+    {
+        isLink: false,
+        name: 'Universitet haqida',
+        sub: [
+            {
+                isLink: true,
+                name: 'Rahbariyat',
+            },
+            {
+                isLink: true,
+                name: 'Xalqaro bo`lim',
+            },
+            {
+                isLink: false,
+                name: 'Ma’naviyat bo’limi',
+                sub: [
+                    {
+                        isLink: true,
+                        name: 'Xalqaro bo`lim',
+                    },
+                    {
+                        isLink: false,
+                        name: 'Ilmiy bo`lim',
+                        sub: [
+                            {
+                                isLink: true,
+                                name: 'ActaCAMU ilmiy jurnali',
+                            },
+                            {
+                                isLink: true,
+                                name: 'ActaCAMu Arxiv',
+                            },
+                            {
+                                isLink: true,
+                                name: 'Jurnal talablari',
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                isLink: false,
+                name: 'Fakultetlar',
+                sub: [
+                    {
+                        isLink: false,
+                        name: 'Tibbiyot fakulteti',
+                        sub: [
+                            {
+                                isLink: false,
+                                name: 'Kafedralar',
+                                sub: [
+                                    {
+                                        isLink: true,
+                                        name: 'Ijtimoiy fanlar va jismoniy madaniyat',
+                                    },
+                                    {
+                                        isLink: true,
+                                        name: 'Anatomiya va mikroanatomiya',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                ],
+            },
+        ],
+    },
 
     {
         isLink: false,
@@ -242,25 +381,6 @@ const menus = ref([
             },
         ],
     },
-
-    // [
-    //     "Yo'nalishlar",
-    //     [
-    //         'Bakalavt',
-    //         ['Davolash ishi', 'Pediatriya ishi', 'Stomatologiya'],
-    //         'Magistratira',
-    //         'Klinik ordinatura',
-    //     ],
-    // ][
-    //     ('Yangiliklar',
-    //     [
-    //         'So`ngi yangiliklar',
-    //         'E`lonlar',
-    //         'Bo’sh ish o’rinlari',
-    //         'Fotogalareya',
-    //         'Videogalareya',
-    //     ])
-    // ],
     {
         isLink: false,
         name: 'Aloqa',
@@ -358,6 +478,17 @@ const menus = ref([
         name: 'Tillar',
     },
 ]);
+
+// const activeMenu = ref(menus[1]);
+const activeMenu = reactive({
+    one: menus.value[1],
+    two: '',
+    three: '',
+    four: '',
+    five: '',
+});
+
+console.log(activeMenu.one);
 
 const isOpenMenu = ref(false);
 
