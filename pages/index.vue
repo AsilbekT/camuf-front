@@ -70,7 +70,7 @@
                 Последние новости
             </NuxtLink>
             <div class="latest-news__list">
-                <NewsCard v-for="item in 6" :key="item" :item="item" />
+                <NewsCard v-for="item in lastnews?.results" :key="item" :item="item" />
             </div>
         </div>
     </div>
@@ -133,12 +133,12 @@
         <div class="container">
             <NuxtLink to="/teachers" class="teachers__title">наши учителя</NuxtLink>
             <div class="teachers__list">
-                <div class="teachers__item" v-for="item in 4" :key="item">
+                <div class="teachers__item" v-for="item in teachers?.results" :key="item">
                     <div class="teachers__item-img">
-                        <img src="@/assets/images/jpg/teacher.jpg" alt="">
+                        <img :src="item?.profile_image" alt="">
                     </div>
                     <h2 class="teachers__item-name">
-                        МАМАСАДИКОВ НУРИЛЛОШУКРУЛЛАЕВИЧ
+                        {{ item?.full_name }}
                     </h2>
                 </div>
             </div>
@@ -149,13 +149,16 @@
 <script setup>
 import videojs from 'video.js';
 import Service from '~/services/Service';
-const news = ref([])
 const banners = ref([])
 const courses = ref({})
 const studentsVideos = ref({})
+const lastnews = ref({})
+const teachers = ref({})
+
+
 async function getNews() {
-    const res = await Service.getAllNews()
-    news.value = res.data
+    const res = await Service.getLastNews()
+    lastnews.value = res.data
 }
 async function getBanners() {
     const res = await Service.getBanners()
@@ -169,12 +172,16 @@ async function getStudentsVideos() {
     const res = await Service.getStudentsVideos()
     studentsVideos.value = res.data
 }
+async function getAllTeachers() {
+    const res = await Service.getAllTeachers()
+    teachers.value = res?.data
+}
 
 getBanners()
 getNews()
 getStudentsVideos()
 getCourses()
-
+getAllTeachers()
 function hover(e) {
     document.querySelectorAll('.video-clips__item').forEach(item => {
         if (e.target === item) {

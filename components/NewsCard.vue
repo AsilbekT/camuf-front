@@ -1,20 +1,19 @@
 <template>
     <div class="latest-news__item">
         <NuxtLink to="/" class="latest-news__item-img">
-            <img :src="`https://source.unsplash.com/random/${item}`" alt="">
+            <img :src="item.image" alt="">
         </NuxtLink>
         <NuxtLink class="latest-news__item-title" to="/">
-            Студенты CAMU на III Международной
-            олимпиаде «Самарканд 2020»
+            {{ item.title }}
         </NuxtLink>
-        <p class="latest-news__item-desc">
-            Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться.
+        <p class="latest-news__item-desc" v-html="item.body">
         </p>
     </div>
 </template>
 
 <script setup>
 const {item} = defineProps(['item'])
+
 </script>
 
 <style lang="scss" scoped></style>
