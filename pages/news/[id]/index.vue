@@ -18,7 +18,7 @@
             <h2 class="news-main__title">Специальности бакалавриата</h2>
             <div class="news-main__wrapper">
                 <div class="news-main__left">
-                    <NewsCard v-for="item in 6" :key="item" :item="item" />
+                    <NewsCard v-for="item in news" :key="item" :item="item" />
                 </div>
                 <div class="news-main__right">
                     <form class="news-main__search">
@@ -173,7 +173,17 @@
 </template>
 
 <script setup>
+import Service from '~/services/Service';
 
+const {id} = useRoute().params
+
+const news = ref()
+async function getNews() {
+    const res = await Service.getCategoryNews(id)
+    news.value = await res.data
+    console.log(news.value);
+}
+getNews()
 </script>
 
 <style lang="scss" scoped></style>

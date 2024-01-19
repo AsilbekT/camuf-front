@@ -356,7 +356,6 @@ const menus = ref([
             },
         ],
     },
-
     {
         isLink: false,
         name: "Yo'nalishlar",
@@ -378,6 +377,32 @@ const menus = ref([
                         name: 'Stomatologiya',
                     },
                 ],
+            },
+        ],
+    },
+    {
+        isLink: false,
+        name: 'Yangiliklar',
+        sub: [
+            {
+                isLink: 'true',
+                name: 'So`ngi yangiliklar',
+            },
+            {
+                isLink: 'true',
+                name: 'E`lonlar',
+            },
+            {
+                isLink: 'true',
+                name: 'Bo’sh ish o’rinlari',
+            },
+            {
+                isLink: 'true',
+                name: 'Fotogalareya',
+            },
+            {
+                isLink: 'true',
+                name: 'Videogalareya',
             },
         ],
     },
@@ -488,7 +513,6 @@ const activeMenu = reactive({
     five: '',
 });
 
-console.log(activeMenu.one);
 
 const isOpenMenu = ref(false);
 

@@ -182,18 +182,28 @@
     &__list {
         flex: 0 0 20%;
         padding: 18px;
-        transition: all .5s ease;
+        transition: all 0.5s ease;
         &:not(&:last-child) {
             // border-right: 1px solid rgba(gray, 0.5);
         }
 
         &.first-col {
             .header-menu__title {
-                font-size: 18px;
+                font-size: 20px;
+                font-weight: 600;
             }
 
             .header-menu__btn {
-                font-size: 16px;
+                font-size: 17px;
+                font-weight: 600;
+            }
+
+            .header-menu__item {
+                margin-top: 6px;
+
+                &:nth-child(2) {
+                    margin-top: 14px;
+                }
             }
         }
     }
@@ -210,7 +220,7 @@
         &:first-child {
             margin-top: 8px;
         }
-        transition: all .5s ease;
+        transition: all 0.5s ease;
     }
 
     &__btn {
@@ -221,7 +231,7 @@
         @include font(400, 14px, 1);
         color: var(--text-color);
         text-align: left;
-        transition: all .5s ease;
+        transition: all 0.5s ease;
         padding-bottom: 2px;
         position: relative;
         overflow: hidden;
@@ -243,9 +253,9 @@
             opacity: 1;
             transform: translate3d(-100%, 0, 0);
         }
-        
+
         &:hover::after,
-        &:focus::after{
+        &:focus::after {
             transform: translate3d(0, 0, 0);
         }
     }
