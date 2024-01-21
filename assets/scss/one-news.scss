@@ -3,7 +3,7 @@
     &__row {
 		display: flex;
 		align-items: flex-start;
-		gap: 24px;
+		gap: 40px;
     }
 
     &__main {
@@ -18,7 +18,7 @@
     }
 
     &__right {
-		flex: 0 0 350px;
+		flex: 0 0 450px;
     }
 }
 
@@ -42,8 +42,8 @@
 	}
 
 	&__img {
-		width: 120px;
-		flex: 0 0 120px;
+		width: 150px;
+		flex: 0 0 150px;
 		height: auto;
 		img{
 			width: 100%;
@@ -57,7 +57,7 @@
 	}
 
 	&__title {
-		@include font(500, 18px, 1.2)
+		@include font(500, 22px, 1.2)
 	}
 
 	&__text {

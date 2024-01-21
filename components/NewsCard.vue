@@ -1,18 +1,20 @@
 <template>
     <div class="latest-news__item">
-        <NuxtLink to="/" class="latest-news__item-img">
-            <img :src="item.image" alt="">
+        <NuxtLink :to="`/news/${category_id}/${item?.slug}`" class="latest-news__item-img">
+            <img :src="item?.image" alt="">
         </NuxtLink>
-        <NuxtLink class="latest-news__item-title" to="/">
-            {{ item.title }}
+        <NuxtLink :to="`/news/${category_id}/${item?.slug}`" class="latest-news__item-title">
+            {{ item?.title }}
         </NuxtLink>
-        <p class="latest-news__item-desc" v-html="item.body">
+        <p class="latest-news__item-desc" v-html="item?.subtitle">
         </p>
     </div>
 </template>
 
 <script setup>
-const {item} = defineProps(['item'])
+const {item, category_id} = defineProps(['item', 'category_id'])
+
+console.log(item);
 
 </script>
 

@@ -14,7 +14,11 @@
                     </li>
                 </ul>
             </nav>
-            <div @click="isOpenMenu = !isOpenMenu" class="header-menu-btn" :class="{ active: isOpenMenu }">
+            <div
+                @click="isOpenMenu = !isOpenMenu"
+                class="header-menu-btn"
+                :class="{ active: isOpenMenu }"
+            >
                 <span></span>
                 <span></span>
                 <span></span>
@@ -25,21 +29,42 @@
     <div class="header-menu" :class="{ active: isOpenMenu }" ref="header_menu">
         <div class="header-menu__main flex items-start">
             <button class="header-menu__close" @click="isOpenMenu = false">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                    <path :fill="dark ? '#fff' : '000'"
-                        d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275q-.275-.275-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7q.275-.275.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275q.275.275.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275z" />
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        :fill="dark ? '#fff' : '000'"
+                        d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275q-.275-.275-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7q.275-.275.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275q.275.275.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275z"
+                    />
                 </svg>
             </button>
             <div class="header-menu__list h-full first-col">
                 <h3 class="header-menu__title">Menyular</h3>
-                <div class="header-menu__item" v-for="(menu, index) in menus" :key="`${index}`">
-                    <NuxtLink class="header-menu__btn" to="/" v-if="menu.isLink">{{ menu.name }}</NuxtLink>
-                    <button v-else class="header-menu__btn" @mouseenter="
-                        (activeMenu.one = menu),
-                        (activeMenu.two = ''),
-                        (activeMenu.three = ''),
-                        (activeMenu.four = '')
-                        ">
+                <div
+                    class="header-menu__item"
+                    v-for="(menu, index) in menus"
+                    :key="`${index}`"
+                >
+                    <NuxtLink
+                        class="header-menu__btn"
+                        to="/"
+                        v-if="menu.isLink"
+                        @click="isOpenMenu = false"
+                        >{{ menu.name }}</NuxtLink
+                    >
+                    <button
+                        v-else
+                        class="header-menu__btn"
+                        @mouseenter="
+                            (activeMenu.one = menu),
+                                (activeMenu.two = ''),
+                                (activeMenu.three = ''),
+                                (activeMenu.four = '')
+                        "
+                    >
                         {{ menu.name }}
                         <img src="~/assets/images/svg/arrow-right.svg" />
                     </button>
@@ -59,11 +84,15 @@
                             >{{ item.name }}</NuxtLink
                         >
                         <!-- item -->
-                        <button v-else class="header-menu__btn" @mouseenter="
-                            (activeMenu.two = item),
-                            (activeMenu.three = ''),
-                            (activeMenu.four = '')
-                            ">
+                        <button
+                            v-else
+                            class="header-menu__btn"
+                            @mouseenter="
+                                (activeMenu.two = item),
+                                    (activeMenu.three = ''),
+                                    (activeMenu.four = '')
+                            "
+                        >
                             {{ item.name }}
                             <img src="~/assets/images/svg/arrow-right.svg" />
                         </button>
@@ -73,13 +102,26 @@
             <div class="header-menu__list menu-main h-full">
                 <h3 class="header-menu__title">{{ activeMenu.two.name }}</h3>
                 <div class="header-menu__items">
-                    <div class="header-menu__item" v-for="item in activeMenu.two.sub" :key="item">
-                        <NuxtLink class="header-menu__btn" to="/" v-if="item.isLink">{{ item.name }}</NuxtLink>
+                    <div
+                        class="header-menu__item"
+                        v-for="item in activeMenu.two.sub"
+                        :key="item"
+                    >
+                        <NuxtLink
+                            class="header-menu__btn"
+                            to="/"
+                            v-if="item.isLink"
+                            >{{ item.name }}</NuxtLink
+                        >
                         <!-- item -->
-                        <button v-else class="header-menu__btn" @mouseenter="
-                            (activeMenu.three = item),
-                            (activeMenu.four = '')
-                            ">
+                        <button
+                            v-else
+                            class="header-menu__btn"
+                            @mouseenter="
+                                (activeMenu.three = item),
+                                    (activeMenu.four = '')
+                            "
+                        >
                             {{ item.name }}
                             <img src="~/assets/images/svg/arrow-right.svg" />
                         </button>
@@ -89,10 +131,23 @@
             <div class="header-menu__list menu-main h-full">
                 <h3 class="header-menu__title">{{ activeMenu.three.name }}</h3>
                 <div class="header-menu__items">
-                    <div class="header-menu__item" v-for="item in activeMenu.three.sub" :key="item">
-                        <NuxtLink class="header-menu__btn" to="/" v-if="item.isLink">{{ item.name }}</NuxtLink>
+                    <div
+                        class="header-menu__item"
+                        v-for="item in activeMenu.three.sub"
+                        :key="item"
+                    >
+                        <NuxtLink
+                            class="header-menu__btn"
+                            to="/"
+                            v-if="item.isLink"
+                            >{{ item.name }}</NuxtLink
+                        >
                         <!-- item -->
-                        <button v-else class="header-menu__btn" @mouseenter="activeMenu.four = item">
+                        <button
+                            v-else
+                            class="header-menu__btn"
+                            @mouseenter="activeMenu.four = item"
+                        >
                             {{ item.name }}
                             <img src="~/assets/images/svg/arrow-right.svg" />
                         </button>
@@ -102,8 +157,17 @@
             <div class="header-menu__list menu-main h-full">
                 <h3 class="header-menu__title">{{ activeMenu.four.name }}</h3>
                 <div class="header-menu__items">
-                    <div class="header-menu__item" v-for="item in activeMenu.four.sub" :key="item">
-                        <NuxtLink class="header-menu__btn" to="/" v-if="item.isLink">{{ item.name }}</NuxtLink>
+                    <div
+                        class="header-menu__item"
+                        v-for="item in activeMenu.four.sub"
+                        :key="item"
+                    >
+                        <NuxtLink
+                            class="header-menu__btn"
+                            to="/"
+                            v-if="item.isLink"
+                            >{{ item.name }}</NuxtLink
+                        >
                         <!-- item -->
                     </div>
                 </div>
@@ -112,10 +176,16 @@
     </div>
 
     <label class="relative inline-flex items-center cursor-pointer dark-mode">
-        <input type="checkbox" value="" class="sr-only peer" :checked="dark" @change="darkChange()" />
+        <input
+            type="checkbox"
+            value=""
+            class="sr-only peer"
+            :checked="dark"
+            @change="darkChange()"
+        />
         <div
-            class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
-        </div>
+            class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+        ></div>
     </label>
 
     <NuxtPage />
@@ -451,7 +521,6 @@ const activeMenu = reactive({
     four: '',
     five: '',
 });
-
 
 const isOpenMenu = ref(false);
 
