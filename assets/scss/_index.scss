@@ -33,8 +33,10 @@
       z-index: -1;
     }
     video {
+      width: 100% !important;
+      height: 100% !important;
       pointer-events: none;
-      object-fit: cover;
+      object-fit: cover !important;
     }
     &::after {
       content: "";
@@ -237,14 +239,15 @@
 }
 .video-clips__item {
   width: 100%;
-  height: 510px;
+  // height: 510px;
   border: 1px solid var(--border-color);
   cursor: pointer;
   transition: all 0.3s ease;
-  img {
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+  .video-js {
+    pointer-events: none !important;
+  }
+  video {
+    pointer-events: none !important;
     object-fit: cover;
   }
 }
@@ -370,6 +373,7 @@
       img {
         width: 100%;
         height: 403px;
+        object-fit: cover;
       }
       margin-bottom: 22px;
     }
