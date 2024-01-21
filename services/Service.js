@@ -28,6 +28,10 @@ export default {
 
   // techers apis
   getAllTeachers() {
-    return API().get('/staff/?role=professor')
-  }
+    return API().get('/staff/')
+  },
+
+  getOneTeachers(id) {
+    return API().get(`/staff/${id}/`)
+  },
 };

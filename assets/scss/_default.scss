@@ -258,6 +258,10 @@
         &:focus::after {
             transform: translate3d(0, 0, 0);
         }
+
+        &.active::after{
+            transform: translate3d(0, 0, 0);
+        }
     }
 }
 
