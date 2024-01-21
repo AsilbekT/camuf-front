@@ -111,7 +111,7 @@
                     <h4 class="speciality__item-num">
                         {{ index < 10 ? '0' + index : index }} </h4>
                             <h2 class="speciality__item-title">
-                                {{ item?.title_uz }}
+                                {{ item?.title }}
                             </h2>
                             <div class="speciality__item-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
