@@ -156,7 +156,7 @@ const teachers = ref({})
 const president = ref({})
 const about = ref({})
 
-
+const muted = ref(true)
 
 
 
@@ -200,11 +200,11 @@ function hover(e) {
         if (e.target === item) {
             e.target.style.transform = 'scale(1.1)'
             e.target.style.filter = 'blur(0)'
-            const player = videojs(e.target.childNodes[0])
+            const player = videojs(e.target?.childNodes[0])
             player.muted(false)
         } else {
             item.style.filter = 'blur(5px)'
-            const player = videojs(item.childNodes[0])
+            const player = videojs(item?.childNodes[0])
             player.muted(true)
         }
     })
@@ -217,6 +217,8 @@ function leave(e) {
         player.muted(true)
     })
 }
+
+
 
 const speed = 200;
 onMounted(() => {
