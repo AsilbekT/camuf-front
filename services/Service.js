@@ -19,7 +19,7 @@ export default {
     return API().get(`/newscategories/${category_id}/news/${news_slug}/`);
   },
   getLastNews() {
-    return API().get(`/news/?page_size=6 `);
+    return API().get(`/news/?page_size=6`);
   },
 
   // staffs apis
@@ -46,5 +46,9 @@ export default {
   // artcile apis
   getAllArticles(size) {
     return API().get("/articles/?size=" + size);
+  },
+
+  getOneTeachers(id) {
+    return API().get(`/staff/${id}/`);
   },
 };

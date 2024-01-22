@@ -17,13 +17,13 @@
         <div class="container">
             <h2 class="teachers-main__title">наши учителя</h2>
             <div class="teachers-main__wrapper">
-                <div class="teachers__item" v-for="item in 8" :key="item">
+                <div class="teachers__item" v-for="item in teachers" :key="item.id">
                     <div class="teachers__item-img">
-                        <img src="@/assets/images/jpg/teacher.jpg" alt="">
+                        <img :src="item.profile_image" alt="">
                     </div>
-                    <h2 class="teachers__item-name">
-                        МАМАСАДИКОВ НУРИЛЛОШУКРУЛЛАЕВИЧ
-                    </h2>
+                    <NuxtLink :to="`/teachers/${item.id}`" lass="teachers__item-name cursor-pointer">
+                        {{ item.full_name }}
+                    </NuxtLink>
                 </div>
             </div>
         </div>
@@ -31,7 +31,16 @@
 </template>
 
 <script setup>
+import Service from '~/services/Service';
 
+const teachers = ref([])
+
+async function getAllTeachers() {
+    const res = await Service.getAllTeachers()
+    teachers.value = res?.data.results
+}
+
+getAllTeachers()
 </script>
 
 <style lang="scss" scoped></style>

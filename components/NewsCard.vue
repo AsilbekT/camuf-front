@@ -13,9 +13,6 @@
 
 <script setup>
 const {item, category_id} = defineProps(['item', 'category_id'])
-
-// console.log(item);
-
 </script>
 
 <style lang="scss" scoped></style>
