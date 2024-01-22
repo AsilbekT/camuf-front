@@ -12,7 +12,10 @@
     }
     padding: 309px 0 350px;
     @include media(1160px) {
-      padding: 150px 0 50px;
+      padding: 200px 0 250px;
+    }
+    @include media(795px) {
+      padding: 120px 0;
     }
   }
   &-bg {
@@ -61,6 +64,13 @@
     @include media(1230px) {
       font-size: 54px;
     }
+    @include media(795px) {
+      font-size: 38px;
+      margin-bottom: 20px;
+    }
+    @include media(600px) {
+      font-size: 24px;
+    }
   }
   &__desc {
     width: 100%;
@@ -70,6 +80,9 @@
     color: var(--hero-desc-color);
     @include media(1230px) {
       font-size: 22px;
+    }
+    @include media(795px) {
+      font-size: 18px;
     }
   }
   &__play-video {
@@ -91,6 +104,10 @@
   &-bottom {
     transform: translateY(-50%);
     z-index: 1;
+    @include media(795px) {
+      padding: 50px 0;
+      transform: translateY(0%);
+    }
     .container {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -146,16 +163,38 @@
   margin-bottom: 120px;
   .container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
     gap: 20px;
+    @include media(1045px) {
+      flex-direction: column;
+      // align-items: center;
+    }
   }
   &-user {
     width: 648px;
     flex-shrink: 0;
+    @include media(1340px) {
+      width: 50%;
+    }
+    @include media(1045px) {
+      width: 65%;
+    }
+    @include media(900px) {
+      width: 100%;
+    }
     &__img {
       width: 100%;
       height: 589px;
+      @include media(1340px) {
+        height: 540px;
+      }
+      @include media(900px) {
+        height: 450px;
+      }
+      @include media(460px) {
+        height: 300px;
+      }
+
       margin-bottom: 30px;
       border-radius: 5px;
       object-fit: cover;
@@ -166,12 +205,30 @@
       @include font(800, 26px, 1.2);
       margin-bottom: 6px;
       color: var(--user-nam);
+      @include media(900px) {
+        font-size: 20px;
+      }
+      @include media(460px) {
+        font-size: 18px;
+      }
+    }
+    &__subtitle {
+      @include media(900px) {
+        font-size: 16px;
+      }
     }
   }
   &-text-wrapper {
     width: 50%;
     display: flex;
     flex-direction: column;
+    padding-top: 60px;
+    @include media(1045px) {
+      width: 100%;
+    }
+    @include media(870px) {
+      padding-top: 20px;
+    }
   }
   &-title {
     text-transform: uppercase;
@@ -179,10 +236,24 @@
     color: var(--title-color);
     border-bottom: 1px solid var(--title-color);
     margin-bottom: 25px;
+
+    @include media(1480px) {
+      font-size: 50px;
+    }
+    @include media(1230px) {
+      font-size: 45px;
+    }
+    @include media(870px) {
+      font-size: 32px;
+    }
+    @include media(620px) {
+      font-size: 28px;
+    }
   }
   &-desc {
     @include font(400, 20px, 1.4);
     margin-bottom: 70px;
+    display: -moz-box;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -190,6 +261,13 @@
     white-space: normal;
     -webkit-line-clamp: 4;
     line-clamp: 4;
+    @include media(1340px) {
+      font-size: 18px;
+    }
+    @include media(870px) {
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
   }
   &-btn {
     @extend %pr-btn;
@@ -197,6 +275,9 @@
 }
 .about-main {
   padding: 100px 0;
+  .about-text-wrapper {
+    padding-top: 0;
+  }
   .about-main-desc {
     display: flex;
     @include font(400, 20px, 1.4);
@@ -210,11 +291,20 @@
   &__title {
     @include title;
     margin-bottom: 40px;
+    @include media(900px) {
+      margin-bottom: 20px;
+    }
   }
   &__list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    @include media(600px) {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
     gap: 70px 45px;
+    @include media(900px) {
+      gap: 30px;
+    }
   }
 }
 
@@ -224,10 +314,17 @@
   &-img {
     width: 100%;
     margin-bottom: 26px;
+    height: 0;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    position: relative;
     img {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 100%;
       object-fit: cover;
-      height: 271px;
     }
   }
   &-title {
@@ -238,9 +335,23 @@
     &:hover {
       color: var(--pr-color);
     }
+    display: -moz-box;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    @include media(720px) {
+      font-size: 18px;
+    }
   }
   &-desc {
     @include font(400, 18px, 1.4);
+    @include media(720px) {
+      font-size: 16px;
+    }
   }
 }
 
@@ -249,16 +360,22 @@
   &__title {
     @include title;
     margin-bottom: 50px;
+    @include media(900px) {
+      margin-bottom: 20px;
+    }
   }
-  &__wrapper {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
+  .swiper {
+    padding: 0 20px;
+  }
+  .swiper-slide {
+    padding: 40px 0;
+    @include media(1260px) {
+      width: 261px !important;
+    }
   }
 }
 .video-clips__item {
   width: 100%;
-  // height: 510px;
   border: 1px solid var(--border-color);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -276,17 +393,24 @@
   .container {
     display: flex;
     justify-content: space-between;
+    gap: 20px;
   }
   &__text-wrapper {
     width: 100%;
     max-width: 606px;
     display: flex;
     flex-direction: column;
+    @include media(1100px) {
+      max-width: 100%;
+    }
   }
   &__list {
     width: 100%;
     max-width: 811px;
     display: flex;
+    @include media(1100px) {
+      display: none;
+    }
     flex-direction: column;
   }
   &__item {
@@ -381,24 +505,38 @@
   }
   &__list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 44px;
+    @include media(600px) {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
   }
   &__item {
     display: flex;
     flex-direction: column;
     &-img {
       width: 100%;
+      height: 0;
+      padding-bottom: 130%;
+      overflow: hidden;
+      position: relative;
       img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
-        height: 403px;
+        height: 100%;
         object-fit: cover;
+        object-position: top;
       }
       margin-bottom: 22px;
     }
     &-name {
       @include font(600, 20px, 1.2);
       color: var(--play-color);
+      @include media(600px) {
+        font-size: 16px;
+      }
     }
   }
 }

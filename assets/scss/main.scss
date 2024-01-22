@@ -25,6 +25,9 @@ body {
     color: var(--text-color);
     @include font(400,20px,1.2);
     background: var(--bg-color);
+    @include media(720px) {
+        font-size: 16px;
+    }
 }
 
 .container {

@@ -3,18 +3,30 @@
     font-size: $fz;
     line-height: $lh;
 }
+@mixin media($w) {
+    @media (max-width: $w) {
+        @content;
+    }
+}
 @mixin title {
     color: var(--title-color);
     @include font(800, 60px, 1.2);
     text-transform: uppercase;
     display: inline-block;
     transition: all .3s ease;
+    @include media(1200px) {
+        font-size: 50px;
+    }
+    @include media(1050px) {
+        font-size: 40px;
+    }
+    @include media(890px) {
+        font-size: 30px;
+    }
+    @include media(600px) {
+        font-size: 28px;
+    }
     &:hover {
         color: var(--pr-color);
-    }
-}
-@mixin media($w) {
-    @media (max-width: $w) {
-        @content;
     }
 }

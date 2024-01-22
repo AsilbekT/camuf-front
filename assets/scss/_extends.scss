@@ -13,4 +13,12 @@
     color: #fff;
     border-color: var(--pr-color);
   }
+  @include media(1260px) {
+    padding: 22px;
+    font-size: 18px;
+  }
+  @include media(870px) {
+    padding: 20px;
+    font-size: 16px;
+  }
 }

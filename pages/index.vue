@@ -69,14 +69,22 @@
     <div class="video-clips">
         <div class="container">
             <h2 class="video-clips__title">видеоклипы</h2>
-            <div class="video-clips__wrapper">
-                <div class="video-clips__item" @mousemove="hover($event)" @mouseleave="leave($event)"
-                    v-for="item in studentsVideos?.results?.slice(0, 4)" :key="item">
-                    <video-player loop muted playsinline crossorigin :autoplay="true" :plugins="{
-                        aspectRatio: '9:16'
-                    }" :src="item?.video_url" />
-                </div>
-            </div>
+            <Swiper :slides-per-view="4" :breakpoints="{
+                0: {
+                    slidesPerView: 'auto',
+                },
+                1270: {
+                    slidesPerView: 4
+                }
+            }" :space-between="40">
+                <SwiperSlide v-for="item in studentsVideos?.results" :key="item">
+                    <div class="video-clips__item" @mousemove="hover($event)" @mouseleave="leave($event)">
+                        <video-player loop muted playsinline crossorigin :autoplay="true" :plugins="{
+                            aspectRatio: '9:16'
+                        }" :src="item?.video_url" />
+                    </div>
+                </SwiperSlide>
+            </Swiper>
         </div>
     </div>
 
