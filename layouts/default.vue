@@ -267,10 +267,10 @@
 // menus
 import menus from '~/utils/menus.js';
 
-const scrolledNav = ref(false);
+const scrolledNav = ref(false)
 const updateScroll = () => {
     const scrollposition = window.scrollY;
-    if (scrollposition > 450) {
+    if (scrollposition > 800) {
         scrolledNav.value = true;
         return;
     }
@@ -293,7 +293,7 @@ if (localStorage.getItem('dark')) {
     document.querySelector('body').classList.add('dark');
 }
 onMounted(() => {
-    window.addEventListener('scroll', updateScroll);
+    window.addEventListener("scroll", updateScroll);
 });
 
 //============================================ header menu ============================================
