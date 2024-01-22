@@ -43,7 +43,7 @@
         <div class="container">
             <div class="about-user">
                 <img class="about-user__img" :src="president?.profile_image" alt="">
-                <h2 class="about-user__name">{{ president?.full_name }}</h2>
+                <NuxtLink :to="`/teachers/${president?.id}`" class="about-user__name">{{ president?.full_name }}</NuxtLink>
                 <h4 class="about-user__subtitle">Ректор университета</h4>
             </div>
             <div class="about-text-wrapper">
