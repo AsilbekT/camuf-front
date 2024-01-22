@@ -32,12 +32,12 @@
     display: flex;
     align-items: center;
     list-style: none;
-    gap: 70px;
+    gap: 40px;
     @include media(795px) {
       gap: 20px;
     }
     a {
-      @include font(600, 30px, 1.2);
+      @include font(600, 22px, 1.2);
       color: var(--play-color);
       @include media(1165px) {
         font-size: 22px;

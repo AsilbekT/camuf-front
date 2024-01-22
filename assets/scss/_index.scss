@@ -121,7 +121,7 @@
     }
     &__item {
       z-index: 1;
-      height: 251px;
+      height: 201px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -138,9 +138,9 @@
       }
       &-res {
         color: var(--title-color);
-        @include font(800, 80px, 1.2);
+        @include font(800, 54px, 1.2);
         @include media(1230px) {
-          font-size: 54px;
+          font-size: 42px;
         }
         @include media(720px) {
           font-size: 42px;
@@ -163,15 +163,15 @@
   margin-bottom: 120px;
   .container {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: center;
+    gap: 40px;
     @include media(1045px) {
       flex-direction: column;
       // align-items: center;
     }
   }
   &-user {
-    width: 648px;
+    width: 40%;
     flex-shrink: 0;
     @include media(1340px) {
       width: 50%;
@@ -202,7 +202,7 @@
     }
     &__name {
       text-transform: uppercase;
-      @include font(800, 26px, 1.2);
+      @include font(800, 22px, 1.2);
       margin-bottom: 6px;
       color: var(--user-nam);
       @include media(900px) {
@@ -213,6 +213,7 @@
       }
     }
     &__subtitle {
+      font-size: 16px;
       @include media(900px) {
         font-size: 16px;
       }
@@ -232,26 +233,19 @@
   }
   &-title {
     text-transform: uppercase;
-    @include font(900, 60px, 1.2);
+    @include font(900, 38px, 1.2);
     color: var(--title-color);
     border-bottom: 1px solid var(--title-color);
     margin-bottom: 25px;
-
-    @include media(1480px) {
-      font-size: 50px;
-    }
-    @include media(1230px) {
-      font-size: 45px;
-    }
     @include media(870px) {
-      font-size: 32px;
+      font-size: 28px;
     }
     @include media(620px) {
-      font-size: 28px;
+      font-size: 24px;
     }
   }
   &-desc {
-    @include font(400, 20px, 1.4);
+    @include font(400, 18px, 1.4);
     margin-bottom: 70px;
     display: -moz-box;
     display: -webkit-box;

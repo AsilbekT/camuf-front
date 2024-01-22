@@ -20,19 +20,19 @@
         <div class="hero-bottom">
             <div class="container">
                 <div class="hero-bottom__item">
-                    <h2 class="hero-bottom__item-res" data-count="90"><span>0</span>%</h2>
+                    <h2 class="hero-bottom__item-res" :data-count="about?.graduates"><span>0</span>%</h2>
                     <h4 class="hero-bottom__item-title">Выпускники</h4>
                 </div>
                 <div class="hero-bottom__item">
-                    <h2 class="hero-bottom__item-res" data-count="30"><span>0</span>+</h2>
+                    <h2 class="hero-bottom__item-res" :data-count="about?.professors"><span>0</span>+</h2>
                     <h4 class="hero-bottom__item-title">Профессоры</h4>
                 </div>
                 <div class="hero-bottom__item">
-                    <h2 class="hero-bottom__item-res" data-count="2"><span>0</span></h2>
+                    <h2 class="hero-bottom__item-res" :data-count="about?.branches"><span>0</span></h2>
                     <h4 class="hero-bottom__item-title">Студенческие Города</h4>
                 </div>
                 <div class="hero-bottom__item">
-                    <h2 class="hero-bottom__item-res" data-count="500"><span>0</span>+</h2>
+                    <h2 class="hero-bottom__item-res" :data-count="about?.number_of_students"><span>0</span>+</h2>
                     <h4 class="hero-bottom__item-title">Количество Студентов</h4>
                 </div>
             </div>

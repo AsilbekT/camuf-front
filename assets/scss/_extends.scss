@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 33px;
+  padding: 22px;
   width: 100%;
-  @include font(700, 22px, 1.2);
+  @include font(700, 18px, 1.2);
   color: var(--play-color);
   border: 1px solid var(--play-color);
   transition: all .3s ease;
