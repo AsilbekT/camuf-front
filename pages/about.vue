@@ -1,0 +1,49 @@
+<template>
+    <div class="courses-banner">
+        <img class="courses-banner__bg" src="@/assets/images/jpg/courses.jpg" alt="">
+        <div class="container">
+            <ul class="courses-banner__nav">
+                <li>
+                    <NuxtLink to="/">Главная страница</NuxtLink>
+                </li>
+                /
+                <li>
+                    <NuxtLink to="/">Universitet haqida</NuxtLink>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="about about-main" id="#about">
+        <div class="container">
+            <div class="about-user">
+                <img class="about-user__img" :src="president?.profile_image" alt="">
+                <h2 class="about-user__name">{{ president?.full_name }}</h2>
+                <h4 class="about-user__subtitle">Ректор университета</h4>
+            </div>
+            <div class="about-text-wrapper">
+                <h2 class="about-title">{{ about?.name }}</h2>
+                <p class="about-main-desc" v-html="about?.about">
+                </p>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup>
+import Service from '~/services/Service';
+const about = ref({})
+const president = ref({})
+
+async function getAbout() {
+    const res = await Service.getUnversityInfo()
+    about.value = res.data?.results[0]
+}
+async function getPresident() {
+    const res = await Service.getPresident()
+    president.value = res.data?.results[0]
+}
+getAbout()
+getPresident()
+</script>
+
+<style lang="scss" scoped></style>

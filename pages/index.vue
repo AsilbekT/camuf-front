@@ -1,42 +1,38 @@
 <template>
     <div class="hero">
-        <div class="hero-top" v-for="item in banners?.results?.slice(0,1)" :key="item">
-            <div class="hero-bg">
-                <video-player loop muted playsinline crossorigin :autoplay="true" class="hero__video"
-                    :src="item?.video_url" />
-            </div>
-            <div class="container">
-                <div class="hero__text-wrapper">
-                    <h2 class="hero__title">{{ item?.title }}</h2>
-                    <p class="hero__desc">
-                        {{ item?.description }}
-                    </p>
+        <Swiper :slidesPerView="1" :autoplay="{ delay: 10000, disableOnInteraction: false, }" :speed="800"
+            :modules="[SwiperAutoplay]">
+            <SwiperSlide v-for="item in banners?.results" :key="item">
+                <div class="hero-bg">
+                    <video-player loop muted playsinline crossorigin :autoplay="true" class="hero__video"
+                        :src="item?.video_url" />
                 </div>
-                <!-- <button class="hero__play-video">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="13" viewBox="0 0 11 13" fill="none">
-                        <path
-                            d="M10.5 5.63398C11.1667 6.01888 11.1667 6.98113 10.5 7.36603L2.25 12.1292C1.58333 12.5141 0.75 12.0329 0.75 11.2631L0.750001 1.73686C0.750001 0.967059 1.58333 0.485934 2.25 0.870835L10.5 5.63398Z"
-                            fill="white" />
-                    </svg>
-                </button> -->
-            </div>
-        </div>
+                <div class="container">
+                    <div class="hero__text-wrapper">
+                        <h2 class="hero__title">{{ item?.title }}</h2>
+                        <p class="hero__desc">
+                            {{ item?.description }}
+                        </p>
+                    </div>
+                </div>
+            </SwiperSlide>
+        </Swiper>
         <div class="hero-bottom">
             <div class="container">
                 <div class="hero-bottom__item">
-                    <h2 class="hero-bottom__item-res">99%</h2>
+                    <h2 class="hero-bottom__item-res" data-count="90"><span>0</span>%</h2>
                     <h4 class="hero-bottom__item-title">Выпускники</h4>
                 </div>
                 <div class="hero-bottom__item">
-                    <h2 class="hero-bottom__item-res">30+</h2>
+                    <h2 class="hero-bottom__item-res" data-count="30"><span>0</span>+</h2>
                     <h4 class="hero-bottom__item-title">Профессоры</h4>
                 </div>
                 <div class="hero-bottom__item">
-                    <h2 class="hero-bottom__item-res">02</h2>
+                    <h2 class="hero-bottom__item-res" data-count="2"><span>0</span></h2>
                     <h4 class="hero-bottom__item-title">Студенческие Города</h4>
                 </div>
                 <div class="hero-bottom__item">
-                    <h2 class="hero-bottom__item-res">500+</h2>
+                    <h2 class="hero-bottom__item-res" data-count="500"><span>0</span>+</h2>
                     <h4 class="hero-bottom__item-title">Количество Студентов</h4>
                 </div>
             </div>
@@ -46,20 +42,15 @@
     <div class="about" id="#about">
         <div class="container">
             <div class="about-user">
-                <img class="about-user__img" src="@/assets/images/png/Rectangle 82.png" alt="">
-                <h2 class="about-user__name">МАМАСАДИКОВ НУРИЛЛО ШУКРУЛЛАЕВИЧ</h2>
+                <img class="about-user__img" :src="president?.profile_image" alt="">
+                <h2 class="about-user__name">{{ president?.full_name }}</h2>
                 <h4 class="about-user__subtitle">Ректор университета</h4>
             </div>
             <div class="about-text-wrapper">
-                <h2 class="about-title">О университете</h2>
-                <p class="about-desc">
-                    6 сентября 2022 года Среднеазиатский медицинский университет получил лицензию № 037700 Государственной
-                    инспекции по контролю качества образования при
-
-                    Кабинете Министров Республики Узбекистан. На основании этого документа университет начал свою
-                    деятельность.
+                <h2 class="about-title">{{ about?.name }}</h2>
+                <p class="about-desc" v-html="about?.about">
                 </p>
-                <NuxtLink class="about-btn" to="/courses">Барча йўналишлар</NuxtLink>
+                <NuxtLink class="about-btn" to="/about">Ko'proq bilish</NuxtLink>
             </div>
         </div>
     </div>
@@ -81,7 +72,7 @@
             <div class="video-clips__wrapper">
                 <div class="video-clips__item" @mousemove="hover($event)" @mouseleave="leave($event)"
                     v-for="item in studentsVideos?.results?.slice(0, 4)" :key="item">
-                    <video-player loop playsinline crossorigin :plugins="{
+                    <video-player loop muted playsinline crossorigin :autoplay="true" :plugins="{
                         aspectRatio: '9:16'
                     }" :src="item?.video_url" />
                 </div>
@@ -154,8 +145,21 @@ const courses = ref({})
 const studentsVideos = ref({})
 const lastnews = ref({})
 const teachers = ref({})
+const president = ref({})
+const about = ref({})
 
 
+
+
+
+async function getAbout() {
+    const res = await Service.getUnversityInfo()
+    about.value = res.data?.results[0]
+}
+async function getPresident() {
+    const res = await Service.getPresident()
+    president.value = res.data?.results[0]
+}
 async function getNews() {
     const res = await Service.getLastNews()
     lastnews.value = res.data
@@ -165,7 +169,7 @@ async function getBanners() {
     banners.value = res.data
 }
 async function getCourses() {
-    const res = await Service.getCourses()
+    const res = await Service.getAllCourses()
     courses.value = res.data
 }
 async function getStudentsVideos() {
@@ -176,7 +180,8 @@ async function getAllTeachers() {
     const res = await Service.getAllTeachers()
     teachers.value = res?.data
 }
-
+getAbout()
+getPresident()
 getBanners()
 getNews()
 getStudentsVideos()
@@ -188,11 +193,11 @@ function hover(e) {
             e.target.style.transform = 'scale(1.1)'
             e.target.style.filter = 'blur(0)'
             const player = videojs(e.target.childNodes[0])
-            player.play()
+            player.muted(false)
         } else {
             item.style.filter = 'blur(5px)'
             const player = videojs(item.childNodes[0])
-            player.pause()
+            player.muted(true)
         }
     })
 }
@@ -201,11 +206,27 @@ function leave(e) {
         item.style.transform = 'scale(1)'
         item.style.filter = 'blur(0)'
         const player = videojs(item.childNodes[0])
-        player.pause()
+        player.muted(true)
     })
 }
+
+const speed = 200;
 onMounted(() => {
-   
+    document.querySelectorAll('.hero-bottom__item-res').forEach(el => {
+        const animate = () => {
+            const currentValue = +el.getAttribute('data-count');
+            const currentDisplayValue = +el.childNodes[0].innerText
+            const time = currentValue / speed;
+
+            if (currentDisplayValue < currentValue) {
+                el.childNodes[0].innerText = Math.ceil(currentDisplayValue + time);
+                setTimeout(animate, 1);
+            } else {
+                el.childNodes[0].innerText = currentValue;
+            }
+        };
+        animate();
+    })
 })
 </script>
 

@@ -3,9 +3,13 @@
         <img class="courses-banner__bg" src="@/assets/images/jpg/courses.jpg" alt="">
         <div class="container">
             <ul class="courses-banner__nav">
-                <li><NuxtLink to="/">Главная страница</NuxtLink></li>
+                <li>
+                    <NuxtLink to="/">Главная страница</NuxtLink>
+                </li>
                 /
-                <li><NuxtLink to="/">Курс</NuxtLink></li>
+                <li>
+                    <NuxtLink to="/">Курс</NuxtLink>
+                </li>
             </ul>
         </div>
     </div>
@@ -32,13 +36,12 @@
 import Service from '~/services/Service';
 const courses = ref({})
 const size = ref(6)
-async function getAllCourses() {
-    const res = await Service.getAllCourses(size)
+const { id } = useRoute().params
+async function getCourses() {
+    const res = await Service.getCourses(size, id)
     courses.value = res.data
 }
-getAllCourses()
+getCourses()
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

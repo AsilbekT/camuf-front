@@ -14,7 +14,7 @@
 <script setup>
 const {item, category_id} = defineProps(['item', 'category_id'])
 
-console.log(item);
+// console.log(item);
 
 </script>
 

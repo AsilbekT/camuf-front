@@ -3,14 +3,10 @@ export default {
   getBanners() {
     return API().get("/banners/");
   },
-  getCourses() {
-    return API().get("/courses/");
-  },
   // students apis
   getStudentsVideos() {
     return API().get("/studenttestimonials/");
   },
-
 
   // news apis
   getAllNews() {
@@ -23,11 +19,32 @@ export default {
     return API().get(`/newscategories/${category_id}/news/${news_slug}/`);
   },
   getLastNews() {
-    return API().get(`/news/?page_size=6 `)
+    return API().get(`/news/?page_size=6 `);
   },
 
-  // techers apis
+  // staffs apis
   getAllTeachers() {
-    return API().get('/staff/?role=professor')
-  }
+    return API().get("/staff/?role=professor");
+  },
+
+  getPresident() {
+    return API().get("/staff/?role=president");
+  },
+
+  // unversity infos apis
+  getUnversityInfo() {
+    return API().get("/universityinformation/");
+  },
+
+  // courses apis
+  getAllCourses(size) {
+    return API().get("/courses/?size=" + size);
+  },
+  getCourses(size, id) {
+    return API().get(`/coursecategories/${id}/courses/?size=${size}`);
+  },
+  // artcile apis
+  getAllArticles(size) {
+    return API().get("/articles/?size=" + size);
+  },
 };
