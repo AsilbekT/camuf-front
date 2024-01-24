@@ -101,3 +101,75 @@
     }
   }
 }
+
+.journals {
+  padding: 120px 0;
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 30px;
+  }
+}
+.card-journal {
+  background: var(--card-journal);
+  color: var(--card-journal-text) !important;
+  .title {
+    display: -moz-box;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+  svg {
+    path {
+      fill: var(--title-color);
+    }
+  }
+  .btn {
+    background: var(--pr-color);
+  }
+  p {
+    display: -moz-box;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+}
+
+.journals-main {
+  padding: 120px 0;
+  .journals-title {
+    @include title;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .journals-desc {
+    color: #fff;
+    margin-bottom: 24px;
+  }
+  .journals-left {
+    width: 70%;
+  }
+
+  .journals-right {
+    width: 30%;
+  }
+  .container {
+    display: flex;
+    gap: 40px;
+  }
+}
+.card {
+  background: var(--card);
+}

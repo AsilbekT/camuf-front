@@ -238,15 +238,15 @@ function darkChange() {
     if (localStorage.getItem('dark')) {
         localStorage.removeItem('dark');
         dark.value = false;
-        document.querySelector('body').classList.remove('dark');
+        document.querySelector('html').classList.remove('dark');
     } else {
         localStorage.setItem('dark', true);
         dark.value = true;
-        document.querySelector('body').classList.add('dark');
+        document.querySelector('html').classList.add('dark');
     }
 }
 if (localStorage.getItem('dark')) {
-    document.querySelector('body').classList.add('dark');
+    document.querySelector('html').classList.add('dark');
 }
 onMounted(() => {
     window.addEventListener("scroll", updateScroll);

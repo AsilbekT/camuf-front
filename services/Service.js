@@ -22,9 +22,9 @@ export default {
     return API().get(`/news/?page_size=6`);
   },
   getNewsCategories() {
-    return API().get('/newscategories/');
+    return API().get("/newscategories/");
   },
-  
+
   // staffs apis
   getAllTeachers() {
     return API().get("/staff/?role=professor");
@@ -40,15 +40,27 @@ export default {
   },
 
   // courses apis
+  getCourseCategorys() {
+    return API().get("/coursecategories/");
+  },
   getAllCourses(size) {
     return API().get("/courses/?size=" + size);
   },
   getCourses(size, id) {
     return API().get(`/coursecategories/${id}/courses/?size=${size}`);
   },
+  getAboutCourse(id) {
+    return API().get(`/courses/${id}/`);
+  },
   // artcile apis
   getAllArticles(size) {
     return API().get("/articles/?size=" + size);
+  },
+  getCategoryArticle(id) {
+    return API().get(`/articlecategories/${id}/articles/`);
+  },
+  getArticleDetail(id, slug) {
+    return API().get(`/articlecategories/${id}/articles/${slug}/`);
   },
 
   getOneTeachers(id) {

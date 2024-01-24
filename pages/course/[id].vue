@@ -22,9 +22,11 @@
                         <img :src="item?.image" alt="">
                     </div>
                     <div class="courses-main__item-text-wrapper">
-                        <NuxtLink to="/" class="courses-main__item-title">{{ item?.title }}</NuxtLink>
+                        <NuxtLink :to="`/about-course/${item?.id}`" class="courses-main__item-title">{{ item?.title }}
+                        </NuxtLink>
                         <h4 class="courses-main__item-code">Код направления: {{ item?.course_id }}</h4>
-                        <NuxtLink to="/" class="courses-main__item-btn">Подробная информация</NuxtLink>
+                        <NuxtLink :to="`/about-course/${item?.id}`" class="courses-main__item-btn">Подробная информация
+                        </NuxtLink>
                     </div>
                 </div>
             </div>
@@ -35,13 +37,19 @@
 <script setup>
 import Service from '~/services/Service';
 const courses = ref({})
+const categorys = ref({})
 const size = ref(6)
 const { id } = useRoute().params
 async function getCourses() {
     const res = await Service.getCourses(size, id)
     courses.value = res.data
 }
+async function getCourseCategorys() {
+    const res = await Service.getCourseCategorys()
+    categorys.value = res.data
+}
 getCourses()
+
 </script>
 
 <style lang="scss" scoped></style>

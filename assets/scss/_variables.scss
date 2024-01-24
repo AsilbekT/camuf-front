@@ -12,21 +12,27 @@
   --footer-desc: rgba(22, 28, 49, 0.6);
   --footer-form: rgba(53, 80, 167, 1);
   --special-item-title: #3550a7;
-  --course-btn: #fff
+  --course-btn: #fff;
+  --card: #3550a7;
+  --card-journal: #fff;
+  --card-journal-text: rgba(55, 65, 81, 1);
 }
 .dark {
+  --card-journal: #ffffff17;
+  --card-journal-text: #fff;
   --bg-color: #161c31;
-  --course-btn: #161C31;
+  --course-btn: #161c31;
   --text-color: rgba(255, 255, 255, 0.6);
   --play-color: #fff;
   --title-color: #fff;
   --hero-desc-color: rgba(255, 255, 255, 0.9);
   --hero-bg: rgba(22, 28, 49, 0.8);
   --hero-item-shadow: 0px 7px 23px 0px #0c101e;
-  --user-nam: #2C5EFF;
-  --pr-color: #2C5EFF;
-  --border-color: #2C5EFF;
+  --user-nam: #2c5eff;
+  --pr-color: #2c5eff;
+  --border-color: #2c5eff;
   --footer-desc: rgba(255, 255, 255, 0.6);
   --footer-form: rgba(44, 94, 255, 1);
-  --special-item-title: #2C5EFF;
+  --special-item-title: #2c5eff;
+  --card: #ffffff17;
 }

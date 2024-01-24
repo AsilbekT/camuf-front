@@ -22,6 +22,7 @@
     "axios": "^1.6.5",
     "nuxt-swiper": "^1.2.2",
     "sass": "^1.69.4",
-    "video.js": "^8.9.0"
+    "video.js": "^8.9.0",
+    "vue3-pdf-app": "^1.0.3"
   }
 }
