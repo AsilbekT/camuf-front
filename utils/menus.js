@@ -2,10 +2,12 @@ export default [
     {
         isLink: true,
         name: 'Asosiy Sahifa',
+        link: '/',
     },
     {
         isLink: false,
         name: 'Universitet haqida',
+        link: '/about',
         sub: [
             {
                 isLink: true,

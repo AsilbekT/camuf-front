@@ -275,8 +275,13 @@
   }
   .about-main-desc {
     display: flex;
-    @include font(400, 20px, 1.4);
-
+    @include font(400, 18px, 1.4);
+    @include media(1340px) {
+      font-size: 18px;
+    }
+    @include media(870px) {
+      font-size: 16px;
+    }
     flex-direction: column;
     gap: 10px;
   }
@@ -377,7 +382,6 @@
   overflow: hidden;
   position: relative;
   border: 1px solid var(--border-color);
-  cursor: pointer;
   transition: all 0.3s ease;
   .video-js {
     pointer-events: none !important;
@@ -389,7 +393,7 @@
     object-fit: cover;
   }
   video {
-    pointer-events: none !important;
+    // pointer-events: none !important;
     object-fit: cover;
   }
 }
