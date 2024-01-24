@@ -21,7 +21,10 @@ export default {
   getLastNews() {
     return API().get(`/news/?page_size=6`);
   },
-
+  getNewsCategories() {
+    return API().get('/newscategories/');
+  },
+  
   // staffs apis
   getAllTeachers() {
     return API().get("/staff/?role=professor");

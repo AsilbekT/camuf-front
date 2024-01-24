@@ -102,31 +102,31 @@ export default [
         isLink: false,
         name: 'Yangiliklar',
         sub: [
-            {
-                isLink: 'true',
-                link: `/news/${1}`,
-                name: 'So`ngi yangiliklar',
-            },
-            {
-                isLink: 'true',
-                link: `/news/${2}`,
-                name: 'E`lonlar',
-            },
-            {
-                isLink: 'true',
-                link: `/news/${3}`,
-                name: 'Bo’sh ish o’rinlari',
-            },
-            {
-                isLink: 'true',
-                link: `/news/${4}`,
-                name: 'Fotogalareya',
-            },
-            {
-                isLink: 'true',
-                link: `/news/${5}`,
-                name: 'Videogalareya',
-            },
+            // {
+            //     isLink: 'true',
+            //     link: `/news/${1}`,
+            //     name: 'So`ngi yangiliklar',
+            // },
+            // {
+            //     isLink: 'true',
+            //     link: `/news/${2}`,
+            //     name: 'E`lonlar',
+            // },
+            // {
+            //     isLink: 'true',
+            //     link: `/news/${3}`,
+            //     name: 'Bo’sh ish o’rinlari',
+            // },
+            // {
+            //     isLink: 'true',
+            //     link: `/news/${4}`,
+            //     name: 'Fotogalareya',
+            // },
+            // {
+            //     isLink: 'true',
+            //     link: `/news/${5}`,
+            //     name: 'Videogalareya',
+            // },
         ],
     },
     {
