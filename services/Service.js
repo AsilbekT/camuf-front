@@ -66,6 +66,10 @@ export default {
     return API().get(`/articlecategories/${id}/articles/${slug}/`);
   },
 
+  getArticleCategories() {
+    return API().get('/articlecategories/');
+  },
+
   getOneTeachers(id) {
     return API().get(`/staff/${id}/`);
   },

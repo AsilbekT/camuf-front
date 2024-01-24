@@ -263,24 +263,40 @@ async function getNewsCategories() {
     })
     const menuIndex = menus.findIndex(item => item.name === 'Yangiliklar')
     menus[menuIndex].sub = news_categories.value
-
 }
 
+
+const course_categories = ref({})
 async function getCourseCategories() {
     const res = await Service.getCourseCategories();
-    news_categories.value = res.data.results;
+    course_categories.value = res.data.results;
 
-    news_categories.value.forEach((category) => {
+    course_categories.value.forEach((category) => {
         category.isLink = true
         category.link = `/course/${category.id}`
     })
     const menuIndex = menus.findIndex(item => item.name === 'Yo\'nalishlar')
-    menus[menuIndex].sub = news_categories.value
+    menus[menuIndex].sub = course_categories.value
+
+}
+
+const article_categories = ref({})
+async function getArticleCategories() {
+    const res = await Service.getArticleCategories();
+    article_categories.value = res.data.results;
+
+    article_categories.value.forEach((category) => {
+        category.isLink = true
+        category.link = `/journals/${category.id}`
+    })
+    const menuIndex = menus.findIndex(item => item.name === 'Jurnallar')
+    menus[menuIndex].sub = article_categories.value
 
 }
 
 getNewsCategories()
 getCourseCategories()
+getArticleCategories()
 
 
 //============================================ header menu ============================================

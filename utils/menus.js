@@ -131,6 +131,12 @@ export default [
     },
     {
         isLink: false,
+        name: "Jurnallar",
+        sub: [
+        ],
+    },
+    {
+        isLink: false,
         name: 'Aloqa',
         sub: [
             {
