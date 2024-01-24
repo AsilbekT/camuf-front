@@ -51,7 +51,7 @@
                     <NuxtLink
                         class="header-menu__btn cursor-pointer"
                         :class="{ active: index === activeMenu.one.id }"
-                        to="/"
+                        :to="menu?.link"
                         v-if="menu.isLink"
                         @click="isOpenMenu = false"
                         >{{ menu.name }}

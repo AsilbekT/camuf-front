@@ -79,7 +79,7 @@
             }" :space-between="40">
                 <SwiperSlide v-for="item in studentsVideos?.results" :key="item">
                     <div class="video-clips__item" @mousemove="hover($event)" @mouseleave="leave($event)">
-                        <video-player loop muted playsinline crossorigin :autoplay="true" :plugins="{
+                        <video-player controls loop muted playsinline crossorigin autoplay :plugins="{
                             aspectRatio: '9:16'
                         }" :src="item?.video_url" />
                     </div>
@@ -136,9 +136,9 @@
                     <div class="teachers__item-img">
                         <img :src="item?.profile_image" alt="">
                     </div>
-                    <h2 class="teachers__item-name">
+                    <NuxtLink :to="`/teachers/${item?.id}`" class="teachers__item-name">
                         {{ item?.full_name }}
-                    </h2>
+                    </NuxtLink>
                 </div>
             </div>
         </div>
@@ -202,6 +202,7 @@ function hover(e) {
             e.target.style.filter = 'blur(0)'
             const player = videojs(e.target?.childNodes[0])
             player.muted(false)
+            // player.userActive(true);
         } else {
             item.style.filter = 'blur(5px)'
             const player = videojs(item?.childNodes[0])
@@ -240,4 +241,19 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+// .vjs-default-skin.vjs-has-started .vjs-control-bar {
+//     display: block !important;
+//     visibility: visible !important;
+//     opacity: 1 !important;
+//     bottom: -3.4em !important;
+//     background-color: rgba(7, 20, 30, 1) !important;
+// }
+
+.vjs-fade-in,
+.vjs-fade-out {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transition-duration: 0s !important;
+}
+</style>
