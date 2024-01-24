@@ -266,7 +266,21 @@ async function getNewsCategories() {
 
 }
 
+async function getCourseCategories() {
+    const res = await Service.getCourseCategories();
+    news_categories.value = res.data.results;
+
+    news_categories.value.forEach((category) => {
+        category.isLink = true
+        category.link = `/course/${category.id}`
+    })
+    const menuIndex = menus.findIndex(item => item.name === 'Yo\'nalishlar')
+    menus[menuIndex].sub = news_categories.value
+
+}
+
 getNewsCategories()
+getCourseCategories()
 
 
 //============================================ header menu ============================================

@@ -46,6 +46,11 @@ export default {
   getCourses(size, id) {
     return API().get(`/coursecategories/${id}/courses/?size=${size}`);
   },
+
+  getCourseCategories(){
+    return API().get("/coursecategories/");
+  },
+
   // artcile apis
   getAllArticles(size) {
     return API().get("/articles/?size=" + size);
