@@ -93,7 +93,7 @@ const details = ref({})
 async function getArticleDetail() {
     const res = await Service.getArticleDetail(id, slug)
     details.value = res.data
-    console.log(res.data);
+
 }
 getArticleDetail()
 </script>

@@ -52,7 +52,10 @@ export default {
   getAboutCourse(id) {
     return API().get(`/courses/${id}/`);
   },
-  // artcile apis
+  getCourseCategories(){
+    return API().get("/coursecategories/");
+  },
+
   getAllArticles(size) {
     return API().get("/articles/?size=" + size);
   },

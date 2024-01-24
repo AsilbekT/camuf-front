@@ -78,24 +78,24 @@ export default [
         isLink: false,
         name: "Yo'nalishlar",
         sub: [
-            {
-                isLink: 'false',
-                name: 'Bakalavt',
-                sub: [
-                    {
-                        isLink: true,
-                        name: 'Davolash ishi',
-                    },
-                    {
-                        isLink: true,
-                        name: 'Pediatriya ishi',
-                    },
-                    {
-                        isLink: true,
-                        name: 'Stomatologiya',
-                    },
-                ],
-            },
+            // {
+            //     isLink: 'false',
+            //     name: 'Bakalavt',
+            //     sub: [
+            //         {
+            //             isLink: true,
+            //             name: 'Davolash ishi',
+            //         },
+            //         {
+            //             isLink: true,
+            //             name: 'Pediatriya ishi',
+            //         },
+            //         {
+            //             isLink: true,
+            //             name: 'Stomatologiya',
+            //         },
+            //     ],
+            // },
         ],
     },
     {
