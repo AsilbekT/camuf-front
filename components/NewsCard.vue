@@ -1,5 +1,5 @@
 <template>
-    <div class="latest-news__item">
+    <div class="latest-news__item ">
         <NuxtLink :to="`/news/${category_id}/${item?.slug}`" class="latest-news__item-img">
             <img :src="item?.image" alt="">
         </NuxtLink>

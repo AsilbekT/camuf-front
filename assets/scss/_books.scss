@@ -104,10 +104,91 @@
 
 .journals {
   padding: 120px 0;
-  .container {
+  &-wrapper {
+    width: calc(75% - 40px);
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-template-columns: 1fr;
     gap: 30px;
+    @include media(1270px) {
+      width: 100%;
+    }
+  }
+  .top {
+    gap: 40px;
+    align-items: center;
+    input {
+      width: 75%;
+      @include media(845px) {
+        width: 100%;
+      }
+    }
+    @include media(845px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    @include media(1270px) {
+      flex-direction: column;
+    }
+  }
+  .search {
+    color-scheme: var(--input-date);
+    background: transparent;
+    padding: 12px 20px;
+    border: 1px solid var(--footer-form);
+    color: var(--footer-desc);
+    @include font(400, 18px, 1.2);
+    @include media(600px) {
+      width: 100%;
+      font-size: 14px;
+    }
+    border-radius: 6px;
+  }
+  h2 {
+    @include title;
+    grid-column: 1/3;
+    width: 25%;
+    @include media(845px) {
+      width: fit-content;
+    }
+  }
+  &-filter {
+    @include media(1270px) {
+      width: 100%;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+    @include media(845px) {
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+    width: 24%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    label {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.2;
+      text-transform: capitalize;
+    }
+    input {
+      color-scheme: var(--input-date);
+      background: transparent;
+      padding: 12px 20px;
+      border: 1px solid var(--footer-form);
+      color: var(--footer-desc);
+      @include font(400, 18px, 1.2);
+      @include media(600px) {
+        width: 100%;
+        font-size: 14px;
+      }
+      border-radius: 6px;
+    }
   }
 }
 .card-journal {
@@ -153,21 +234,36 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 1.4;
+    overflow-wrap: break-word;
+  }
+  .journals-wr {
+    @include media(600px) {
+      grid-template-columns: 1fr;
+    }
   }
   .journals-desc {
-    color: #fff;
+    color: var(--text-color);
     margin-bottom: 24px;
   }
   .journals-left {
     width: 70%;
+    @include media(1300px) {
+      width: 100%;
+    }
   }
 
   .journals-right {
     width: 30%;
+    @include media(1300px) {
+      width: 100%;
+    }
   }
   .container {
     display: flex;
     gap: 40px;
+    @include media(1300px) {
+      flex-direction: column;
+    }
   }
 }
 .card {

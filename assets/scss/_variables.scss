@@ -16,8 +16,10 @@
   --card: #3550a7;
   --card-journal: #fff;
   --card-journal-text: rgba(55, 65, 81, 1);
+  --input-date: light;
 }
 .dark {
+  --input-date: dark;
   --card-journal: #ffffff17;
   --card-journal-text: #fff;
   --bg-color: #161c31;

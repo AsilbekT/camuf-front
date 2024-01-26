@@ -19,6 +19,7 @@
             <div class="journals-left">
                 <h2 class="journals-title">{{ details?.data?.title }}</h2>
                 <NuxtLink v-for="item in details?.data?.authors" :key="item" class="mb-6 block" :to="`/teachers/${item}`">Sh.A. Kuramatova</NuxtLink>
+                <img style="margin-bottom: 40px;" :src="details?.data?.image" alt="">
                 <p class="journals-desc">
                     {{ details?.data?.abstract }}
                 </p>
@@ -30,7 +31,7 @@
                 </p>
             </div>
             <div class="journals-right">
-                <div class="grid grid-cols-2 mb-6 gap-2">
+                <div class="grid grid-cols-2 journals-wr mb-6 gap-2">
                     <div class="px-[24px] py-[12px] card text-white rounded-md flex flex-col items-center gap-2">
                         <span class="text-3xl">28</span>
                         <div class="flex items-center gap-2 text-xl">

@@ -1,3 +1,4 @@
+import axios from "axios";
 import API from "./API";
 export default {
   getBanners() {
@@ -52,12 +53,12 @@ export default {
   getAboutCourse(id) {
     return API().get(`/courses/${id}/`);
   },
-  getCourseCategories(){
+  getCourseCategories() {
     return API().get("/coursecategories/");
   },
 
-  getAllArticles(size) {
-    return API().get("/articles/?size=" + size);
+  getAllArticles() {
+    return API().get("/articles/?size=4");
   },
   getCategoryArticle(id) {
     return API().get(`/articlecategories/${id}/articles/`);
@@ -67,10 +68,16 @@ export default {
   },
 
   getArticleCategories() {
-    return API().get('/articlecategories/');
+    return API().get("/articlecategories/");
   },
 
   getOneTeachers(id) {
     return API().get(`/staff/${id}/`);
+  },
+
+  articleFilter(id, s, start, end, rev) {
+    return API().get(
+      `/articlecategories/${id}/articles/?title=${s}&min_date=${start}&max_date=${end}&is_peer_reviewed=${rev}`
+    );
   },
 };

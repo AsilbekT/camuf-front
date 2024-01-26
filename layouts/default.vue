@@ -222,7 +222,8 @@
 // menus
 import menus from '~/utils/menus.js';
 import Service from '~/services/Service';
-
+import { useStore } from '~/store/store';
+const store = useStore()
 const scrolledNav = ref(false)
 const updateScroll = () => {
     const scrollposition = window.scrollY;
@@ -283,14 +284,14 @@ async function getCourseCategories() {
 const article_categories = ref({})
 async function getArticleCategories() {
     const res = await Service.getArticleCategories();
-    article_categories.value = res.data.results;
+    store.articles = res.data;
 
-    article_categories.value.forEach((category) => {
+    store.articles?.results.forEach((category) => {
         category.isLink = true
         category.link = `/journals/${category.id}`
     })
     const menuIndex = menus.findIndex(item => item.name === 'Jurnallar')
-    menus[menuIndex].sub = article_categories.value
+    menus[menuIndex].sub = store.articles?.results
 
 }
 
