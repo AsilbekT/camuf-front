@@ -273,12 +273,12 @@
 
         &.first-col {
             .header-menu__title {
-                font-size: 20px;
+                font-size: 25px;
                 font-weight: 600;
             }
 
             .header-menu__btn {
-                font-size: 17px;
+                font-size: 22px;
                 font-weight: 600;
             }
 
@@ -312,7 +312,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        @include font(400, 14px, 1);
+        @include font(400, 17px, 1);
         color: var(--text-color);
         text-align: left;
         transition: all 0.5s ease;
