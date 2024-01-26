@@ -41,6 +41,9 @@ body {
     padding-bottom: 130%;
     overflow: hidden;
     position: relative;
+    @include media(400px) {
+      padding-bottom: 100%;
+    }
     img {
       position: absolute;
       top: 0;
