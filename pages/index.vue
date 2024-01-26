@@ -169,7 +169,7 @@
             <div class="speciality__list">
                 <div class="speciality__item" v-for="(item, index) in courses?.results?.slice(0, 6)" :key="item">
                     <h4 class="speciality__item-num">
-                        {{ index < 10 ? '0' + index : index }} </h4>
+                        {{ index < 10 ? '0' + (index + 1): (index + 1)}} </h4>
                             <h2 class="speciality__item-title">
                                 {{ item?.title }}
                             </h2>
