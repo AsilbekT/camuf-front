@@ -108,7 +108,8 @@
                                 stroke="currentColor" stroke-width="2" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-                            </svg></NuxtLink>
+                            </svg>
+                        </NuxtLink>
                     </div>
                 </div>
             </div>
@@ -169,7 +170,7 @@
             <div class="speciality__list">
                 <div class="speciality__item" v-for="(item, index) in courses?.results?.slice(0, 6)" :key="item">
                     <h4 class="speciality__item-num">
-                        {{ index < 10 ? '0' + (index + 1): (index + 1)}} </h4>
+                        {{ index < 10 ? '0' + (index + 1) : (index + 1) }} </h4>
                             <h2 class="speciality__item-title">
                                 {{ item?.title }}
                             </h2>
@@ -193,14 +194,15 @@
         <div class="container">
             <NuxtLink to="/teachers" class="teachers__title">наши учителя</NuxtLink>
             <div class="teachers__list">
-                <div class="teachers__item" v-for="item in teachers?.results" :key="item">
+                <!-- <div class="teachers__item" v-for="item in teachers?.results" :key="item">
                     <div class="teachers__item-img">
                         <img :src="item?.profile_image" alt="">
                     </div>
                     <NuxtLink :to="`/teachers/${item?.id}`" class="teachers__item-name">
                         {{ item?.full_name }}
                     </NuxtLink>
-                </div>
+                </div> -->
+                <UserCard v-for="item in teachers?.results" :key="item" :item="item"/>
             </div>
         </div>
     </div>
