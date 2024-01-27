@@ -285,12 +285,15 @@ function hover(e) {
             e.target.style.transform = 'scale(1.1)';
             e.target.style.filter = 'blur(0)';
 
-            // Play the video from the start with sound
-            player.currentTime(0); // Restart the video
-            player.muted(false); // Unmute
-            player.play(); // Play the video
+            if (player.paused()) {
+                // If the video is paused (initial state), start it from the beginning
+                player.currentTime(0); // Restart the video
+                player.play(); // Play the video
+            }
+            // Unmute without affecting the current play state
+            player.muted(false);
         } else {
-            // For all other items, scale down, add blur, mute, and pause
+            // For all other items, scale down, add blur, mute, but don't pause them
             item.style.filter = 'blur(5px)';
             player.muted(true); // Mute the video
         }
@@ -300,13 +303,14 @@ function hover(e) {
 function leave(e) {
     // Query all video clips items
     document.querySelectorAll('.video-clips__item').forEach(item => {
-        // Reset the styles and mute the video when the mouse leaves
+        // Reset the styles when the mouse leaves
         item.style.transform = 'scale(1)';
         item.style.filter = 'blur(0)';
 
         const player = videojs(item.childNodes[0]); // Get the video.js player instance
         player.muted(true); // Mute the video
-    });
+        player.pause(); // Pause the video
+    })
 }
 const mutedVideo = ref(true)
 const curentId = ref(0)
