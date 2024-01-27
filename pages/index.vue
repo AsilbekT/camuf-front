@@ -144,6 +144,9 @@
                         <video-player loop muted playsinline crossorigin autoplay :plugins="{
                             aspectRatio: '9:16'
                         }" :src="item?.video_url" />
+                        <button class="play-btn">
+                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M176 480C148.6 480 128 457.6 128 432v-352c0-25.38 20.4-47.98 48.01-47.98c8.686 0 17.35 2.352 25.02 7.031l288 176C503.3 223.8 512 239.3 512 256s-8.703 32.23-22.97 40.95l-288 176C193.4 477.6 184.7 480 176 480z"/></svg>
+                        </button>
                     </div>
                 </SwiperSlide>
             </Swiper>
@@ -284,32 +287,34 @@ function hover(e) {
             // If the hovered item is the target, scale it up and remove blur
             e.target.style.transform = 'scale(1.1)';
             e.target.style.filter = 'blur(0)';
-
             if (player.paused()) {
+                e.target.childNodes[1].style.opacity = 1
                 // If the video is paused (initial state), start it from the beginning
                 player.currentTime(0); // Restart the video
                 player.play(); // Play the video
+            } else {
+                e.target.childNodes[1].style.opacity = 0
             }
+            player.play()
             // Unmute without affecting the current play state
             player.muted(false);
         } else {
             // For all other items, scale down, add blur, mute, but don't pause them
             item.style.filter = 'blur(5px)';
             player.muted(true); // Mute the video
+            item.childNodes[1].style.opacity = 0
         }
     });
 }
 
 function leave(e) {
-    // Query all video clips items
     document.querySelectorAll('.video-clips__item').forEach(item => {
-        // Reset the styles when the mouse leaves
         item.style.transform = 'scale(1)';
         item.style.filter = 'blur(0)';
-
-        const player = videojs(item.childNodes[0]); // Get the video.js player instance
-        player.muted(true); // Mute the video
-        player.pause(); // Pause the video
+        item.childNodes[1].style.opacity = 0
+        const player = videojs(item.childNodes[0]); 
+        player.muted(true); 
+        player.play(); 
     })
 }
 const mutedVideo = ref(true)
