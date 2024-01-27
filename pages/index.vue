@@ -141,7 +141,7 @@
             }" :space-between="40">
                 <SwiperSlide v-for="item in studentsVideos?.results" :key="item">
                     <div class="video-clips__item" @mousemove="hover($event)" @mouseleave="leave($event)">
-                        <video-player controls loop muted playsinline crossorigin autoplay :plugins="{
+                        <video-player loop muted playsinline crossorigin autoplay :plugins="{
                             aspectRatio: '9:16'
                         }" :src="item?.video_url" />
                     </div>
@@ -202,7 +202,7 @@
                         {{ item?.full_name }}
                     </NuxtLink>
                 </div> -->
-                <UserCard v-for="item in teachers?.results" :key="item" :item="item"/>
+                <UserCard v-for="item in teachers?.results" :key="item" :item="item" />
             </div>
         </div>
     </div>
@@ -276,26 +276,40 @@ getStudentsVideos()
 getCourses()
 getAllTeachers()
 function hover(e) {
+    // Query all video clips items
     document.querySelectorAll('.video-clips__item').forEach(item => {
+        const player = videojs(item.childNodes[0]); // Get the video.js player instance
+
         if (e.target === item) {
-            e.target.style.transform = 'scale(1.1)'
-            e.target.style.filter = 'blur(0)'
-            const player = videojs(e.target?.childNodes[0])
-            player.muted(false)
-            // player.userActive(true);
+            // If the hovered item is the target, scale it up and remove blur
+            e.target.style.transform = 'scale(1.1)';
+            e.target.style.filter = 'blur(0)';
+            
+            if (player.paused()) {
+                // If the video is paused (initial state), start it from the beginning
+                player.currentTime(0); // Restart the video
+                player.play(); // Play the video
+            }
+            // Unmute without affecting the current play state
+            player.muted(false);
         } else {
-            item.style.filter = 'blur(5px)'
-            const player = videojs(item?.childNodes[0])
-            player.muted(true)
+            // For all other items, scale down, add blur, mute, but don't pause them
+            item.style.filter = 'blur(5px)';
+            player.muted(true); // Mute the video
         }
-    })
+    });
 }
+
 function leave(e) {
+    // Query all video clips items
     document.querySelectorAll('.video-clips__item').forEach(item => {
-        item.style.transform = 'scale(1)'
-        item.style.filter = 'blur(0)'
-        const player = videojs(item.childNodes[0])
-        player.muted(true)
+        // Reset the styles when the mouse leaves
+        item.style.transform = 'scale(1)';
+        item.style.filter = 'blur(0)';
+
+        const player = videojs(item.childNodes[0]); // Get the video.js player instance
+        player.muted(true); // Mute the video
+        player.pause(); // Pause the video
     })
 }
 const mutedVideo = ref(true)
