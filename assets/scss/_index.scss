@@ -529,6 +529,7 @@
     // object-fit: cover;
   }
   video {
+    pointer-events: none !important;
     // pointer-events: none !important;
     object-fit: cover;
   }

@@ -1,0 +1,120 @@
+{
+  "Dashboard": "Дашборд",
+  "Cadets": "Курсанты",
+  "TimeTracking": "Учёт времени",
+  "Visitor": "Посетитель",
+  "Groups": "Группы",
+  "Report": "Отчёт",
+  "Car": "Транспорт",
+  "Tracing": "Трэкинг",
+  "Rating": "Рейтинг",
+  "Exit": "Выход",
+
+  "EmotionalCondition": "Эмоциональное состояние",
+  "teachingStaff": "профессорско-преподавательского состава",
+  "All": "Всего",
+  "Latecomers": "Опоздавшие",
+  "EmotionalDeviation": "Эмоциональное отклонение",
+  "EmotionalStateOfStaff": "Эмоциональное состояние персонала",
+  "EmotionalStateOfUndergraduates": "Эмоциональное состояние магистрантов",
+
+  "Add": "Добавить",
+  "ID": "ИД",
+  "Author": " Фото/ Ф.И.О",
+  "JobTitle": "Должность",
+  "Entrance": "Вход(Количество)",
+  "ExitQuantity": " Выход(Количество)",
+  "Status": "Статус",
+  "TimeStay": "Время пребывания",
+  "AccountingForEmotionalState": "Учёт эмоционального состояния",
+
+  "AddAStudentModalWindow" : "Создание нового человека",
+  "Name" : "Имя",
+  "LastName" : "Фамилия",
+  "ThreeName" : "Отчество",
+  
+
+  "EnterYourFullName" : "Введите Ф.И.О",
+  "EnterCourse" : "Введите курс",
+  
+
+  "ChosePhoto" : "Выбрать фото",
+  "FromPhoto" : "По фото",
+  "AccordingToTheAge" : "По возрасту",
+  "ByGender" : "По полу",
+  "FacultyCompound" : "Профессорско-преподавательский состав",
+  "Staff" : "Персонал",
+  "MastersStudents" : "Магистранты",
+  "before" : "до",
+  "ByEmotion" : "По эмоции",
+
+  "GeneralInformation": "Общая информация",
+  "Save": "Сохранять",
+  "Delate": "Удалить",
+  "CloseModal": "Закрыть модальное окно",
+  "Rank": "Звание",
+  "Gender": "Пол",
+  "Tel": " Номер телефона",
+  "HappyBirthday": "Дата рождения",
+  "PINFL": "ПИНФЛ",
+  "SeriesAndPassportNumber": "Серия и номер паспорта",
+  "PlaceOfResidence": "Адрес прописки",
+  "ComeGone": "Время пришел и ушел",
+  "Monday": "Понедельник",
+  "Tuesday": "Вторник",
+  "Wednesday": "Среда",
+  "Thursday": "Четверг",
+  "Friday": "Пятница",
+  "Saturday": "Суббота",
+  "DownloadMonth": "Скачать список ежемесячных задержек студента",
+  "Download": "Скачать",
+  "FilteringCadets": "Фильтрация курсантов",
+  "SearchAge": "Поиск по возрасту",
+  "AccordingAge": "По возрасту",
+  "SearchGender": "Поиск по полу",
+  "Men": "Мужчины",
+  "Women": "Женщины",
+  "SearchCourse": "Поиск по курсу",
+  "SearchGroup": "Поиск по группе",
+  "SearchEmotions": "Поиск по эмоциям",
+  "Fun": "Веселье",
+  "Netral": "Нейтраль",
+  "Sadness": "Грусть",
+  "Anger": "Злость",
+  "Fear": "Страх",
+  "Astonishment": "Удивление",
+
+  "Courses": "Курс",
+  "Group": "Группа",
+
+
+  "NumberOfCadets": "Количество курсантов",
+
+  "PlaceOfResUploadAnImageidence": "Введите изображение",
+  "Teacher": "Профессор-преподаватель",
+  "Cadet": "Курсант",
+  "Magister": "Магистрант",
+  "Staf": "Персонал" ,
+  "From": "от",
+  "ByDate": "По дате",
+  "Sorting": "Сортировка",
+  "LoginToTheGroup": "Войти в группу",
+  "Photo": "Фото" 
+  
+  
+
+
+
+  
+
+
+
+  
+
+  
+
+
+
+  
+
+}

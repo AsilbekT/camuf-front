@@ -140,7 +140,7 @@
                 }
             }" :space-between="40">
                 <SwiperSlide v-for="item in studentsVideos?.results" :key="item">
-                    <div class="video-clips__item" @mousemove="hover($event)" @mouseleave="leave($event)">
+                    <div class="video-clips__item" @mousemove="hover($event)" @click="hover($event)" @mouseleave="leave($event)">
                         <video-player loop muted playsinline crossorigin autoplay :plugins="{
                             aspectRatio: '9:16'
                         }" :src="item?.video_url" />
