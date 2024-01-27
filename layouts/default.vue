@@ -9,11 +9,18 @@
                     <li>
                         <NuxtLink to="/about">о нас</NuxtLink>
                     </li>
-                    <li>
-                        <NuxtLink to="/">контакты</NuxtLink>
-                    </li>
                 </ul>
             </nav>
+            <div class="lang">
+                <div class="lang-top" @click="langOpen = !langOpen">{{ locale }}</div>
+                <Transition name="lang">
+                    <ul class="lang-list" v-if="langOpen">
+                        <li v-for="{ name, code } in locales" :key="code" :style="`display: ${code == locale ? 'none' : 'flex'}`">
+                            <NuxtLink @click="langOpen = false" :to="switchLocalePath(code)">{{ name }}</NuxtLink>
+                        </li>
+                    </ul>
+                </Transition>
+            </div>
             <div @click="isOpenMenu = !isOpenMenu" class="header-menu-btn" :class="{ active: isOpenMenu }">
                 <span></span>
                 <span></span>
@@ -118,7 +125,8 @@
                     <button class="flex items-center justify-start gap-2" v-if="current.name"
                         @click="backPreviusMenu(current.col)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20">
-                            <path :fill="dark ? '#fff' : '000'" d="m5.83 9l5.58-5.58L10 2l-8 8l8 8l1.41-1.41L5.83 11H18V9z" />
+                            <path :fill="dark ? '#fff' : '000'"
+                                d="m5.83 9l5.58-5.58L10 2l-8 8l8 8l1.41-1.41L5.83 11H18V9z" />
                         </svg>
                         <!-- :fill="dark ? '#fff' : '000'" -->
                         Orqaga
@@ -226,6 +234,8 @@
 import menus from '~/utils/menus.js';
 import Service from '~/services/Service';
 import { useStore } from '~/store/store';
+const { locale, locales } = useI18n()
+const switchLocalePath = useSwitchLocalePath()
 const store = useStore()
 const scrolledNav = ref(false)
 const updateScroll = () => {
@@ -237,7 +247,7 @@ const updateScroll = () => {
     scrolledNav.value = false;
 };
 const dark = ref(localStorage.getItem('dark') ? true : false);
-
+const langOpen = ref(false)
 function darkChange() {
     if (localStorage.getItem('dark')) {
         localStorage.removeItem('dark');
@@ -258,7 +268,7 @@ onMounted(() => {
 
 const news_categories = ref({})
 async function getNewsCategories() {
-    const res = await Service.getNewsCategories();
+    const res = await Service.getNewsCategories(locale.value);
     news_categories.value = res.data.results;
 
     news_categories.value.forEach((category) => {
@@ -272,7 +282,7 @@ async function getNewsCategories() {
 
 const course_categories = ref({})
 async function getCourseCategories() {
-    const res = await Service.getCourseCategories();
+    const res = await Service.getCourseCategories(locale.value);
     course_categories.value = res.data.results;
 
     course_categories.value.forEach((category) => {
@@ -286,7 +296,7 @@ async function getCourseCategories() {
 
 const article_categories = ref({})
 async function getArticleCategories() {
-    const res = await Service.getArticleCategories();
+    const res = await Service.getArticleCategories(locale.value);
     store.articles = res.data;
 
     store.articles?.results.forEach((category) => {
@@ -365,4 +375,16 @@ function backPreviusMenu(col) {
 //functions
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.lang-enter-active,
+.lang-leave-active {
+  transition: all 0.5s ease;
+  transform: translateY(0);
+}
+
+.lang-enter-from,
+.lang-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+</style>

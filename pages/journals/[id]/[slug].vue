@@ -18,7 +18,8 @@
         <div class="container">
             <div class="journals-left">
                 <h2 class="journals-title">{{ details?.data?.title }}</h2>
-                <NuxtLink v-for="item in details?.data?.authors" :key="item" class="mb-6 block" :to="`/teachers/${item}`">Sh.A. Kuramatova</NuxtLink>
+                <NuxtLink v-for="item in details?.data?.authors" :key="item" class="mb-6 block" :to="`/teachers/${item}`">
+                    Sh.A. Kuramatova</NuxtLink>
                 <img style="margin-bottom: 40px;" :src="details?.data?.image" alt="">
                 <p class="journals-desc">
                     {{ details?.data?.abstract }}
@@ -89,10 +90,11 @@ import VuePdfApp from "vue3-pdf-app";
 import "vue3-pdf-app/dist/icons/main.css";
 import Service from "~/services/Service";
 const { id, slug } = useRoute().params
+const { locale } = useI18n()
 
 const details = ref({})
 async function getArticleDetail() {
-    const res = await Service.getArticleDetail(id, slug)
+    const res = await Service.getArticleDetail(id, slug, locale.value)
     details.value = res.data
 
 }

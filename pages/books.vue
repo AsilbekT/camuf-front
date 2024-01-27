@@ -34,9 +34,10 @@
 <script setup>
 import Service from '~/services/Service';
 const artciles = ref({})
+const { locale } = useI18n()
 const size = ref(6)
 async function getAllArticles() {
-    const res = await Service.getAllArticles(size)
+    const res = await Service.getAllArticles(size, locale.value)
     artciles.value = res.data
 }
 getAllArticles()

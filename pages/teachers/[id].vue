@@ -78,6 +78,7 @@
 <script setup>
 //=================================== imports ====================================
 import Service from '~/services/Service';
+const { locale } = useI18n()
 
 //=================================== show teachers =====================================
 //variables
@@ -86,7 +87,7 @@ const { id: teacher_id } = useRoute().params;
 
 //functions
 async function getOneTeachers() {
-    const res = await Service.getOneTeachers(teacher_id);
+    const res = await Service.getOneTeachers(teacher_id,locale.value);
     teacher.value = res?.data;
     console.log(res?.data);
 }

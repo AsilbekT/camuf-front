@@ -32,11 +32,12 @@
 
 <script setup>
 import Service from '~/services/Service';
+const { locale } = useI18n()
 
 const teachers = ref([])
 
 async function getAllTeachers() {
-    const res = await Service.getAllTeachers()
+    const res = await Service.getAllTeachers(locale.value)
     teachers.value = res?.data.results
 }
 

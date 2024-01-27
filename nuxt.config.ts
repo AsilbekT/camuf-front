@@ -17,12 +17,12 @@ export default defineNuxtConfig({
         file: "ru.json",
       },
       {
-        code: "узб", // Krill tili
-        name: "узб",
-        file: "kiril.json",
+        code: "tr",
+        name: "tr",
+        file: "tr.json",
       },
       {
-        code: "en", // Ingliz tili
+        code: "en",
         name: "en",
         file: "en.json",
       },

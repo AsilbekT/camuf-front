@@ -41,17 +41,18 @@
 <script setup>
 import Service from "~/services/Service";
 const details = ref({})
+const { locale } = useI18n()
+
 const categories = ref([])
 const { id } = useRoute().params
 async function getDetials() {
-    const res = await Service.getAboutCourse(id)
+    const res = await Service.getAboutCourse(id,locale.value)
     details.value = res.data
 }
 
 async function getCourseCategories() {
-    const res = await Service.getCourseCategorys()
+    const res = await Service.getCourseCategorys(locale.value)
     categories.value = res.data.results
-    console.log(categories.value);
 }
 
 getDetials()
