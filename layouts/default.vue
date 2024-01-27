@@ -7,7 +7,7 @@
             <nav class="header-nav">
                 <ul class="header-nav-list">
                     <li>
-                        <NuxtLink to="/">о нас</NuxtLink>
+                        <NuxtLink to="/about">о нас</NuxtLink>
                     </li>
                     <li>
                         <NuxtLink to="/">контакты</NuxtLink>
