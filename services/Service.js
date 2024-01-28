@@ -1,83 +1,167 @@
 import axios from "axios";
 import API from "./API";
 export default {
-  getBanners() {
-    return API().get("/banners/");
+  getBanners(lang) {
+    return API().get("/banners/", {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
   // students apis
-  getStudentsVideos() {
-    return API().get("/studenttestimonials/");
+  getStudentsVideos(lang) {
+    return API().get("/studenttestimonials/", {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
 
   // news apis
-  getAllNews() {
-    return API().get("/news/");
+  getAllNews(lang) {
+    return API().get("/news/", {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
-  getCategoryNews(category_id) {
-    return API().get(`/newscategories/${category_id}/news/`);
+  getCategoryNews(category_id, lang) {
+    return API().get(`/newscategories/${category_id}/news/`, {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
-  getOneNews(category_id, news_slug) {
-    return API().get(`/newscategories/${category_id}/news/${news_slug}/`);
+  getOneNews(category_id, news_slug, lang) {
+    return API().get(`/newscategories/${category_id}/news/${news_slug}/`, {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
-  getLastNews() {
-    return API().get(`/news/?page_size=6`);
+  getLastNews(lang) {
+    return API().get(`/news/?page_size=6`, {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
-  getNewsCategories() {
-    return API().get("/newscategories/");
+  getNewsCategories(lang) {
+    return API().get("/newscategories/", {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
 
   // staffs apis
-  getAllTeachers() {
-    return API().get("/staff/?role=professor");
+  getAllTeachers(lang) {
+    return API().get("/staff/?role=professor", {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
 
-  getPresident() {
-    return API().get("/staff/?role=president");
+  getPresident(lang) {
+    return API().get("/staff/?role=president", {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
 
   // unversity infos apis
-  getUnversityInfo() {
-    return API().get("/universityinformation/");
+  getUnversityInfo(lang) {
+    return API().get("/universityinformation/", {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
 
   // courses apis
-  getCourseCategorys() {
-    return API().get("/coursecategories/");
+  getCourseCategorys(lang) {
+    return API().get("/coursecategories/", {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
-  getAllCourses(size) {
-    return API().get("/courses/?size=" + size);
+  getAllCourses(size, lang) {
+    return API().get("/courses/?size=" + size, {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
-  getCourses(size, id) {
-    return API().get(`/coursecategories/${id}/courses/?size=${size}`);
+  getCourses(size, id, lang) {
+    return API().get(`/coursecategories/${id}/courses/?size=${size}`, {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
-  getAboutCourse(id) {
-    return API().get(`/courses/${id}/`);
+  getAboutCourse(id, lang) {
+    return API().get(`/courses/${id}/`, {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
-  getCourseCategories() {
-    return API().get("/coursecategories/");
+  getCourseCategories(lang) {
+    return API().get("/coursecategories/", {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
 
-  getAllArticles() {
-    return API().get("/articles/?size=4");
+  getAllArticles(lang) {
+    return API().get("/articles/?size=4", {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
-  getCategoryArticle(id) {
-    return API().get(`/articlecategories/${id}/articles/`);
+  getCategoryArticle(id, lang) {
+    return API().get(`/articlecategories/${id}/articles/`, {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
-  getArticleDetail(id, slug) {
-    return API().get(`/articlecategories/${id}/articles/${slug}/`);
+  getArticleDetail(id, slug, lang) {
+    return API().get(`/articlecategories/${id}/articles/${slug}/`, {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
 
-  getArticleCategories() {
-    return API().get("/articlecategories/");
+  getArticleCategories(lang) {
+    return API().get("/articlecategories/", {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
 
-  getOneTeachers(id) {
-    return API().get(`/staff/${id}/`);
+  getOneTeachers(id, lang) {
+    return API().get(`/staff/${id}/`, {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
 
-  articleFilter(id, s, start, end, rev) {
+  articleFilter(id, s, start, end, rev, lang) {
     return API().get(
       `/articlecategories/${id}/articles/?title=${s}&min_date=${start}&max_date=${end}&is_peer_reviewed=${rev}`
-    );
+    , {
+      headers: {
+        'Accept-Language': lang
+      }
+    });
   },
 };

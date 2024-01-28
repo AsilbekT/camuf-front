@@ -33,13 +33,14 @@
 import Service from '~/services/Service';
 const about = ref({})
 const president = ref({})
+const { locale } = useI18n()
 
 async function getAbout() {
-    const res = await Service.getUnversityInfo()
+    const res = await Service.getUnversityInfo(locale.value)
     about.value = res.data?.results[0]
 }
 async function getPresident() {
-    const res = await Service.getPresident()
+    const res = await Service.getPresident(locale.value)
     president.value = res.data?.results[0]
 }
 getAbout()

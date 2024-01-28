@@ -140,12 +140,16 @@
                 }
             }" :space-between="40">
                 <SwiperSlide v-for="item in studentsVideos?.results" :key="item">
-                    <div class="video-clips__item" @mousemove="hover($event)" @mouseleave="leave($event)">
+                    <div class="video-clips__item" @mousemove="hover($event)" @click="hover($event)"
+                        @mouseleave="leave($event)">
                         <video-player loop muted playsinline crossorigin autoplay :plugins="{
                             aspectRatio: '9:16'
                         }" :src="item?.video_url" />
                         <button class="play-btn">
-                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M176 480C148.6 480 128 457.6 128 432v-352c0-25.38 20.4-47.98 48.01-47.98c8.686 0 17.35 2.352 25.02 7.031l288 176C503.3 223.8 512 239.3 512 256s-8.703 32.23-22.97 40.95l-288 176C193.4 477.6 184.7 480 176 480z"/></svg>
+                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M176 480C148.6 480 128 457.6 128 432v-352c0-25.38 20.4-47.98 48.01-47.98c8.686 0 17.35 2.352 25.02 7.031l288 176C503.3 223.8 512 239.3 512 256s-8.703 32.23-22.97 40.95l-288 176C193.4 477.6 184.7 480 176 480z" />
+                            </svg>
                         </button>
                     </div>
                 </SwiperSlide>
@@ -216,6 +220,9 @@ import videojs from 'video.js';
 import Service from '~/services/Service';
 import { useStore } from '~/store/store';
 const store = useStore()
+
+const { locale } = useI18n()
+
 const banners = ref([])
 const courses = ref({})
 const studentsVideos = ref({})
@@ -228,7 +235,7 @@ const artciles = ref({})
 const muted = ref(true)
 
 async function getAbout() {
-    const res = await Service.getUnversityInfo()
+    const res = await Service.getUnversityInfo(locale.value)
     about.value = res.data?.results[0]
     setTimeout(() => {
         document.querySelectorAll('.hero-bottom__item-res').forEach(el => {
@@ -248,27 +255,27 @@ async function getAbout() {
     }, 500)
 }
 async function getPresident() {
-    const res = await Service.getPresident()
+    const res = await Service.getPresident(locale.value)
     president.value = res.data?.results[0]
 }
 async function getNews() {
-    const res = await Service.getLastNews()
+    const res = await Service.getLastNews(locale.value)
     lastnews.value = res.data
 }
 async function getBanners() {
-    const res = await Service.getBanners()
+    const res = await Service.getBanners(locale.value)
     banners.value = res.data
 }
 async function getCourses() {
-    const res = await Service.getAllCourses()
+    const res = await Service.getAllCourses(locale.value)
     courses.value = res.data
 }
 async function getStudentsVideos() {
-    const res = await Service.getStudentsVideos()
+    const res = await Service.getStudentsVideos(locale.value)
     studentsVideos.value = res.data
 }
 async function getAllTeachers() {
-    const res = await Service.getAllTeachers()
+    const res = await Service.getAllTeachers(locale.value)
     teachers.value = res?.data
 }
 getAbout()
@@ -312,9 +319,9 @@ function leave(e) {
         item.style.transform = 'scale(1)';
         item.style.filter = 'blur(0)';
         item.childNodes[1].style.opacity = 0
-        const player = videojs(item.childNodes[0]); 
-        player.muted(true); 
-        player.play(); 
+        const player = videojs(item.childNodes[0]);
+        player.muted(true);
+        player.play();
     })
 }
 const mutedVideo = ref(true)
@@ -371,5 +378,4 @@ onMounted(() => {
     visibility: visible !important;
     opacity: 1 !important;
     transition-duration: 0s !important;
-}
-</style>
+}</style>

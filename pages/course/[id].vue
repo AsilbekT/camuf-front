@@ -37,15 +37,17 @@
 <script setup>
 import Service from '~/services/Service';
 const courses = ref({})
+const { locale } = useI18n()
+
 const categorys = ref({})
 const size = ref(6)
 const { id } = useRoute().params
 async function getCourses() {
-    const res = await Service.getCourses(size, id)
+    const res = await Service.getCourses(size, id,locale.value)
     courses.value = res.data
 }
 async function getCourseCategorys() {
-    const res = await Service.getCourseCategorys()
+    const res = await Service.getCourseCategorys(locale.value)
     categorys.value = res.data
 }
 getCourses()

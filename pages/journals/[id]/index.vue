@@ -102,9 +102,10 @@ import Service from "~/services/Service";
 
 const articles = ref({})
 const { id } = useRoute().params
+const { locale } = useI18n()
 
 async function getAllArticles() {
-    const res = await Service.getCategoryArticle(id)
+    const res = await Service.getCategoryArticle(id, locale.value)
     articles.value = res.data
 }
 getAllArticles()
@@ -127,7 +128,7 @@ function funcEnd(e) {
 }
 
 async function filter() {
-    const res = await Service.articleFilter(id, search.value, start.value, end.value, rev.value)
+    const res = await Service.articleFilter(id, search.value, start.value, end.value, rev.value, locale.value)
     articles.value = res.data
 }
 </script>
