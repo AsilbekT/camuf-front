@@ -308,11 +308,28 @@
       .header-menu__title {
         font-size: 25px;
         font-weight: 600;
+        @include media(480px) {
+          font-size: 20px;
+        }
+
+        @include media(425px) {
+          font-size: 18px;
+          text-align: center;
+          margin-right: 10px;
+          margin-left: 10px;
+        }
       }
 
       .header-menu__btn {
         font-size: 22px;
         font-weight: 600;
+
+        @include media(480px) {
+          font-size: 18px;
+        }
+        @include media(425px) {
+          font-size: 16px;
+        }
       }
 
       .header-menu__item {
@@ -321,6 +338,14 @@
         &:nth-child(2) {
           margin-top: 14px;
         }
+      }
+    }
+  }
+
+  &__back{
+    @include media(480px) {
+      span{
+        display: none;
       }
     }
   }

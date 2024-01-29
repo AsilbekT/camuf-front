@@ -135,17 +135,16 @@
         </div>
 
         <div class="small-menu__main">
-
             <div class="header-menu__list h-full first-col">
                 <div class="header-menu__head flex items-center justify-between">
-                    <button class="flex items-center justify-start gap-2" v-if="current.name"
+                    <button class="flex items-center justify-start gap-2 header-menu__back" v-if="current.name"
                         @click="backPreviusMenu(current.col)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20">
                             <path :fill="dark ? '#fff' : '000'"
                                 d="m5.83 9l5.58-5.58L10 2l-8 8l8 8l1.41-1.41L5.83 11H18V9z" />
                         </svg>
                         <!-- :fill="dark ? '#fff' : '000'" -->
-                        Orqaga
+                        <span>Orqaga</span>
                     </button>
                     <h3 class="header-menu__title mr-8" v-if="current.name"> {{ current.name }} </h3>
                     <button class="header-menu__close" :class="{ 'ml-auto': !current.name }" @click="isOpenMenu = false">
