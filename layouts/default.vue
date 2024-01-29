@@ -15,7 +15,8 @@
                 <div class="lang-top" @click="langOpen = !langOpen">{{ locale }}</div>
                 <Transition name="lang">
                     <ul class="lang-list" v-if="langOpen">
-                        <li v-for="{ name, code } in locales" :key="code" :style="`display: ${code == locale ? 'none' : 'flex'}`">
+                        <li v-for="{ name, code } in locales" :key="code"
+                            :style="`display: ${code == locale ? 'none' : 'flex'}`">
                             <NuxtLink @click="langOpen = false" :to="switchLocalePath(code)">{{ name }}</NuxtLink>
                         </li>
                     </ul>
@@ -41,7 +42,12 @@
                 <h3 class="header-menu__title">Menyular</h3>
                 <div class="header-menu__item" v-for="(menu, index) in menus" :key="`${index}`">
                     <NuxtLink class="header-menu__btn cursor-pointer" :class="{ active: index === activeMenu.one.id }"
-                        to="/" v-if="menu.isLink" @click="isOpenMenu = false">{{ menu.name }}
+                        to="/" v-if="menu.isLink" @click="isOpenMenu = false" @mouseenter="
+                            (activeMenu.one = ''),
+                            (activeMenu.two = ''),
+                            (activeMenu.three = ''),
+                            (activeMenu.four = '')
+                            ">{{ menu.name }}
                     </NuxtLink>
                     <button v-else class="header-menu__btn" :class="{ active: menu.name === activeMenu.one.name }"
                         @mouseenter="
@@ -60,7 +66,11 @@
                 <div class="header-menu__items">
                     <div class="header-menu__item" v-for="item in activeMenu.one.sub" :key="item">
                         <NuxtLink class="header-menu__btn" :to="item.link ? item.link : '/'" v-if="item.isLink"
-                            @click="isOpenMenu = false">{{ item.name }}</NuxtLink>
+                            @click="isOpenMenu = false" @mouseenter="
+                                (activeMenu.two = ''),
+                                (activeMenu.three = ''),
+                                (activeMenu.four = '')
+                                ">{{ item.name }}</NuxtLink>
                         <!-- item -->
                         <button v-else class="header-menu__btn" :class="{ active: item.name === activeMenu.two.name }"
                             @mouseenter="
@@ -78,8 +88,12 @@
                 <h3 class="header-menu__title">{{ activeMenu.two.name }}</h3>
                 <div class="header-menu__items">
                     <div class="header-menu__item" v-for="item in activeMenu.two.sub" :key="item">
-                        <NuxtLink class="header-menu__btn" to="/" v-if="item.isLink" @click="isOpenMenu = false">{{
-                            item.name }}</NuxtLink>
+                        <NuxtLink class="header-menu__btn" to="/" v-if="item.isLink" @click="isOpenMenu = false"
+                            @mouseenter="
+                                (activeMenu.three = ''),
+                                (activeMenu.four = '')
+                                ">{{
+        item.name }}</NuxtLink>
                         <!-- item -->
                         <button v-else class="header-menu__btn" :class="{ active: item.name === activeMenu.three.name }"
                             @mouseenter="
@@ -97,7 +111,9 @@
                 <div class="header-menu__items">
                     <div class="header-menu__item" v-for="item in activeMenu.three.sub" :key="item">
                         <NuxtLink class="header-menu__btn cursor-pointer" to="/" v-if="item.isLink"
-                            @click="isOpenMenu = false">{{ item.name }}</NuxtLink>
+                            @click="isOpenMenu = false" @mouseenter="
+                                (activeMenu.four = '')
+                                ">{{ item.name }}</NuxtLink>
                         <!-- item -->
                         <button v-else class="header-menu__btn" :class="{ active: item.name === activeMenu.four.name }"
                             @mouseenter="activeMenu.four = item">
@@ -316,7 +332,7 @@ getArticleCategories()
 //============================================ header menu ============================================
 //variables
 const activeMenu = reactive({
-    one: menus[1],
+    one: {},
     two: '',
     three: '',
     four: '',
@@ -378,13 +394,13 @@ function backPreviusMenu(col) {
 <style lang="scss">
 .lang-enter-active,
 .lang-leave-active {
-  transition: all 0.5s ease;
-  transform: translateY(0);
+    transition: all 0.5s ease;
+    transform: translateY(0);
 }
 
 .lang-enter-from,
 .lang-leave-to {
-  opacity: 0;
-  transform: translateY(-20px);
+    opacity: 0;
+    transform: translateY(-20px);
 }
 </style>
