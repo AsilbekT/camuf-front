@@ -23,10 +23,6 @@ export default [
                 name: 'Ma’naviyat bo’limi',
                 sub: [
                     {
-                        isLink: true,
-                        name: 'Xalqaro bo`lim',
-                    },
-                    {
                         isLink: false,
                         name: 'Ilmiy bo`lim',
                         sub: [
@@ -142,10 +138,12 @@ export default [
             {
                 isLink: 'true',
                 name: 'Murojaat qoldirish',
+                link: '/connect'
             },
             {
                 isLink: 'true',
                 name: 'Aloqa ma’lumotlari',
+                link: '/contact'
             },
         ],
     },
@@ -210,25 +208,25 @@ export default [
         ],
     },
     {
-        isLink: false,
-        name: 'Talaba',
-        sub: [
-            {
-                isLink: 'true',
-                name: 'Qabul',
-            },
-            {
-                isLink: 'true',
-                name: 'Xalqaro talabalar qabuli',
-            },
-            {
-                isLink: 'true',
-                name: 'Talabalar hayotidani',
-            },
-        ],
-    },
-    {
         isLink: true,
-        name: 'Tillar',
+        name: 'Qabul',
     },
+    // {
+    //     isLink: false,
+    //     name: 'Talaba',
+    //     sub: [
+    //         {
+    //             isLink: 'true',
+    //             name: 'Qabul',
+    //         },
+    //         {
+    //             isLink: 'true',
+    //             name: 'Xalqaro talabalar qabuli',
+    //         },
+    //         {
+    //             isLink: 'true',
+    //             name: 'Talabalar hayotidani',
+    //         },
+    //     ],
+    // },
 ]
