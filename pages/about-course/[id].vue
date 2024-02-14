@@ -4,11 +4,11 @@
         <div class="container">
             <ul class="courses-banner__nav">
                 <li>
-                    <NuxtLink to="/">Главная страница</NuxtLink>
+                    <NuxtLink to="/"> {{ $t('MainPage') }} </NuxtLink>
                 </li>
                 /
                 <li>
-                    <NuxtLink to="/">Курс</NuxtLink>
+                    <NuxtLink to="/">{{ $t('Course') }}</NuxtLink>
                 </li>
             </ul>
         </div>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="about-course__right other-categories">
                     <h3 class="other-categories__title">
-                        Barcha yo'nalishlar:
+                        {{ $t('AllDirections') }}:
                     </h3>
                     <div class="other-categories__row">
                         <NuxtLink :to="`/course/${category.id}`" class="other-categories__item" :class="{'active': details?.data?.category === category.id}" v-for="category in categories" :key="category.id">

@@ -4,11 +4,11 @@
         <div class="container">
             <ul class="books-banner__nav">
                 <li>
-                    <NuxtLink to="/">Главная страница</NuxtLink>
+                    <NuxtLink to="/">{{ $t('MainPage') }}</NuxtLink>
                 </li>
                 /
                 <li>
-                    <NuxtLink to="/">Ilmiy jurnallar</NuxtLink>
+                    <NuxtLink to="/">{{ $t('ScientificJournals') }}</NuxtLink>
                 </li>
             </ul>
         </div>
@@ -50,7 +50,7 @@
                                         class="fill-[#fff]" />
                                 </g>
                             </svg>
-                            <span class="capitalize">views</span>
+                            <span class="capitalize">{{ $t('Views') }}</span>
                         </div>
                     </div>
                     <div class="px-[24px] py-[12px] card text-white rounded-md flex flex-col items-center gap-2">
@@ -72,13 +72,13 @@
                                     </g>
                                 </g>
                             </svg>
-                            <span class="capitalize">downloads</span>
+                            <span class="capitalize">{{ $t('Downloads') }}</span>
                         </div>
                     </div>
                 </div>
                 <a :href="details?.data?.article_file" target="_blank" class="book-item__btn">
                     <img src="@/assets/images/svg/down.svg" alt="">
-                    <span>скачать файл</span>
+                    <span>{{ $t('DownloadFile') }}</span>
                 </a>
             </div>
         </div>

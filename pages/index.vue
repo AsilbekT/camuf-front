@@ -50,19 +50,19 @@
             <div class="container">
                 <div class="hero-bottom__item">
                     <h2 class="hero-bottom__item-res" :data-count="about?.graduates"><span>0</span>%</h2>
-                    <h4 class="hero-bottom__item-title">Выпускники</h4>
+                    <h4 class="hero-bottom__item-title">{{ $t('Graduates') }}</h4>
                 </div>
                 <div class="hero-bottom__item">
                     <h2 class="hero-bottom__item-res" :data-count="about?.professors"><span>0</span>+</h2>
-                    <h4 class="hero-bottom__item-title">Профессоры</h4>
+                    <h4 class="hero-bottom__item-title">{{ $t('Professors') }}</h4>
                 </div>
                 <div class="hero-bottom__item">
                     <h2 class="hero-bottom__item-res" :data-count="about?.branches"><span>0</span></h2>
-                    <h4 class="hero-bottom__item-title">Студенческие Города</h4>
+                    <h4 class="hero-bottom__item-title">{{ $t('StudentCities') }}</h4>
                 </div>
                 <div class="hero-bottom__item">
                     <h2 class="hero-bottom__item-res" :data-count="about?.number_of_students"><span>0</span>+</h2>
-                    <h4 class="hero-bottom__item-title">Количество Студентов</h4>
+                    <h4 class="hero-bottom__item-title">{{ $t('NumberOfStudents') }}</h4>
                 </div>
             </div>
         </div>
@@ -73,20 +73,22 @@
             <div class="about-user">
                 <img class="about-user__img" :src="president?.profile_image" alt="">
                 <NuxtLink :to="`/staff/${president?.id}/`" class="about-user__name">{{ president?.full_name }}</NuxtLink>
-                <h4 class="about-user__subtitle">Ректор университета</h4>
+                <h4 class="about-user__subtitle">{{ $t('UniversityRector') }}</h4>
             </div>
             <div class="about-text-wrapper">
                 <h2 class="about-title">{{ about?.name }}</h2>
                 <p class="about-desc" v-html="about?.about">
                 </p>
-                <NuxtLink class="about-btn" to="/about/">Ko'proq bilish</NuxtLink>
+
+                <NuxtLink class="about-btn" to="/about/">{{ $t('KnowMore') }}</NuxtLink>
+
             </div>
         </div>
     </div>
 
     <div class="home-jurnals">
         <div class="container">
-            <h2 class="home-jurnals__title">Ilmiy jurnallar</h2>
+            <h2 class="home-jurnals__title">{{ $t('ScientificJournals') }}</h2>
             <div class="home-jurnals__wrapper">
                 <div v-for="item in store.articles?.results" :key="item"
                     class="relative flex bg-clip-border card-jurnal rounded-xl bg-white shadow-md w-full max-w-[48rem] flex-row">
@@ -104,7 +106,7 @@
                         </p>
                         <NuxtLink :to="`/journals/${item.id}`"
                             class="flex mt-auto items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center  uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-gray-900/10 active:bg-gray-900/20">
-                            Batafsil<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            {{ $t('More') }}<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
@@ -120,7 +122,7 @@
     <div class="latest-news">
         <div class="container">
             <NuxtLink to="/news" class="latest-news__title">
-                Последние новости
+                {{ $t('LastNews') }}
             </NuxtLink>
             <div class="latest-news__list">
                 <NewsCard v-for="item in lastnews?.results" :key="item" :item="item" />
@@ -130,7 +132,7 @@
 
     <div class="video-clips">
         <div class="container">
-            <h2 class="video-clips__title">видеоклипы</h2>
+            <h2 class="video-clips__title"> {{ $t('VideoClips') }}</h2>
             <Swiper :slides-per-view="4" :breakpoints="{
                 0: {
                     slidesPerView: 'auto',
@@ -161,18 +163,17 @@
         <div class="container">
             <div class="speciality__text-wrapper">
                 <NuxtLink to="/courses/" class="speciality__title">
-                    Специальности
-                    бакалавриата
+                    {{ $t('BachelorMajors') }}
+
                 </NuxtLink>
                 <p class="speciality__desc">
-                    Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает
-                    сосредоточиться.
+                    {{ $t('SpecialityTextOne') }}
                     <br>
                     <br>
-                    Введите свой адрес электронной почты, чтобы получать последние новости университета, специальные
-                    мероприятия и студенческие мероприятия, доставленные на ваш почтовый
+                    {{ $t('SpecialityTextTwo') }}
                 </p>
-                <NuxtLink class="speciality__btn" to="/courses/">Барча йўналишлар</NuxtLink>
+                <NuxtLink class="speciality__btn" to="/courses/">{{ $t('AllDirections') }}</NuxtLink>
+
             </div>
             <div class="speciality__list">
                 <div class="speciality__item" v-for="(item, index) in courses?.results?.slice(0, 6)" :key="item">
@@ -199,7 +200,8 @@
 
     <div class="teachers">
         <div class="container">
-            <NuxtLink to="/staff/?role=professor" class="teachers__title">наши учителя</NuxtLink>
+            <NuxtLink to="/staff/?role=professor" class="teachers__title">{{ $t('OurTeachers') }}</NuxtLink>
+
             <div class="teachers__list">
                 <!-- <div class="teachers__item" v-for="item in teachers?.results" :key="item">
                     <div class="teachers__item-img">
@@ -378,4 +380,5 @@ onMounted(() => {
     visibility: visible !important;
     opacity: 1 !important;
     transition-duration: 0s !important;
-}</style>
+}
+</style>

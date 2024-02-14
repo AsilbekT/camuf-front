@@ -4,11 +4,11 @@
         <div class="container">
             <ul class="news-banner__nav">
                 <li>
-                    <NuxtLink to="/">Главная страница</NuxtLink>
+                    <NuxtLink to="/">{{ $t('MainPage') }}</NuxtLink>
                 </li>
                 /
                 <li>
-                    <NuxtLink to="/">Yangiliklar</NuxtLink>
+                    <NuxtLink to="/">{{ $t('News') }}</NuxtLink>
                 </li>
             </ul>
         </div>
@@ -36,7 +36,7 @@
                 </aside>
                 <aside class="one-news__right">
                     <div class="similar">
-                        <h3 class="similar__title">O'xshash yangiliklar</h3>
+                        <h3 class="similar__title">{{ $t('SimilarNews') }}</h3>
                         <div class="similar__row">
                             <NuxtLink to="/news" class="similar__item" v-for="similar in similar_news" :key="similar.id">
                                 <div class="similar__img">

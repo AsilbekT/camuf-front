@@ -8,11 +8,11 @@
         <div class="container">
             <ul class="teachers-banner__nav">
                 <li>
-                    <NuxtLink to="/">Главная страница</NuxtLink>
+                    <NuxtLink to="/">{{ $t('MainPage') }}</NuxtLink>
                 </li>
                 /
                 <li>
-                    <NuxtLink to="/">Курс</NuxtLink>
+                    <NuxtLink to="/">{{ $t('Teachers') }}</NuxtLink>
                 </li>
             </ul>
         </div>
@@ -30,7 +30,7 @@
                     <p
                         
                         class="teacher-main__connect"
-                        >Bog'lanish:
+                        >{{ $t('Connection') }}:
                     </p>
                     <a :href="`tel:${teacher.phone_number}`" class="teacher-main__phone">
                         <svg
@@ -58,7 +58,7 @@
                     </a>
                 </div>
                 <div class="teacher-main__right">
-                    <h2 class="teacher-main__title">Batafsil ma'lumot</h2>
+                    <h2 class="teacher-main__title"> {{ $t('DetailedInformation') }}</h2>
                     <p class="teacher-main__text" v-html="teacher.body"></p>
                     <!-- <div class="teacher-main__socials teacher-socials">
                         <h4 class="teacher-socials__title">Ijtimoiy tarmoqlar</h4>

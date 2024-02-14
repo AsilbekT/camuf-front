@@ -4,11 +4,11 @@
         <div class="container">
             <ul class="books-banner__nav">
                 <li>
-                    <NuxtLink to="/">Главная страница</NuxtLink>
+                    <NuxtLink to="/">{{ $t('MainPage') }}</NuxtLink>
                 </li>
                 /
                 <li>
-                    <NuxtLink to="/">Ilmiy jurnallar</NuxtLink>
+                    <NuxtLink to="/">{{ $t('ScientificJournals') }}</NuxtLink>
                 </li>
             </ul>
         </div>
@@ -16,21 +16,21 @@
     <div class="journals">
         <div class="container">
             <div class="flex w-full items-center top">
-                <h2>Ilmiy jurnallar</h2>
+                <h2>{{ $t('ScientificJournals') }}</h2>
                 <input class="search" @input="filter()" v-model="search" placeholder="Qidirish..." type="text">
             </div>
             <form @submit.prevent="" class="journals-filter">
                 <div class="flex flex-col gap-2">
-                    <label for="start">Strart date</label>
+                    <label for="start">{{ $t('StrartDate') }}</label>
                     <input @change="funcStart($event)" type="date" id="start">
                 </div>
                 <div class="flex flex-col gap-2">
-                    <label for="end">end date</label>
+                    <label for="end">{{ $t('EndDate') }}</label>
                     <input @change="funcEnd($event)" type="date" id="end">
                 </div>
                 <div class="flex items-center gap-2">
                     <input v-model="rev" @change="filter()" id="reviewd" type="checkbox">
-                    <label for="reviewd">Tekshirgan</label>
+                    <label for="reviewd">{{ $t('Checked') }}</label>
                 </div>
             </form>
             <div class="journals-wrapper">
@@ -49,7 +49,7 @@
                             surrounded by ancient trees, stone walls, and open meadows.
                         </p>
                         <div class="flex items-center justify-between">
-                            <span class="text-sm">Uploaded on May 12, 2023</span>
+                            <span class="text-sm">{{ $t('UploadedOn') }} May 12, 2023</span>
                             <div class="flex gap-6 items-center">
                                 <div class="flex gap-2 items-center">
                                     <!DOCTYPE svg
@@ -66,7 +66,7 @@
                                                 class="fill-[#fff]" />
                                         </g>
                                     </svg>
-                                    <span class="capitalize text-sm">views</span>
+                                    <span class="capitalize text-sm">{{ $t('Views') }}</span>
                                 </div>
                                 <div class="flex gap-2 items-center">
                                     <svg height="12px" version="1.1" viewBox="0 0 24 16" width="20px"
@@ -86,7 +86,7 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <span class="capitalize text-sm">downloads</span>
+                                    <span class="capitalize text-sm">{{ $t('Downloads') }}</span>
                                 </div>
                             </div>
                         </div>
