@@ -173,4 +173,11 @@ export default {
       params: params,
     });
   },
+  getAllDepartments(lang, id) {
+    return API().get("/departments/" + id + "/", {
+      headers: {
+        "Accept-Language": lang,
+      },
+    });
+  },
 };

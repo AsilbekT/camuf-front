@@ -7,12 +7,12 @@ export default [
     {
         isLink: false,
         name: 'Universitet haqida',
-        link: '/about',
+        link: '/about/',
         sub: [
             {
                 isLink: true,
                 name: 'Rahbariyat',
-                link: '/teachers'
+                link: '/staff/'
             },
             {
                 isLink: true,
@@ -138,12 +138,12 @@ export default [
             {
                 isLink: 'true',
                 name: 'Murojaat qoldirish',
-                link: '/connect'
+                link: '/connect/'
             },
             {
                 isLink: 'true',
                 name: 'Aloqa ma’lumotlari',
-                link: '/contact'
+                link: '/contact/'
             },
         ],
     },

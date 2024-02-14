@@ -61,7 +61,60 @@
   }
   &__wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     gap: 44px;
+    @include media(600px) {
+      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  }
+  &-img {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  &-settings {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    .dropdown {
+      width: 25%;
+      button {
+        background: var(--card-journal);
+        color: var(--card-journal-text);
+      }
+      ul {
+        background: var(--bg-color);
+        &::-webkit-scrollbar {
+          width: 3px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: var(--pr-color);
+        }
+      }
+      li {
+        transition: all 0.3s ease;
+        background: var(--card-journal);
+        color: var(--card-journal-text);
+
+        &:hover {
+          color: var(--pr-color);
+        }
+      }
+    }
+  }
+  .search {
+    width: 70%;
+    color-scheme: var(--input-date);
+    background: transparent;
+    padding: 12px 20px;
+    border: 1px solid var(--footer-form);
+    color: var(--footer-desc);
+    @include font(400, 18px, 1.2);
+    @include media(600px) {
+      width: 100%;
+      font-size: 14px;
+    }
+    border-radius: 6px;
   }
 }

@@ -15,17 +15,17 @@
   </div>
   <div class="courses-main">
       <div class="container">
-          <h2 class="courses-main__title">Специальности бакалавриата</h2>
+          <h2 class="courses-main__title">Barcha yo'nalishlar</h2>
           <div class="courses-main__items-wrapper">
               <div class="courses-main__item" v-for="item in courses?.results" :key="item">
                   <div class="courses-main__item-img">
                       <img :src="item?.image" alt="">
                   </div>
                   <div class="courses-main__item-text-wrapper">
-                      <NuxtLink :to="`/about-course/${item?.id}`" class="courses-main__item-title">{{ item?.title }}
+                      <NuxtLink :to="`/about-course/${item?.id}/`" class="courses-main__item-title">{{ item?.title }}
                       </NuxtLink>
                       <h4 class="courses-main__item-code">Код направления: {{ item?.course_id }}</h4>
-                      <NuxtLink :to="`/about-course/${item?.id}`" class="courses-main__item-btn">Подробная информация
+                      <NuxtLink :to="`/about-course/${item?.id}/`" class="courses-main__item-btn">Подробная информация
                       </NuxtLink>
                   </div>
               </div>

@@ -76,11 +76,9 @@
 </template>
 
 <script setup>
-//=================================== imports ====================================
 import Service from '~/services/Service';
 const { locale } = useI18n()
 
-//=================================== show teachers =====================================
 //variables
 const teacher = ref({});
 const { id: teacher_id } = useRoute().params;

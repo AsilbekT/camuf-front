@@ -69,30 +69,10 @@
 import Service from '~/services/Service';
 const { locale } = useI18n()
 const dropdown = ref(false)
-
+const route = useRoute()
+const router = useRouter()
 const teachers = ref([])
 const role = ref("")
-async function getAllStaffs() {
-    if (role.value.length) {
-        let params = {
-            role: role.value
-        }
-        const res = await Service.getAllStaffs(locale.value, params)
-        teachers.value = res?.data
-    } else {
-        const res = await Service.getAllStaffs(locale.value, {})
-        teachers.value = res?.data
-    }
-}
-
-getAllStaffs()
-const selectedLabel = ref("Barcha hodimlar")
-function selectDropdown(item) {
-    selectedLabel.value = item.label
-    role.value = item.value
-    getAllStaffs()
-}
-
 const POSITION_LEVEL_CHOICES = [
     { value: 'professor', label: 'Professor' },
     { value: 'associate_professor', label: 'Associate Professor' },
@@ -138,6 +118,37 @@ const POSITION_LEVEL_CHOICES = [
     { value: 'emeritus_professor', label: 'Emeritus Professor' },
     { value: 'other', label: 'Other' }
 ];
+role.value = route.query?.role ? role.value = route.query?.role : ""
+const selectedLabel = ref("Barcha hodimlar")
+
+POSITION_LEVEL_CHOICES.forEach(el => {
+    if(route.query?.role == el.value) {
+        selectedLabel.value = el.label
+    }
+})
+
+async function getAllStaffs() {
+    if (role.value.length) {
+        let params = {
+            role: role.value
+        }
+        const res = await Service.getAllStaffs(locale.value, params)
+        teachers.value = res?.data
+    } else {
+        const res = await Service.getAllStaffs(locale.value, {})
+        teachers.value = res?.data
+    }
+}
+
+getAllStaffs()
+function selectDropdown(item) {
+    selectedLabel.value = item.label
+    role.value = item.value
+    router.push({ query: { role: role.value } })
+    getAllStaffs()
+}
+
+
 
 
 </script>

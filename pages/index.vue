@@ -72,14 +72,14 @@
         <div class="container">
             <div class="about-user">
                 <img class="about-user__img" :src="president?.profile_image" alt="">
-                <NuxtLink :to="`/teachers/${president?.id}`" class="about-user__name">{{ president?.full_name }}</NuxtLink>
+                <NuxtLink :to="`/staff/${president?.id}/`" class="about-user__name">{{ president?.full_name }}</NuxtLink>
                 <h4 class="about-user__subtitle">Ректор университета</h4>
             </div>
             <div class="about-text-wrapper">
                 <h2 class="about-title">{{ about?.name }}</h2>
                 <p class="about-desc" v-html="about?.about">
                 </p>
-                <NuxtLink class="about-btn" to="/about">Ko'proq bilish</NuxtLink>
+                <NuxtLink class="about-btn" to="/about/">Ko'proq bilish</NuxtLink>
             </div>
         </div>
     </div>
@@ -160,7 +160,7 @@
     <div class="speciality">
         <div class="container">
             <div class="speciality__text-wrapper">
-                <NuxtLink to="/courses" class="speciality__title">
+                <NuxtLink to="/courses/" class="speciality__title">
                     Специальности
                     бакалавриата
                 </NuxtLink>
@@ -172,7 +172,7 @@
                     Введите свой адрес электронной почты, чтобы получать последние новости университета, специальные
                     мероприятия и студенческие мероприятия, доставленные на ваш почтовый
                 </p>
-                <NuxtLink class="speciality__btn" to="/courses">Барча йўналишлар</NuxtLink>
+                <NuxtLink class="speciality__btn" to="/courses/">Барча йўналишлар</NuxtLink>
             </div>
             <div class="speciality__list">
                 <div class="speciality__item" v-for="(item, index) in courses?.results?.slice(0, 6)" :key="item">
@@ -199,7 +199,7 @@
 
     <div class="teachers">
         <div class="container">
-            <NuxtLink to="/teachers" class="teachers__title">наши учителя</NuxtLink>
+            <NuxtLink to="/staff/?role=professor" class="teachers__title">наши учителя</NuxtLink>
             <div class="teachers__list">
                 <!-- <div class="teachers__item" v-for="item in teachers?.results" :key="item">
                     <div class="teachers__item-img">
