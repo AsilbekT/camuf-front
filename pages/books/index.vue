@@ -4,18 +4,18 @@
       <div class="container">
           <ul class="books-banner__nav">
               <li>
-                  <NuxtLink to="/">Главная страница</NuxtLink>
+                  <NuxtLink to="/">{{ $t('MainPage') }}</NuxtLink>
               </li>
               /
               <li>
-                  <NuxtLink to="/">Ilmiy jurnallar</NuxtLink>
+                  <NuxtLink to="/">{{ $t('ScientificJournals') }}</NuxtLink>
               </li>
           </ul>
       </div>
   </div>
   <div class="books-main">
       <div class="container">
-          <h2 class="books-main__title">Ilmiy jurnallar</h2>
+          <h2 class="books-main__title">{{ $t('ScientificJournals') }}</h2>
           <div class="books-main__wrapper">
               <div class="book-item" v-for="item in artciles?.results" :key="item">
                   <div class="book-item__img">
@@ -23,7 +23,7 @@
                   </div>
                   <a :href="item?.acticle_file" target="_blank" class="book-item__btn">
                       <img src="@/assets/images/svg/down.svg" alt="">
-                      <span>скачать файл</span>
+                      <span>{{ $t('DownloadFile') }}</span>
                   </a>
               </div>
           </div>

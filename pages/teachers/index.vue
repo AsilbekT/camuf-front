@@ -4,18 +4,18 @@
         <div class="container">
             <ul class="teachers-banner__nav">
                 <li>
-                    <NuxtLink to="/">Главная страница</NuxtLink>
+                    <NuxtLink to="/">{{ $t('MainPage') }}</NuxtLink>
                 </li>
                 /
                 <li>
-                    <NuxtLink to="/">Курс</NuxtLink>
+                    <NuxtLink to="/">{{ $t('Teachers') }}</NuxtLink>
                 </li>
             </ul>
         </div>
     </div>
     <div class="teachers-main">
         <div class="container">
-            <h2 class="teachers-main__title">наши учителя</h2>
+            <h2 class="teachers-main__title">{{ $t('OurTeachers') }}</h2>
             <div class="teachers-main__wrapper">
                 <div class="teachers__item" v-for="item in teachers" :key="item.id">
                     <div class="teachers__item-img">

@@ -4,23 +4,22 @@
     <div class="container">
       <ul class="courses-banner__nav">
         <li>
-          <NuxtLink to="/">Главная страница</NuxtLink>
+          <NuxtLink to="/">{{ $t('MainPage') }}</NuxtLink>
         </li>
         /
         <li>
-          <NuxtLink to="/">Курс</NuxtLink>
+          <NuxtLink to="/">{{ $t('Contact') }}</NuxtLink>
         </li>
       </ul>
     </div>
   </div>
   <div class="contact-faq">
     <div class="container">
-      <h2 class="contact-faq__title">Известно, что Центральный азиатский медицинский университет начал приемстудентов на
-        учебный год 2023/2024."</h2>
+      <h2 class="contact-faq__title">{{ $t('ContactTitle') }}</h2>
       <div class="contact-faq__main">
         <div class="contact-faq__lists" v-for="item in 4" :key="item">
           <h3 class="contact-faq__sub-title">
-            В учебном году 2023/2024 университет принимает студентов на следующие направления:
+           {{ $t('ContactSubTitle') }}
           </h3>
           <ul class="contact-faq__list">
             <li class="contact-faq__item">Обучение в двух системах></li>
@@ -37,14 +36,14 @@
   </div>
   <div class="contact-main">
     <div class="container">
-      <h2 class="contact-main__title">Специальности бакалавриата</h2>
+      <h2 class="contact-main__title">{{ $t('BachelorMajors') }}</h2>
       <div class="contact-main__items-wrapper">
         <div class="contact-main__item" v-for="item in courses?.results" :key="item">
           <div class="contact-main__item-text-wrapper">
             <NuxtLink :to="`/about-course/${item?.id}`" class="contact-main__item-title">{{ item?.title }}
             </NuxtLink>
-            <h4 class="contact-main__item-code">Код направления: {{ item?.course_id }}</h4>
-            <NuxtLink :to="`/about-course/${item?.id}`" class="contact-main__item-btn">Подробная информация
+            <h4 class="contact-main__item-code">{{ $t('DestinationCode') }}: {{ item?.course_id }}</h4>
+            <NuxtLink :to="`/about-course/${item?.id}`" class="contact-main__item-btn">{{ $t('DetailedInformation') }}
             </NuxtLink>
           </div>
         </div>

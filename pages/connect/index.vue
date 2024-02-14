@@ -4,11 +4,11 @@
     <div class="container">
       <ul class="courses-banner__nav">
         <li>
-          <NuxtLink to="/">Главная страница</NuxtLink>
+          <NuxtLink to="/">{{ $t('MainPage') }}</NuxtLink>
         </li>
         /
         <li>
-          <NuxtLink to="/">Курс</NuxtLink>
+          <NuxtLink to="/">{{ $t('Connection') }}</NuxtLink>
         </li>
       </ul>
     </div>
@@ -17,49 +17,47 @@
     <div class="container">
       <div class="connect__row">
         <div class="connect__main">
-          <h2 class="connect__title">Bog'lanish</h2>
+          <h2 class="connect__title">{{ $t('Connection') }}</h2>
           <p class="connect__text">
-            Siz uchun qulay bo'lgan har qanday usulda biz bilan bog'lanishingiz mumkin. Biz faks yoki elektron pochta
-            orqali 24/7 ishlaymiz. Shuningdek, quyida joylashgan tezkor aloqa shaklidan foydalanishingiz yoki bizga
-            shaxsan tashrif buyurishingiz mumkin. Savollaringizga javob berishdan xursand bo'lamiz.
+            {{ $t('ConnectionText') }}
           </p>
           <!-- ? Connect form -->
-          <form action="#" class="connect__form connect-form">
+          <form action="#" class="connect__form connect-form" @submit.prevent>
             <div class="connect-form__row">
               <label for="firstname" class="connect-form__label">
-                Ism
-                <input type="text" name="firstname" id="firstname" class="connect-form__input">
+                {{ $t('Firstname') }}
+                <input type="text" name="firstname" id="firstname" class="connect-form__input" required>
               </label>
               <label for="lastname" class="connect-form__label">
-                Familiya
-                <input type="text" name="lastname" id="lastname" class="connect-form__input">
+                {{ $t('Lastname') }}
+                <input type="text" name="lastname" id="lastname" class="connect-form__input" required>
               </label>
             </div>
             <div class="connect-form__row">
               <label for="email" class="connect-form__label">
-                Elektorn manzil
-                <input type="email" name="email" id="email" class="connect-form__input">
+                {{ $t('Email') }}
+                <input type="email" name="email" id="email" class="connect-form__input" required>
               </label>
               <label for="phone" class="connect-form__label">
-                Telefon raqami
-                <input type="text" name="phnoe" id="phone" class="connect-form__input">
+                {{ $t('PhoneLabel') }}
+                <input type="text" name="phnoe" id="phone" class="connect-form__input" required>
               </label>
             </div>
             <div class="connect-form__row">
               <label for="message" class="connect-form__label full">
-                Xabar
+                {{ $t('Message') }}
                 <!-- <textareatype="email" name="email" id="email" class="connect-form__input"> -->
                 <textarea class="connect-form__input" name="message" id="message" cols="30" rows="10"></textarea>
               </label>
             </div>
-            <button class="connect-form__submit">Xabarni jo'natish</button>
+            <button class="connect-form__submit">{{ $t('SendMessage') }}</button>
           </form>
           <!-- ? Connect form -->
         </div>
         <!-- ? Connect info -->
         <div class="connect-info">
           <div class="connect-info__item">
-            <h4 class="connect-info__title">Telefon</h4>
+            <h4 class="connect-info__title">{{ $t('Phone') }}</h4>
             <div class="connect-info__row">
               <div class="connect-info__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -73,7 +71,7 @@
             </div>
           </div>
           <div class="connect-info__item">
-            <h4 class="connect-info__title">Elektron pochta</h4>
+            <h4 class="connect-info__title">{{ $t('Email') }}</h4>
             <div class="connect-info__row">
               <div class="connect-info__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -87,7 +85,7 @@
             </div>
           </div>
           <div class="connect-info__item">
-            <h4 class="connect-info__title">Manzil</h4>
+            <h4 class="connect-info__title">{{ $t('Address') }}</h4>
             <div class="connect-info__row">
               <div class="connect-info__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
@@ -96,25 +94,25 @@
                 </svg>
               </div>
               <p class="connect-info__text">
-                O'zbekiston. Farg'ona viloyat, Farg'ona Shaxri
+                {{ $t('AddressConnect') }}
               </p>
             </div>
           </div>
           <div class="connect-info__item">
-            <h4 class="connect-info__title">Qabul vaqti</h4>
+            <h4 class="connect-info__title">{{ $t('ReceptionTime') }}</h4>
             <div class="connect-info__row">
               <div class="connect-info__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M5 8h14V6H5zm0 0V6zm0 14q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V2h2v2h8V2h2v2h1q.825 0 1.413.588T21 6v5.675q-.475-.225-.975-.375T19 11.075V10H5v10h6.3q.175.55.413 1.05t.562.95zm13 1q-2.075 0-3.537-1.463T13 18q0-2.075 1.463-3.537T18 13q2.075 0 3.538 1.463T23 18q0 2.075-1.463 3.538T18 23m1.675-2.625l.7-.7L18.5 17.8V15h-1v3.2z"/></svg>
               </div>
               <p class="connect-info__text">
-                Dushanba-Juma: 8:00 dan - 20:00 gacha <br>
-                Shanba: 8:00 dan - 15:00 gacha <br>
-                Yakshanba: Dam olish kuni
+                {{ $t('WorkingTimeOne') }} <br>
+                {{ $t('WorkingTimeTwo') }} <br>
+                {{ $t('WorkingTimeThree') }}
               </p>
             </div>
           </div>
           <div class="connect-info__item">
-            <h4 class="connect-info__title">Ijtimoiy tarmoqlarda</h4>
+            <h4 class="connect-info__title">{{ $t('InSocialNetworks') }}</h4>
             <div class="connect-info__row">
               <NuxtLink to="/" class="connect-info__icon social">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4z"/></svg>
