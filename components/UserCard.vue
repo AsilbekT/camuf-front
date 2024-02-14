@@ -15,7 +15,7 @@
             </p>
         </div>
         <div class="p-6 pt-0">
-            <NuxtLink :to="`/teachers/${item?.id}`" 
+            <NuxtLink :to="`/staff/${item?.id}`" 
                 class="user-button align-middle flex items-center justify-center select-none font-sans font-bold text-center uppercase transition-all text-xs py-3 px-6 rounded-lg shadow-gray-900/10 hover:shadow-gray-900/20 focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
                 >
                 Batafsil
