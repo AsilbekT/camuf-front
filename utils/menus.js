@@ -54,14 +54,7 @@ export default [
                                 isLink: false,
                                 name: 'Kafedralar',
                                 sub: [
-                                    {
-                                        isLink: true,
-                                        name: 'Ijtimoiy fanlar va jismoniy madaniyat',
-                                    },
-                                    {
-                                        isLink: true,
-                                        name: 'Anatomiya va mikroanatomiya',
-                                    },
+                                    
                                 ],
                             },
                         ],
