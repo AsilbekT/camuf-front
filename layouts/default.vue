@@ -47,7 +47,7 @@
                             (activeMenu.two = ''),
                             (activeMenu.three = ''),
                             (activeMenu.four = '')
-                            ">{{ menu.name }}
+                            " v-html="menu.name">
                     </NuxtLink>
                     <button v-else class="header-menu__btn" :class="{ active: menu.name === activeMenu.one.name }"
                         @mouseenter="
@@ -70,7 +70,7 @@
                                 (activeMenu.two = ''),
                                 (activeMenu.three = ''),
                                 (activeMenu.four = '')
-                                ">{{ item.name }}</NuxtLink>
+                                " v-html="item.name"></NuxtLink>
                         <!-- item -->
                         <button v-else class="header-menu__btn" :class="{ active: item.name === activeMenu.two.name }"
                             @mouseenter="
@@ -92,8 +92,7 @@
                             @mouseenter="
                                 (activeMenu.three = ''),
                                 (activeMenu.four = '')
-                                ">{{
-        item.name }}</NuxtLink>
+                                " v-html="item.name"></NuxtLink>
                         <!-- item -->
                         <button v-else class="header-menu__btn" :class="{ active: item.name === activeMenu.three.name }"
                             @mouseenter="
@@ -113,7 +112,7 @@
                         <NuxtLink class="header-menu__btn cursor-pointer" :to="item.link" v-if="item.isLink"
                             @click="isOpenMenu = false" @mouseenter="
                                 (activeMenu.four = '')
-                                ">{{ item.name }}</NuxtLink>
+                                " v-html="item.name"></NuxtLink>
                         <!-- item -->
                         <button v-else class="header-menu__btn" :class="{ active: item.name === activeMenu.four.name }"
                             @mouseenter="activeMenu.four = item">
@@ -127,7 +126,7 @@
                 <h3 class="header-menu__title">{{ activeMenu.four.name }}</h3>
                 <div class="header-menu__items">
                     <div class="header-menu__item" v-for="item in activeMenu.four.sub" :key="item">
-                        <NuxtLink class="header-menu__btn" @click="isOpenMenu = false" :to="item.link" v-if="item.isLink">{{ item.name }}</NuxtLink>
+                        <NuxtLink class="header-menu__btn" @click="isOpenMenu = false" :to="item.link" v-if="item.isLink" v-html="item.name"></NuxtLink>
                         <!-- item -->
                     </div>
                 </div>
@@ -156,7 +155,7 @@
                 </div>
                 <div class="header-menu__item" v-for="(menu, index) in smallMenu" :key="`${index}`">
                     <NuxtLink class="header-menu__btn cursor-pointer" :class="{ active: index === activeMenu.one.id }"
-                        :to="menu.link" v-if="menu.isLink" @click="isOpenMenu = false, smallMenu = menus">{{ menu.name }}
+                        :to="menu.link" v-if="menu.isLink" @click="isOpenMenu = false, smallMenu = menus" v-html="menu.name">
                     </NuxtLink>
                     <button v-else class="header-menu__btn" @click="changeMenu(menu, index)">
                         {{ menu.name }}
@@ -330,7 +329,7 @@ async function getDepartaments() {
     store.articles = res.data;
     console.log(store.articles)
 
- 
+
     store.articles?.results.forEach((category) => {
         category.isLink = true
         category.link = `/departments/${category.id}`
