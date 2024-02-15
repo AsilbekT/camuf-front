@@ -17,11 +17,11 @@
         <div class="container">
             <div class="about-user">
                 <img class="about-user__img" :src="president?.profile_image" alt="">
-                <h2 class="about-user__name">{{ president?.full_name }}</h2>
+                <NuxtLink :to="`/staff/${president?.id}/`" class="about-user__name">{{ president?.full_name }}</NuxtLink>
                 <h4 class="about-user__subtitle">{{ $t('UniversityRector') }}</h4>
             </div>
             <div class="about-text-wrapper">
-                <h2 class="about-title">{{ about?.name }}</h2>
+                <h2 class="about-title" v-html="about?.name"></h2>
                 <p class="about-main-desc" v-html="about?.about">
                 </p>
             </div>

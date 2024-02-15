@@ -17,10 +17,10 @@
         <div class="container">
             <h2 class="teachers-main__title">Bizning hodimlar</h2>
             <div class="teachers-main-settings">
-                <input class="search" @input="filter()" v-model="search" placeholder="Qidirish..." type="text">
+                <!-- <input class="search" @input="filter()" v-model="search" placeholder="Qidirish..." type="text"> -->
                 <div class="relative mt-2 dropdown">
                     <button type="button" @click="dropdown = !dropdown"
-                        class="cursor-pointer relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                        class="cursor-pointer button relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
                         aria-haspopup="listbox" aria-expanded="true" aria-labelledby="listbox-label">
                         <span class="flex items-center">
                             <span class="ml-3 block truncate">{{ selectedLabel }}</span>
@@ -122,7 +122,7 @@ role.value = route.query?.role ? role.value = route.query?.role : ""
 const selectedLabel = ref("Barcha hodimlar")
 
 POSITION_LEVEL_CHOICES.forEach(el => {
-    if(route.query?.role == el.value) {
+    if (route.query?.role == el.value) {
         selectedLabel.value = el.label
     }
 })
@@ -150,7 +150,13 @@ function selectDropdown(item) {
 
 
 
-
+onMounted(() => {
+    window.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('button')) {
+            dropdown.value = false
+        }
+    })
+})
 </script>
 
 <style lang="scss" scoped></style>
