@@ -11,7 +11,7 @@
                 </div>
                 <div class="container">
                     <div class="hero__text-wrapper">
-                        <h2 class="hero__title">{{ item?.title }}</h2>
+                        <h2 class="hero__title" v-html="item?.title"></h2>
                         <p class="hero__desc">
                             {{ item?.description }}
                         </p>
@@ -76,7 +76,7 @@
                 <h4 class="about-user__subtitle">{{ $t('UniversityRector') }}</h4>
             </div>
             <div class="about-text-wrapper">
-                <h2 class="about-title">{{ about?.name }}</h2>
+                <h2 class="about-title" v-html="about?.name"></h2>
                 <p class="about-desc" v-html="about?.about">
                 </p>
 
@@ -97,9 +97,9 @@
                         <img :src="item?.image" alt="card-image" class="rounded-xl object-cover w-full h-full" />
                     </div>
                     <div class="p-6 flex flex-col">
-                        <h4
+                        <h4 v-html="item?.name"
                             class="block mb-4 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                            {{ item?.name }}
+                            
                         </h4>
                         <p class="block mb-8 font-sans text-base antialiased font-normal leading-relaxed">
                             {{ item?.description }}
