@@ -287,7 +287,7 @@ async function getNewsCategories() {
 
     news_categories.value.forEach((category) => {
         category.isLink = true
-        category.link = `/news/${category.id}`
+        category.link = `/news/${category.id}/`
     })
     const menuIndex = menus.findIndex(item => item.name === 'Yangiliklar')
     menus[menuIndex].sub = news_categories.value
@@ -301,7 +301,7 @@ async function getCourseCategories() {
 
     course_categories.value.forEach((category) => {
         category.isLink = true
-        category.link = `/course/${category.id}`
+        category.link = `/course/${category.id}/`
     })
     const menuIndex = menus.findIndex(item => item.name === 'Yo\'nalishlar')
     menus[menuIndex].sub = course_categories.value
@@ -315,7 +315,7 @@ async function getArticleCategories() {
 
     store.articles?.results.forEach((category) => {
         category.isLink = true
-        category.link = `/journals/${category.id}`
+        category.link = `/journals/${category.id}/`
     })
     const menuIndex = menus.findIndex(item => item.name === 'Jurnallar')
     menus[menuIndex].sub = store.articles?.results
@@ -327,12 +327,11 @@ const departaments = ref({})
 async function getDepartaments() {
     const res = await Service.getDepartaments(locale.value);
     store.articles = res.data;
-    console.log(store.articles)
 
 
     store.articles?.results.forEach((category) => {
         category.isLink = true
-        category.link = `/departments/${category.id}`
+        category.link = `/departments/${category.id}/`
     })
     const menuIndex = menus.findIndex(item => item.name === 'Universitet haqida')
     menus[menuIndex].sub[3].sub[0].sub[0].sub = store.articles?.results
