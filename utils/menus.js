@@ -2,6 +2,7 @@ export default [
     {
         isLink: true,
         name: 'Asosiy Sahifa',
+        // name: locale.value === 'uz' ? 'Asosiy sahifa' : locale.value === 'en' ? 'Main Page' : locale.value === 'en' ? 'цвфцва цпф':  'main',
         link: '/',
     },
     {

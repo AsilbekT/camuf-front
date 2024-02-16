@@ -7,7 +7,7 @@
             <nav class="header-nav">
                 <ul class="header-nav-list">
                     <li>
-                        <NuxtLink to="/about">о нас</NuxtLink>
+                        <NuxtLink to="/about">{{ $t(AboutUs) }}</NuxtLink>
                     </li>
                 </ul>
             </nav>
