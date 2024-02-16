@@ -90,7 +90,7 @@
         <div class="container">
             <h2 class="home-jurnals__title">{{ $t('ScientificJournals') }}</h2>
             <div class="home-jurnals__wrapper">
-                <div v-for="item in store.articles?.results" :key="item"
+                <div v-for="item in store.articlesItems?.results" :key="item"
                     class="relative flex bg-clip-border card-jurnal rounded-xl bg-white shadow-md w-full max-w-[48rem] flex-row">
                     <div
                         class="relative w-2/5 rounded-xl card-jurnal-img m-0 overflow-hidden bg-white rounded-r-none bg-clip-border p-2 shrink-0">

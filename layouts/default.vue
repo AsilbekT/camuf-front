@@ -312,6 +312,7 @@ const article_categories = ref({})
 async function getArticleCategories() {
     const res = await Service.getArticleCategories(locale.value);
     store.articles = res.data;
+    store.articlesItems = res.data;
 
     store.articles?.results.forEach((category) => {
         category.isLink = true
