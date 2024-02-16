@@ -18,7 +18,8 @@
         <div class="container">
             <div class="journals-left">
                 <h2 class="journals-title">{{ details?.data?.title }}</h2>
-                <NuxtLink v-for="item in details?.data?.authors" :key="item" class="mb-6 block" :to="`/teachers/${item}`">Sh.A. Kuramatova</NuxtLink>
+                <NuxtLink v-for="item in details?.data?.authors" :key="item" class="mb-6 block" :to="`/teachers/${item}`">
+                    Sh.A. Kuramatova</NuxtLink>
                 <p class="journals-desc">
                     {{ details?.data?.abstract }}
                 </p>
@@ -74,10 +75,10 @@
                         </div>
                     </div>
                 </div>
-                <a :href="details?.data?.article_file" target="_blank" class="book-item__btn">
+                <button @click="downloadFile" class="book-item__btn">
                     <img src="@/assets/images/svg/down.svg" alt="">
                     <span>скачать файл</span>
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -86,16 +87,40 @@
 <script setup>
 import VuePdfApp from "vue3-pdf-app";
 import "vue3-pdf-app/dist/icons/main.css";
+import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 import Service from "~/services/Service";
-const { id, slug } = useRoute().params
 
-const details = ref({})
+const { id, slug } = useRoute().params;
+const details = ref({});
+
+// Fetch article details when the component is mounted
 async function getArticleDetail() {
-    const res = await Service.getArticleDetail(id, slug)
-    details.value = res.data
-
+    const res = await Service.getArticleDetail(id, slug);
+    details.value = res.data;
+    console.log(details.value.data.article_file); // Log the PDF URL to verify it's correct
 }
-getArticleDetail()
+
+getArticleDetail();
+
+// Function to handle file download
+function downloadFile() {
+    const fileUrl = details.value.data.article_file;
+    if (!fileUrl) {
+        console.error('File URL is not available');
+        return;
+    }
+
+    const filename = fileUrl.split('/').pop() || 'downloaded_file';
+    const a = document.createElement('a');
+    a.href = fileUrl;
+    a.download = filename;
+    a.style.display = 'none';
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
 </script>
 
 <style lang="scss">
