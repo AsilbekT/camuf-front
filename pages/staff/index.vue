@@ -153,8 +153,6 @@ function selectDropdown(item) {
 
 const search = ref('')
 async function filter(event) {
-    console.log(event.target.value)
-    console.log(search.value)
 
     const res = await Service.searchStaffs(locale.value, {
         search: event.target.value
