@@ -188,23 +188,20 @@
                     <a href="tel:+998 95 485 00 70">+998 95 485 00 70</a>
                 </li>
                 <li>
-                    <a href="#"> Улитса Усмона Юсупова, Фергана, Узбекистан </a>
+                    <a href="#">{{ $t('FooterAddress') }}</a>
                 </li>
                 <li>
                     <a href="mailto:info@camuf.uz"> info@camuf.uz </a>
                 </li>
             </ul>
             <div class="footer__contact">
-                <h2 class="footer__contact-title">Последние новости</h2>
+                <h2 class="footer__contact-title">{{ $t('LastNews') }}</h2>
                 <p class="footer__contact-desc">
-                    Введите свой адрес электронной почты, чтобы получать
-                    последние новости университета, специальные мероприятия и
-                    студенческие мероприятия, доставленные на ваш почтовый
-                    ящик...
+                   {{ $t('FooterText') }}
                 </p>
                 <form @submit.prevent="" class="footer__contact-form">
                     <input placeholder="электрон почта" type="email" />
-                    <button>подписатся</button>
+                    <button>{{ $t('FooterBtn') }}</button>
                 </form>
             </div>
         </div>
@@ -490,7 +487,7 @@ async function getNewsCategories() {
         category.isLink = true
         category.link = `/news/${category.id}/`
     })
-    const menuIndex = menus.value.findIndex(item => item.name === 'Yangiliklar')
+    const menuIndex = menus.value.findIndex(item => item.name === t('News'))
     menus.value[menuIndex].sub = news_categories.value
 }
 
@@ -504,7 +501,7 @@ async function getCourseCategories() {
         category.isLink = true
         category.link = `/course/${category.id}/`
     })
-    const menuIndex = menus.value.findIndex(item => item.name === 'Yo\'nalishlar')
+    const menuIndex = menus.value.findIndex(item => item.name === t('Directions'))
     menus.value[menuIndex].sub = course_categories.value
 
 }
@@ -518,7 +515,7 @@ async function getArticleCategories() {
         category.isLink = true
         category.link = `/journals/${category.id}/`
     })
-    const menuIndex = menus.value.findIndex(item => item.name === 'Jurnallar')
+    const menuIndex = menus.value.findIndex(item => item.name === t('Journals'))
     menus.value[menuIndex].sub = store.articles?.results
 
 }

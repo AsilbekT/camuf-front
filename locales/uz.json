@@ -86,6 +86,8 @@
     "OnlineLearningPlatform": "Onlayn o`quv platformasi (moodule)",
     "ConfirmationDiploma": "Diplomni tasdiqlash",
     "ElectronicLinks": "Elektron havolalar",
-    "Acceptance": "Qabul"
-
+    "Acceptance": "Qabul",
+    "FooterAddress": "Usmon Yusupov ko‘chasi, Farg‘ona, O‘zbekiston",
+    "FooterText": "Elektron pochta manzilingizni kiriting, eng so'nggi universitet yangiliklari, maxsus tadbirlar va talabalar haqidagi xabarlar pochta qutingizga yuboriladi...",
+    "FooterBtn": "Obuna bo'ling"
 }
