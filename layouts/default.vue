@@ -201,44 +201,11 @@
                 </p>
                 <form @submit.prevent="" class="footer__contact-form">
                     <input placeholder="электрон почта" type="email" />
-                    <button>{{ $t('FooterBtn') }}</button>
+                    <button class="text-nowrap">{{ $t('FooterBtn') }}</button>
                 </form>
             </div>
         </div>
     </footer>
-
-    <!-- comment from akademik -->
-    <!-- <div class="accordion" v-else>
-                        <div class="accordion-item">
-                            <div class="accordion-header">{{ menu.name }}</div>
-                            <div class="accordion-content">
-                                <div v-for="(item, itemIndex) in menu.sub" :key="`0${index}${itemIndex}`">
-                                    <NuxtLink to="/" v-if="!!item.isLink">
-                                        {{ item.name }}</NuxtLink
-                                    >
-                                    <div class="accordion sub" v-else>
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                {{ item.name }}
-                                            </div>
-                                            <div class="accordion-content" v-for="sub_item in item.sub" :key="sub_item">
-                                                <div>
-                                                    <NuxtLink
-                                                        to="/"
-                                                        v-if="sub_item.isLink"
-                                                    >
-                                                        {{
-                                                            sub_item.name
-                                                        }}</NuxtLink
-                                                    >
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 </template>
 
 <script setup>

@@ -12,7 +12,7 @@
                 </li>
                 /
                 <li>
-                    <NuxtLink to="/">{{ $t('Teachers') }}</NuxtLink>
+                    <NuxtLink to="/">{{ $t('Staffs') }}</NuxtLink>
                 </li>
             </ul>
         </div>

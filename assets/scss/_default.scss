@@ -236,6 +236,7 @@
         padding: 12px 24px;
         @include font(700, 18px, 1.2);
         height: 100%;
+        white-space: nowrap;
         @include media(600px) {
           font-size: 14px;
           padding: 12px;
