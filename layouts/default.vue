@@ -200,7 +200,7 @@
                    {{ $t('FooterText') }}
                 </p>
                 <form @submit.prevent="" class="footer__contact-form">
-                    <input placeholder="электрон почта" type="email" />
+                    <input :placeholder="$t('Email')" type="email" />
                     <button class="text-nowrap">{{ $t('FooterBtn') }}</button>
                 </form>
             </div>
