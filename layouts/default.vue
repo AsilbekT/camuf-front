@@ -312,6 +312,7 @@ const article_categories = ref({})
 async function getArticleCategories() {
     const res = await Service.getArticleCategories(locale.value);
     store.articles = res.data;
+    store.articlesItems = res.data;
 
     store.articles?.results.forEach((category) => {
         category.isLink = true
@@ -326,15 +327,15 @@ async function getArticleCategories() {
 const departaments = ref({})
 async function getDepartaments() {
     const res = await Service.getDepartaments(locale.value);
-    store.articles = res.data;
+    store.departaments = res.data;
 
 
-    store.articles?.results.forEach((category) => {
+    store.departaments?.results.forEach((category) => {
         category.isLink = true
         category.link = `/departments/${category.id}/`
     })
     const menuIndex = menus.findIndex(item => item.name === 'Universitet haqida')
-    menus[menuIndex].sub[3].sub[0].sub[0].sub = store.articles?.results
+    menus[menuIndex].sub[3].sub[0].sub[0].sub = store.departaments?.results
 }
 
 
