@@ -40,14 +40,11 @@
                         tabindex="-1" role="listbox" aria-labelledby="listbox-label"
                         aria-activedescendant="listbox-option-3">
 
-                        <li @click="selectDropdown({
-                            label: 'Barcha hodimlar',
-                            value: ''
-                        })" class="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9" role="option">
-                            <div class="flex items-center">
+                        <!-- <li @click="selectDropdown(fRole)" class="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9" role="option"> -->
+                            <!-- <div class="flex items-center">
                                 <span class="font-normal ml-3 block truncate">{{ $t('AllStaffs') }}</span>
-                            </div>
-                        </li>
+                            </div> -->
+                        <!-- </li> -->
                         <li v-for="item in POSITION_LEVEL_CHOICES" :key="item" @click="selectDropdown(item)"
                             class="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9" role="option">
                             <div class="flex items-center">
@@ -75,6 +72,7 @@ const router = useRouter()
 const teachers = ref([])
 const role = ref("")
 const POSITION_LEVEL_CHOICES = [
+    { value: 'all', label: 'Barcha xodimlar' },
     { value: 'professor', label: 'Professor' },
     { value: 'associate_professor', label: 'Associate Professor' },
     { value: 'assistant_professor', label: 'Assistant Professor' },
@@ -119,7 +117,14 @@ const POSITION_LEVEL_CHOICES = [
     { value: 'emeritus_professor', label: 'Emeritus Professor' },
     { value: 'other', label: 'Other' }
 ];
-role.value = route.query?.role ? role.value = route.query?.role : ""
+
+const fRole = POSITION_LEVEL_CHOICES[0]
+
+
+role.value = route.query?.role ? role.value = route.query?.role : "all"
+const label = ref()
+
+
 const selectedLabel = ref("Barcha hodimlar")
 
 POSITION_LEVEL_CHOICES.forEach(el => {
@@ -133,8 +138,13 @@ async function getAllStaffs() {
         let params = {
             role: role.value
         }
-        const res = await Service.getAllStaffs(locale.value, params)
-        teachers.value = res?.data
+        if(role.value === 'all'){
+            const res = await Service.getAllStaffs(locale.value, {})
+            teachers.value = res?.data
+        } else {
+            const res = await Service.getAllStaffs(locale.value, params)
+            teachers.value = res?.data
+        }
     } else {
         const res = await Service.getAllStaffs(locale.value, {
             role: 'rahbariyat'
@@ -153,7 +163,6 @@ function selectDropdown(item) {
 
 const search = ref('')
 async function filter(event) {
-
     const res = await Service.searchStaffs(locale.value, {
         search: event.target.value
     })
@@ -170,6 +179,7 @@ onMounted(() => {
 
 
 })
+
 </script>
 
 <style lang="scss" scoped>

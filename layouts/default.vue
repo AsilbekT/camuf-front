@@ -65,7 +65,13 @@
                 <h3 class="header-menu__title">{{ activeMenu.one.name }}</h3>
                 <div class="header-menu__items">
                     <div class="header-menu__item" v-for="item in activeMenu.one.sub" :key="item">
-                        <NuxtLink class="header-menu__btn" :to="item.link ? item.link : '/'" v-if="item.isLink"
+                        <NuxtLink class="header-menu__btn" :to="{path: item.link, query: { role: 'professor' }}" v-if="item.isLink && item.withQuery"
+                            @click="isOpenMenu = false" @mouseenter="
+                                (activeMenu.two = ''),
+                                (activeMenu.three = ''),
+                                (activeMenu.four = '')
+                                " v-html="item.name"></NuxtLink>
+                        <NuxtLink class="header-menu__btn" :to="item.link ? item.link : '/'" v-else-if="item.isLink && !item.withQuery"
                             @click="isOpenMenu = false" @mouseenter="
                                 (activeMenu.two = ''),
                                 (activeMenu.three = ''),
@@ -88,7 +94,7 @@
                 <h3 class="header-menu__title">{{ activeMenu.two.name }}</h3>
                 <div class="header-menu__items">
                     <div class="header-menu__item" v-for="item in activeMenu.two.sub" :key="item">
-                        <NuxtLink class="header-menu__btn" to="/" v-if="item.isLink" @click="isOpenMenu = false"
+                        <NuxtLink class="header-menu__btn" :to="item.link" v-if="item.isLink" @click="isOpenMenu = false"
                             @mouseenter="
                                 (activeMenu.three = ''),
                                 (activeMenu.four = '')
@@ -156,7 +162,11 @@
                 </div>
                 <div class="header-menu__item" v-for="(menu, index) in smallMenu" :key="`${index}`">
                     <NuxtLink class="header-menu__btn cursor-pointer" :class="{ active: index === activeMenu.one.id }"
-                        :to="menu.link" v-if="menu.isLink" @click="isOpenMenu = false, smallMenu = menus"
+                        :to="{path: item.link, query: { role: 'professor' }}" v-if="menu.isLink && withQuery" @click="isOpenMenu = false, smallMenu = menus"
+                        v-html="menu.name">
+                    </NuxtLink>
+                    <NuxtLink class="header-menu__btn cursor-pointer" :class="{ active: index === activeMenu.one.id }"
+                        :to="menu.link" v-else-if="menu.isLink && !withQuery" @click="isOpenMenu = false, smallMenu = menus"
                         v-html="menu.name">
                     </NuxtLink>
                     <button v-else class="header-menu__btn" @click="changeMenu(menu, index)">
@@ -279,7 +289,10 @@ function translateMenu() {
                 {
                     isLink: true,
                     name: t('Leadership'),
-                    link: '/staff/'
+                    // link: "{ path: '/staff/', query: { role: 'professor' }}",
+                    link: 'staff',
+                    withQuery: true
+                    
                 },
                 {
                     isLink: true,
