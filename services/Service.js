@@ -173,6 +173,14 @@ export default {
       params: params,
     });
   },
+  searchStaffs(lang, params) {
+    return API().get("/staff/", {
+      headers: {
+        "Accept-Language": lang,
+      },
+      params: params,
+    });
+  },
 
   getDepartaments(lang){
     return API().get("/departments/", {
