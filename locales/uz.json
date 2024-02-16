@@ -66,6 +66,26 @@
     "Nov": "Noy",
     "Dec": "Dek",
     "Teachers": "O'qituvchilar",
-    "AboutUs": "Biz haqimizda"
+    "AboutUs": "Biz haqimizda",
+    "Leadership": "Rahbariyat",
+    "InternationalDepartment": "Xalqaro bo`lim",
+    "DepartmentOfSpirituality": "Ma’naviyat bo’limi",
+    "ScientificDepartment": "Ilmiy bo`lim",
+    "ActaCAMUScientificJournal": "ActaCAMU ilmiy jurnali",
+    "ActaCAMuArchive": "ActaCAMu Arxiv",
+    "JournalRequirements": "Jurnal talablari",
+    "Faculties": "Fakultetlar",
+    "FacultyOfMedicine": "Tibbiyot fakulteti'",
+    "Departments": "Kafedralar",
+    "Directions": "Yo'nalishlar",
+    "Communication": "Aloqa",
+    "LeaveMessage": "Murojaat qoldirish",
+    "ContactInformation": "Aloqa ma’lumotlari",
+    "ElectronicResources": "Elektron resurslar",
+    "ElectronicLibrary": "Elektron kutubxona",
+    "OnlineLearningPlatform": "Onlayn o`quv platformasi (moodule)",
+    "ConfirmationDiploma": "Diplomni tasdiqlash",
+    "ElectronicLinks": "Elektron havolalar",
+    "Acceptance": "Qabul"
 
 }
