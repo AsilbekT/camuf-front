@@ -74,6 +74,7 @@ const role = ref("")
 const POSITION_LEVEL_CHOICES = [
     { value: 'all', label: 'Barcha xodimlar' },
     { value: 'professor', label: 'Professor' },
+    { value: 'rahbariyat', label: 'Leadership' },
     { value: 'associate_professor', label: 'Associate Professor' },
     { value: 'assistant_professor', label: 'Assistant Professor' },
     { value: 'lecturer', label: 'Lecturer' },

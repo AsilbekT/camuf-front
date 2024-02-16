@@ -65,7 +65,7 @@
                 <h3 class="header-menu__title">{{ activeMenu.one.name }}</h3>
                 <div class="header-menu__items">
                     <div class="header-menu__item" v-for="item in activeMenu.one.sub" :key="item">
-                        <NuxtLink class="header-menu__btn" :to="{path: item.link, query: { role: 'professor' }}" v-if="item.isLink && item.withQuery"
+                        <NuxtLink class="header-menu__btn" :to="{path: item.link, query: { role: 'rahbariyat' }}" v-if="item.isLink && item.withQuery"
                             @click="isOpenMenu = false" @mouseenter="
                                 (activeMenu.two = ''),
                                 (activeMenu.three = ''),
@@ -162,7 +162,7 @@
                 </div>
                 <div class="header-menu__item" v-for="(menu, index) in smallMenu" :key="`${index}`">
                     <NuxtLink class="header-menu__btn cursor-pointer" :class="{ active: index === activeMenu.one.id }"
-                        :to="{path: item.link, query: { role: 'professor' }}" v-if="menu.isLink && withQuery" @click="isOpenMenu = false, smallMenu = menus"
+                        :to="{path: item.link, query: { role: 'rahbariyat' }}" v-if="menu.isLink && withQuery" @click="isOpenMenu = false, smallMenu = menus"
                         v-html="menu.name">
                     </NuxtLink>
                     <NuxtLink class="header-menu__btn cursor-pointer" :class="{ active: index === activeMenu.one.id }"
