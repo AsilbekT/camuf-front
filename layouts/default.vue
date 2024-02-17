@@ -264,7 +264,6 @@ onMounted(async () => {
 });
 
 
-console.log(useI18n().t('AboutUs'))
 
 watch(locale, async () => {
     await getTranslations()
