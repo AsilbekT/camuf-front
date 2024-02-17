@@ -191,6 +191,7 @@ async function filter(event) {
     const res = await Service.searchStaffs(locale.value, {
         search: event.target.value
     })
+    pageCount.value = 1
     teachers.value = res?.data
     teacherArray.value = res?.data.results
 }
