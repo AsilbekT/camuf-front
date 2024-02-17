@@ -7,7 +7,7 @@
             <nav class="header-nav">
                 <ul class="header-nav-list">
                     <li>
-                        <NuxtLink to="/about">о нас</NuxtLink>
+                        <NuxtLink to="/about">{{ $t("AboutUs") }}</NuxtLink>
                     </li>
                 </ul>
             </nav>
@@ -65,8 +65,14 @@
                 <h3 class="header-menu__title">{{ activeMenu.one.name }}</h3>
                 <div class="header-menu__items">
                     <div class="header-menu__item" v-for="item in activeMenu.one.sub" :key="item">
-                        <NuxtLink class="header-menu__btn" :to="item.link ? item.link : '/'" v-if="item.isLink"
-                            @click="isOpenMenu = false" @mouseenter="
+                        <NuxtLink class="header-menu__btn" :to="{ path: item.link, query: { role: 'rahbariyat' } }"
+                            v-if="item.isLink && item.withQuery" @click="isOpenMenu = false" @mouseenter="
+                                (activeMenu.two = ''),
+                                (activeMenu.three = ''),
+                                (activeMenu.four = '')
+                                " v-html="item.name"></NuxtLink>
+                        <NuxtLink class="header-menu__btn" :to="item.link ? item.link : '/'"
+                            v-else-if="item.isLink && !item.withQuery" @click="isOpenMenu = false" @mouseenter="
                                 (activeMenu.two = ''),
                                 (activeMenu.three = ''),
                                 (activeMenu.four = '')
@@ -88,7 +94,7 @@
                 <h3 class="header-menu__title">{{ activeMenu.two.name }}</h3>
                 <div class="header-menu__items">
                     <div class="header-menu__item" v-for="item in activeMenu.two.sub" :key="item">
-                        <NuxtLink class="header-menu__btn" to="/" v-if="item.isLink" @click="isOpenMenu = false"
+                        <NuxtLink class="header-menu__btn" :to="item.link" v-if="item.isLink" @click="isOpenMenu = false"
                             @mouseenter="
                                 (activeMenu.three = ''),
                                 (activeMenu.four = '')
@@ -126,7 +132,8 @@
                 <h3 class="header-menu__title">{{ activeMenu.four.name }}</h3>
                 <div class="header-menu__items">
                     <div class="header-menu__item" v-for="item in activeMenu.four.sub" :key="item">
-                        <NuxtLink class="header-menu__btn" @click="isOpenMenu = false" :to="item.link" v-if="item.isLink" v-html="item.name"></NuxtLink>
+                        <NuxtLink class="header-menu__btn" @click="isOpenMenu = false" :to="item.link" v-if="item.isLink"
+                            v-html="item.name"></NuxtLink>
                         <!-- item -->
                     </div>
                 </div>
@@ -155,7 +162,12 @@
                 </div>
                 <div class="header-menu__item" v-for="(menu, index) in smallMenu" :key="`${index}`">
                     <NuxtLink class="header-menu__btn cursor-pointer" :class="{ active: index === activeMenu.one.id }"
-                        :to="menu.link" v-if="menu.isLink" @click="isOpenMenu = false, smallMenu = menus" v-html="menu.name">
+                        :to="{ path: item.link, query: { role: 'rahbariyat' } }" v-if="menu.isLink && withQuery"
+                        @click="isOpenMenu = false, smallMenu = menus" v-html="menu.name">
+                    </NuxtLink>
+                    <NuxtLink class="header-menu__btn cursor-pointer" :class="{ active: index === activeMenu.one.id }"
+                        :to="menu.link" v-else-if="menu.isLink && !withQuery" @click="isOpenMenu = false, smallMenu = menus"
+                        v-html="menu.name">
                     </NuxtLink>
                     <button v-else class="header-menu__btn" @click="changeMenu(menu, index)">
                         {{ menu.name }}
@@ -186,69 +198,33 @@
                     <a href="tel:+998 95 485 00 70">+998 95 485 00 70</a>
                 </li>
                 <li>
-                    <a href="#"> Улитса Усмона Юсупова, Фергана, Узбекистан </a>
+                    <a href="#">{{ $t('FooterAddress') }}</a>
                 </li>
                 <li>
                     <a href="mailto:info@camuf.uz"> info@camuf.uz </a>
                 </li>
             </ul>
             <div class="footer__contact">
-                <h2 class="footer__contact-title">Последние новости</h2>
+                <h2 class="footer__contact-title">{{ $t('LastNews') }}</h2>
                 <p class="footer__contact-desc">
-                    Введите свой адрес электронной почты, чтобы получать
-                    последние новости университета, специальные мероприятия и
-                    студенческие мероприятия, доставленные на ваш почтовый
-                    ящик...
+                    {{ $t('FooterText') }}
                 </p>
                 <form @submit.prevent="" class="footer__contact-form">
-                    <input placeholder="электрон почта" type="email" />
-                    <button>подписатся</button>
+                    <input :placeholder="$t('Email')" type="email" />
+                    <button class="text-nowrap">{{ $t('FooterBtn') }}</button>
                 </form>
             </div>
         </div>
     </footer>
-
-    <!-- comment from akademik -->
-    <!-- <div class="accordion" v-else>
-                        <div class="accordion-item">
-                            <div class="accordion-header">{{ menu.name }}</div>
-                            <div class="accordion-content">
-                                <div v-for="(item, itemIndex) in menu.sub" :key="`0${index}${itemIndex}`">
-                                    <NuxtLink to="/" v-if="!!item.isLink">
-                                        {{ item.name }}</NuxtLink
-                                    >
-                                    <div class="accordion sub" v-else>
-                                        <div class="accordion-item">
-                                            <div class="accordion-header">
-                                                {{ item.name }}
-                                            </div>
-                                            <div class="accordion-content" v-for="sub_item in item.sub" :key="sub_item">
-                                                <div>
-                                                    <NuxtLink
-                                                        to="/"
-                                                        v-if="sub_item.isLink"
-                                                    >
-                                                        {{
-                                                            sub_item.name
-                                                        }}</NuxtLink
-                                                    >
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 </template>
 
 <script setup>
 //============================================ imports ============================================
 // menus
-import menus from '~/utils/menus.js';
+// import menus from '~/utils/menus.js';
 import Service from '~/services/Service';
 import { useStore } from '~/store/store';
-const { locale, locales } = useI18n()
+const { locale, locales, t } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
 const store = useStore()
 const scrolledNav = ref(false)
@@ -276,9 +252,215 @@ function darkChange() {
 if (localStorage.getItem('dark')) {
     document.querySelector('html').classList.add('dark');
 }
-onMounted(() => {
+onMounted(async () => {
     window.addEventListener("scroll", updateScroll);
+
+    await getTranslations()
 });
+
+
+console.log(useI18n().t('AboutUs'))
+
+watch(locale, async () => {
+    await getTranslations()
+})
+
+//============================================ menus array ============================================
+
+
+const menus = ref()
+
+// function
+function translateMenu() {
+    menus.value = [
+        {
+            isLink: true,
+            // name: 'Asosiy Sahifa',
+            name: t('MainPage'),
+
+            link: '/',
+        },
+        {
+            isLink: false,
+            // name: 'Universitet haqida',
+            name: t('AboutTheUniversity'),
+            link: '/about/',
+            sub: [
+                {
+                    isLink: true,
+                    name: t('Leadership'),
+                    // link: "{ path: '/staff/', query: { role: 'professor' }}",
+                    link: 'staff',
+                    withQuery: true
+
+                },
+                {
+                    isLink: true,
+                    name: t('InternationalDepartment'),
+                },
+                {
+                    isLink: false,
+                    name: t('DepartmentOfSpirituality'),
+                    sub: [
+                        {
+                            isLink: false,
+                            name: t('ScientificDepartment'),
+                            sub: [
+                                {
+                                    isLink: true,
+                                    name: t('ActaCAMUScientificJournal'),
+                                },
+                                {
+                                    isLink: true,
+                                    name: t('ActaCAMuArchive'),
+                                },
+                                {
+                                    isLink: true,
+                                    name: t('JournalRequirements'),
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    isLink: false,
+                    name: t('Faculties'),
+                    sub: [
+                        {
+                            isLink: false,
+                            name: t('FacultyOfMedicine'),
+                            sub: [
+                                {
+                                    isLink: false,
+                                    name: t('Departments'),
+                                    sub: [
+
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            isLink: false,
+            name: t('Directions'),
+            sub: [],
+        },
+        {
+            isLink: false,
+            name: t('News'),
+            sub: [],
+        },
+        {
+            isLink: false,
+            name: t('Journals'),
+            sub: [
+            ],
+        },
+        {
+            isLink: false,
+            name: t('Communication'),
+            sub: [
+                {
+                    isLink: 'true',
+                    name: t('LeaveMessage'),
+                    link: '/connect/'
+                },
+                {
+                    isLink: 'true',
+                    name: t('ContactInformation'),
+                    link: '/contact/'
+                },
+            ],
+        },
+        {
+            isLink: false,
+            name: t('ElectronicResources'),
+            sub: [
+                {
+                    isLink: 'true',
+                    name: t('ElectronicLibrary'),
+                },
+                {
+                    isLink: 'true',
+                    name: t('OnlineLearningPlatform'),
+                },
+                {
+                    isLink: 'true',
+                    name: t('HEMIS'),
+                },
+                {
+                    isLink: 'true',
+                    name: t('ConfirmationDiploma'),
+                },
+                {
+                    isLink: 'false',
+                    name: t('ElectronicLinks'),
+                    sub: [
+                        {
+                            isLink: 'true',
+                            name: 'https://president.uz/',
+                            link: 'https://president.uz/',
+                        },
+                        {
+                            isLink: 'true',
+                            name: 'https://www.gov.uz/uz',
+                            link: 'https://www.gov.uz/uz',
+                        },
+                        {
+                            isLink: 'true',
+                            name: 'http://ferghana.uz/',
+                        },
+                        {
+                            isLink: 'true',
+                            name: 'https://my.gov.uz/',
+                        },
+                        {
+                            isLink: 'true',
+                            name: 'http://www.minzdrav.uz/',
+                        },
+                        {
+                            isLink: 'true',
+                            name: 'http://edu.uz/uz',
+                        },
+                        {
+                            isLink: 'true',
+                            name: 'http://ziyonet.uz/',
+                        },
+                        {
+                            isLink: 'true',
+                            name: 'http://www.lex.uz/',
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            isLink: true,
+            name: t('Acceptance'),
+        },
+    ]
+}
+
+
+
+const smallMenu = ref()
+
+async function getTranslations() {
+    await translateMenu()
+
+    await getDepartaments()
+    await getNewsCategories()
+    await getCourseCategories()
+    await getArticleCategories()
+    // smal menus
+    smallMenu.value = menus.value
+}
+//============================================ menus array ============================================
+
+
 
 const news_categories = ref({})
 async function getNewsCategories() {
@@ -289,8 +471,8 @@ async function getNewsCategories() {
         category.isLink = true
         category.link = `/news/${category.id}/`
     })
-    const menuIndex = menus.findIndex(item => item.name === 'Yangiliklar')
-    menus[menuIndex].sub = news_categories.value
+    const menuIndex = menus.value.findIndex(item => item.name === t('News'))
+    menus.value[menuIndex].sub = news_categories.value
 }
 
 
@@ -303,8 +485,8 @@ async function getCourseCategories() {
         category.isLink = true
         category.link = `/course/${category.id}/`
     })
-    const menuIndex = menus.findIndex(item => item.name === 'Yo\'nalishlar')
-    menus[menuIndex].sub = course_categories.value
+    const menuIndex = menus.value.findIndex(item => item.name === t('Directions'))
+    menus.value[menuIndex].sub = course_categories.value
 
 }
 
@@ -312,14 +494,13 @@ const article_categories = ref({})
 async function getArticleCategories() {
     const res = await Service.getArticleCategories(locale.value);
     store.articles = res.data;
-    store.articlesItems = res.data;
 
     store.articles?.results.forEach((category) => {
         category.isLink = true
         category.link = `/journals/${category.id}/`
     })
-    const menuIndex = menus.findIndex(item => item.name === 'Jurnallar')
-    menus[menuIndex].sub = store.articles?.results
+    const menuIndex = menus.value.findIndex(item => item.name === t('Journals'))
+    menus.value[menuIndex].sub = store.articles?.results
 
 }
 
@@ -327,22 +508,18 @@ async function getArticleCategories() {
 const departaments = ref({})
 async function getDepartaments() {
     const res = await Service.getDepartaments(locale.value);
-    store.departaments = res.data;
+    store.articles = res.data;
 
 
-    store.departaments?.results.forEach((category) => {
+    store.articles?.results.forEach((category) => {
         category.isLink = true
         category.link = `/departments/${category.id}/`
     })
-    const menuIndex = menus.findIndex(item => item.name === 'Universitet haqida')
-    menus[menuIndex].sub[3].sub[0].sub[0].sub = store.departaments?.results
+    const menuIndex = menus.value.findIndex(item => item.name === t('AboutTheUniversity'))
+    menus.value[menuIndex].sub[3].sub[0].sub[0].sub = store.articles?.results
 }
 
 
-getDepartaments()
-getNewsCategories()
-getCourseCategories()
-getArticleCategories()
 
 
 //============================================ header menu ============================================
@@ -355,8 +532,7 @@ const activeMenu = reactive({
     five: '',
 });
 
-// smal menus
-const smallMenu = ref(menus)
+
 const previus = ref([])
 const current = ref({})
 const all = ref([])
@@ -365,7 +541,7 @@ const index = ref([])
 const isOpenMenu = ref(false);
 
 watch(isOpenMenu, () => {
-    if(isOpenMenu.value) {
+    if (isOpenMenu.value) {
         document.body.style.maxHeight = '100vh'
         document.body.style.overflow = 'hidden'
     } else {
@@ -382,36 +558,36 @@ function changeMenu(menu, i) {
 }
 
 function backPreviusMenu(col) {
-    console.log(index.value)
-
 
     switch (index.value.length) {
         case 1: {
-            smallMenu.value = menus;
+            smallMenu.value = menus.value;
             current.value = { name: '' };
             index.value.pop()
             break;
         }
         case 2: {
-            smallMenu.value = menus[index.value[0]].sub;
-            current.value = menus[index.value[0]];
+            smallMenu.value = menus.value[index.value[0]].sub;
+            current.value = menus.value[index.value[0]];
             index.value.pop();
             break;
         }
         case 3: {
-            smallMenu.value = menus[index.value[0]].sub[index.value[1]].sub;
-            current.value = menus[index.value[0]].sub[index.value[1]];
+            smallMenu.value = menus.value[index.value[0]].sub[index.value[1]].sub;
+            current.value = menus.value[index.value[0]].sub[index.value[1]];
             index.value.pop()
             break;
         }
         case 4: {
-            smallMenu.value = menus[index.value[0]].sub[index.value[1]].sub[index.value[2]].sub;
-            current.value = menus[index.value[0]].sub[index.value[1]].sub[index.value[2]];
+            smallMenu.value = menus.value[index.value[0]].sub[index.value[1]].sub[index.value[2]].sub;
+            current.value = menus.value[index.value[0]].sub[index.value[1]].sub[index.value[2]];
             index.value.pop()
             break;
         }
     }
 }
+
+
 
 
 //functions
