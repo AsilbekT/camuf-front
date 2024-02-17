@@ -11,7 +11,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+        with:
+          ssh-key: "${{ secrets.SSH_PRIVATE_KEY }}"
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -34,7 +35,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan 185.217.131.55 >> ~/.ssh/known_hosts
-          ssh -i ~/.ssh/id_rsa root@185.217.131.55 'source ~/.nvm/nvm.sh && cd /home/univer && git pull origin main && yarn install && yarn build && pm2 reload camuf-front'
+          ssh-keyscan 83.69.136.80 >> ~/.ssh/known_hosts
+          ssh -i ~/.ssh/id_rsa user@83.69.136.80 'source ~/.nvm/nvm.sh && cd /home/univer && git pull origin main && yarn install && yarn build && pm2 reload camuf-front'
         env:
           CI: true
