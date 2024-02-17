@@ -65,14 +65,14 @@
                 <h3 class="header-menu__title">{{ activeMenu.one.name }}</h3>
                 <div class="header-menu__items">
                     <div class="header-menu__item" v-for="item in activeMenu.one.sub" :key="item">
-                        <NuxtLink class="header-menu__btn" :to="{path: item.link, query: { role: 'rahbariyat' }}" v-if="item.isLink && item.withQuery"
-                            @click="isOpenMenu = false" @mouseenter="
+                        <NuxtLink class="header-menu__btn" :to="{ path: item.link, query: { role: 'rahbariyat' } }"
+                            v-if="item.isLink && item.withQuery" @click="isOpenMenu = false" @mouseenter="
                                 (activeMenu.two = ''),
                                 (activeMenu.three = ''),
                                 (activeMenu.four = '')
                                 " v-html="item.name"></NuxtLink>
-                        <NuxtLink class="header-menu__btn" :to="item.link ? item.link : '/'" v-else-if="item.isLink && !item.withQuery"
-                            @click="isOpenMenu = false" @mouseenter="
+                        <NuxtLink class="header-menu__btn" :to="item.link ? item.link : '/'"
+                            v-else-if="item.isLink && !item.withQuery" @click="isOpenMenu = false" @mouseenter="
                                 (activeMenu.two = ''),
                                 (activeMenu.three = ''),
                                 (activeMenu.four = '')
@@ -162,8 +162,8 @@
                 </div>
                 <div class="header-menu__item" v-for="(menu, index) in smallMenu" :key="`${index}`">
                     <NuxtLink class="header-menu__btn cursor-pointer" :class="{ active: index === activeMenu.one.id }"
-                        :to="{path: item.link, query: { role: 'rahbariyat' }}" v-if="menu.isLink && withQuery" @click="isOpenMenu = false, smallMenu = menus"
-                        v-html="menu.name">
+                        :to="{ path: item.link, query: { role: 'rahbariyat' } }" v-if="menu.isLink && withQuery"
+                        @click="isOpenMenu = false, smallMenu = menus" v-html="menu.name">
                     </NuxtLink>
                     <NuxtLink class="header-menu__btn cursor-pointer" :class="{ active: index === activeMenu.one.id }"
                         :to="menu.link" v-else-if="menu.isLink && !withQuery" @click="isOpenMenu = false, smallMenu = menus"
@@ -207,7 +207,7 @@
             <div class="footer__contact">
                 <h2 class="footer__contact-title">{{ $t('LastNews') }}</h2>
                 <p class="footer__contact-desc">
-                   {{ $t('FooterText') }}
+                    {{ $t('FooterText') }}
                 </p>
                 <form @submit.prevent="" class="footer__contact-form">
                     <input :placeholder="$t('Email')" type="email" />
@@ -277,7 +277,7 @@ function translateMenu() {
             isLink: true,
             // name: 'Asosiy Sahifa',
             name: t('MainPage'),
-            
+
             link: '/',
         },
         {
@@ -292,7 +292,7 @@ function translateMenu() {
                     // link: "{ path: '/staff/', query: { role: 'professor' }}",
                     link: 'staff',
                     withQuery: true
-                    
+
                 },
                 {
                     isLink: true,
@@ -446,13 +446,17 @@ function translateMenu() {
 
 
 
-async function getTranslations(){
+const smallMenu = ref()
+
+async function getTranslations() {
     await translateMenu()
 
     await getDepartaments()
     await getNewsCategories()
     await getCourseCategories()
     await getArticleCategories()
+    // smal menus
+    smallMenu.value = menus.value
 }
 //============================================ menus array ============================================
 
@@ -528,8 +532,7 @@ const activeMenu = reactive({
     five: '',
 });
 
-// smal menus
-const smallMenu = ref(menus.value)
+
 const previus = ref([])
 const current = ref({})
 const all = ref([])
@@ -555,8 +558,6 @@ function changeMenu(menu, i) {
 }
 
 function backPreviusMenu(col) {
-    console.log(index.value)
-
 
     switch (index.value.length) {
         case 1: {
