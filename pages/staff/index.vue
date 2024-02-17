@@ -41,7 +41,7 @@
                         aria-activedescendant="listbox-option-3">
 
                         <!-- <li @click="selectDropdown(fRole)" class="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9" role="option"> -->
-                            <!-- <div class="flex items-center">
+                        <!-- <div class="flex items-center">
                                 <span class="font-normal ml-3 block truncate">{{ $t('AllStaffs') }}</span>
                             </div> -->
                         <!-- </li> -->
@@ -57,7 +57,7 @@
 
             </div>
             <div class="teachers-main__wrapper" ref="scrollComponent">
-                <user-card v-for="item in teachers?.results" :key="item" :item="item" />
+                <user-card v-for="item in teacherArray" :key="item" :item="item" />
             </div>
         </div>
     </div>
@@ -178,7 +178,7 @@ async function handleScrollApi() {
 const scrollComponent = ref(null)
 const handleScroll = (e) => {
     let element = scrollComponent.value
-    if (teacherArray.value?.length <= teachers.value?.count) {
+    if (teacherArray.value.length < teachers.value?.count) {
         if (element.getBoundingClientRect().bottom < window.innerHeight) {
             pageCount.value += 1
             handleScrollApi()
@@ -192,6 +192,7 @@ async function filter(event) {
         search: event.target.value
     })
     teachers.value = res?.data
+    teacherArray.value = res?.data.results
 }
 
 

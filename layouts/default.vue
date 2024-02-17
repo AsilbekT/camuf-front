@@ -256,6 +256,11 @@ onMounted(async () => {
     window.addEventListener("scroll", updateScroll);
 
     await getTranslations()
+    window.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('lang-top')) {
+            langOpen.value = false
+        }
+    })
 });
 
 
