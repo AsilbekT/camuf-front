@@ -141,11 +141,11 @@ async function getAllStaffs() {
         let params = {
             role: role.value
         }
-        const res = await Service.getAllStaffs(locale.value, params, 12)
+        const res = await Service.getAllStaffs(locale.value, params, 12, 1)
         teachers.value = res?.data
         teacherArray.value = res?.data?.results
     } else {
-        const res = await Service.getAllStaffs(locale.value, {}, 12)
+        const res = await Service.getAllStaffs(locale.value, {}, 12, 1)
         teachers.value = res?.data
         teacherArray.value = res?.data?.results
     }
@@ -158,17 +158,17 @@ function selectDropdown(item) {
     router.push({ query: { role: role.value } })
     getAllStaffs()
 }
-const teachersSize = ref(12)
+const pageCount = ref(1)
 async function handleScrollApi() {
     if (role.value.length) {
         let params = {
             role: role.value
         }
-        const res = await Service.getAllStaffs(locale.value, params, teachersSize.value)
+        const res = await Service.getAllStaffs(locale.value, params, 12, pageCount.value)
         teachers.value = res?.data
         teacherArray.value.push(...res?.data?.results)
     } else {
-        const res = await Service.getAllStaffs(locale.value, {}, teachersSize.value)
+        const res = await Service.getAllStaffs(locale.value, {}, 12, pageCount.value)
         teachers.value = res?.data
         teacherArray.value.push(...res?.data?.results)
     }
@@ -178,9 +178,9 @@ async function handleScrollApi() {
 const scrollComponent = ref(null)
 const handleScroll = (e) => {
     let element = scrollComponent.value
-    if (teachersSize.value <= teachers.value?.count) {
+    if (teacherArray.value?.length <= teachers.value?.count) {
         if (element.getBoundingClientRect().bottom < window.innerHeight) {
-            pageCount.value += 12
+            pageCount.value += 1
             handleScrollApi()
         }
     }

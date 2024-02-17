@@ -35,6 +35,6 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan 83.69.136.80 >> ~/.ssh/known_hosts
-          ssh -i ~/.ssh/id_rsa user@83.69.136.80 'source ~/.nvm/nvm.sh && cd /home/univer && git pull origin main && yarn install && yarn build && pm2 reload camuf-front'
+          ssh -i ~/.ssh/id_rsa root@83.69.136.80 'source ~/.nvm/nvm.sh && cd /home/univer && git pull origin main && yarn install && yarn build && pm2 reload camuf-front'
         env:
           CI: true
