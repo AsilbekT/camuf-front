@@ -165,8 +165,8 @@ export default {
       }
     );
   },
-  getAllStaffs(lang, params) {
-    return API().get("/staff/", {
+  getAllStaffs(lang, params, size) {
+    return API().get("/staff/?page_size=" + size, {
       headers: {
         "Accept-Language": lang,
       },

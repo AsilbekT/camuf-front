@@ -58,7 +58,7 @@
                 </div>
 
             </div>
-            <div class="teachers-main__wrapper">
+            <div class="teachers-main__wrapper" ref="scrollComponent">
                 <user-card v-for="item in teachers?.results" :key="item" :item="item" />
             </div>
         </div>
@@ -127,16 +127,20 @@ POSITION_LEVEL_CHOICES.forEach(el => {
     }
 })
 
+const teacherArray = ref([])
+
 async function getAllStaffs() {
     if (role.value.length) {
         let params = {
             role: role.value
         }
-        const res = await Service.getAllStaffs(locale.value, params)
+        const res = await Service.getAllStaffs(locale.value, params, 12)
         teachers.value = res?.data
+        teacherArray.value = res?.data?.results
     } else {
-        const res = await Service.getAllStaffs(locale.value, {})
+        const res = await Service.getAllStaffs(locale.value, {}, 12)
         teachers.value = res?.data
+        teacherArray.value = res?.data?.results
     }
 }
 
@@ -147,8 +151,32 @@ function selectDropdown(item) {
     router.push({ query: { role: role.value } })
     getAllStaffs()
 }
+const teachersSize = ref(12)
+async function handleScrollApi() {
+    if (role.value.length) {
+        let params = {
+            role: role.value
+        }
+        const res = await Service.getAllStaffs(locale.value, params, teachersSize.value)
+        teachers.value = res?.data
+        teacherArray.value.push(...res?.data?.results)
+    } else {
+        const res = await Service.getAllStaffs(locale.value, {}, teachersSize.value)
+        teachers.value = res?.data
+        teacherArray.value.push(...res?.data?.results)
+    }
+}
 
-
+const scrollComponent = ref(null)
+const handleScroll = (e) => {
+    let element = scrollComponent.value
+    if (teachersSize.value <= teachers.value?.count) {
+        if (element.getBoundingClientRect().bottom < window.innerHeight) {
+            pageCount.value += 12
+            handleScrollApi()
+        }
+    }
+}
 
 onMounted(() => {
     window.addEventListener('click', (e) => {
@@ -156,6 +184,8 @@ onMounted(() => {
             dropdown.value = false
         }
     })
+    window.addEventListener("scroll", handleScroll)
+
 })
 </script>
 
