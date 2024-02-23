@@ -646,9 +646,10 @@
 
 .teachers {
   margin-bottom: 120px;
+  &__header {
+    margin-bottom: 50px;  }
   &__title {
     @include title;
-    margin-bottom: 50px;
   }
   &__list {
     display: grid;
