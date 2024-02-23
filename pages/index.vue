@@ -72,7 +72,8 @@
         <div class="container">
             <div class="about-user">
                 <img class="about-user__img" :src="president?.profile_image" alt="">
-                <NuxtLink :to="`/staff/${president?.id}/`" class="about-user__name">
+                <NuxtLink @click="staffPage(president?.id)" :to="localePath(`/staff/${president?.slug}/`)"
+                    class="about-user__name">
                     <span v-html="president?.full_name"></span>
                 </NuxtLink>
                 <h4 class="about-user__subtitle">{{ $t('UniversityRector') }}</h4>
@@ -92,6 +93,7 @@
         <div class="container">
             <h2 class="home-jurnals__title">{{ $t('ScientificJournals') }}</h2>
             <div class="home-jurnals__wrapper">
+                <!-- <pre>{{  }}</pre> -->
                 <div v-for="item in store.articlesItems?.results" :key="item"
                     class="relative flex bg-clip-border card-jurnal rounded-xl bg-white shadow-md w-full max-w-[48rem] flex-row">
                     <div
@@ -103,8 +105,8 @@
                             class="block mb-4 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
 
                         </h4>
-                        <p class="block mb-8 font-sans text-base antialiased font-normal leading-relaxed">
-                            {{ item?.description }}
+                        <p class="block mb-8 font-sans text-base antialiased font-normal leading-relaxed"
+                            v-html="item?.description">
                         </p>
                         <NuxtLink :to="`/journals/${item.id}`"
                             class="flex mt-auto items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center  uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-gray-900/10 active:bg-gray-900/20">
@@ -164,7 +166,7 @@
     <div class="speciality">
         <div class="container">
             <div class="speciality__text-wrapper">
-                <NuxtLink to="/courses/" class="speciality__title">
+                <NuxtLink :to="localePath('/courses/')" class="speciality__title">
                     {{ $t('BachelorMajors') }}
 
                 </NuxtLink>
@@ -174,7 +176,7 @@
                     <br>
                     {{ $t('SpecialityTextTwo') }}
                 </p>
-                <NuxtLink class="speciality__btn" to="/courses/">{{ $t('AllDirections') }}</NuxtLink>
+                <NuxtLink class="speciality__btn" :to="localePath('/courses/')">{{ $t('AllDirections') }}</NuxtLink>
 
             </div>
             <div class="speciality__list">
@@ -202,7 +204,7 @@
 
     <div class="teachers">
         <div class="container">
-            <NuxtLink to="/staff/?role=professor" class="teachers__title">{{ $t('OurTeachers') }}</NuxtLink>
+            <NuxtLink :to="localePath(`/staff/?role=professor`)" class="teachers__title">{{ $t('OurTeachers') }}</NuxtLink>
 
             <div class="teachers__list">
                 <!-- <div class="teachers__item" v-for="item in teachers?.results" :key="item">
@@ -226,7 +228,7 @@ import { useStore } from '~/store/store';
 const store = useStore()
 
 const { locale } = useI18n()
-
+const localePath = useLocalePath()
 const banners = ref([])
 const courses = ref({})
 const studentsVideos = ref({})
@@ -237,6 +239,10 @@ const about = ref({})
 const artciles = ref({})
 
 const muted = ref(true)
+
+function staffPage(id) {
+    localStorage.setItem('teacherId', id)
+}
 
 async function getAbout() {
     const res = await Service.getUnversityInfo(locale.value)

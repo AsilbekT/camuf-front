@@ -38,15 +38,17 @@
                     class="relative flex w-full flex-col rounded-xl card-journal bg-clip-border shadow-lg">
                     <div class="p-6">
                         <div class="flex items-left flex-col gap-2 justify-between mb-3">
-                            <NuxtLink :to="`/journals/${item?.category}/${item?.slug}`" style="text-transform: capitalize;"
+                            <NuxtLink :to="localePath(`/journals/${item?.category}/${item?.slug}`)"
+                                style="text-transform: capitalize;"
                                 class="block title font-sans text-xl antialiased font-medium leading-snug tracking-normal text-blue-gray-900">
-                                {{ item?.title }}
+                                <span v-html="item?.title"></span>
                             </NuxtLink>
-                            <p class="text-sm whitespace-nowrap ">Sh.A. Kuramatova</p>
+                            <p class="text-sm whitespace-nowrap flex items-center flex-wrap gap-2">
+                                <span v-for="item in item?.authors" :key="item">{{ item?.full_name }}</span>
+                            </p>
                         </div>
-                        <p class="block font-sans mb-6 text-base antialiased font-light leading-relaxed">
-                            Enter a freshly updated and thoughtfully furnished peaceful home
-                            surrounded by ancient trees, stone walls, and open meadows.
+                        <p class="block font-sans mb-6 text-base antialiased font-light leading-relaxed"
+                            v-html="item?.abstract">
                         </p>
                         <div class="flex items-center justify-between">
                             <span class="text-sm">{{ $t('UploadedOn') }} May 12, 2023</span>
@@ -103,7 +105,7 @@ import Service from "~/services/Service";
 const articles = ref({})
 const { id } = useRoute().params
 const { locale } = useI18n()
-
+const localePath = useLocalePath()
 async function getAllArticles() {
     const res = await Service.getCategoryArticle(id, locale.value)
     articles.value = res.data
