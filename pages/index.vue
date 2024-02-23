@@ -72,7 +72,9 @@
         <div class="container">
             <div class="about-user">
                 <img class="about-user__img" :src="president?.profile_image" alt="">
-                <NuxtLink :to="`/staff/${president?.id}/`" class="about-user__name">{{ president?.full_name }}</NuxtLink>
+                <NuxtLink :to="`/staff/${president?.id}/`" class="about-user__name">
+                    <span v-html="president?.full_name"></span>
+                </NuxtLink>
                 <h4 class="about-user__subtitle">{{ $t('UniversityRector') }}</h4>
             </div>
             <div class="about-text-wrapper">
@@ -99,7 +101,7 @@
                     <div class="p-6 flex flex-col">
                         <h4 v-html="item?.name"
                             class="block mb-4 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                            
+
                         </h4>
                         <p class="block mb-8 font-sans text-base antialiased font-normal leading-relaxed">
                             {{ item?.description }}
