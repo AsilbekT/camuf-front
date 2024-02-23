@@ -90,7 +90,7 @@
         <div class="container">
             <h2 class="home-jurnals__title">{{ $t('ScientificJournals') }}</h2>
             <div class="home-jurnals__wrapper">
-                <div v-for="item in store.articlesItems?.results" :key="item"
+                <div v-for="item in artickleCategories?.results" :key="item"
                     class="relative flex bg-clip-border card-jurnal rounded-xl bg-white shadow-md w-full max-w-[48rem] flex-row">
                     <div
                         class="relative w-2/5 rounded-xl card-jurnal-img m-0 overflow-hidden bg-white rounded-r-none bg-clip-border p-2 shrink-0">
@@ -99,7 +99,7 @@
                     <div class="p-6 flex flex-col">
                         <h4 v-html="item?.name"
                             class="block mb-4 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                            
+
                         </h4>
                         <p class="block mb-8 font-sans text-base antialiased font-normal leading-relaxed">
                             {{ item?.description }}
@@ -232,7 +232,8 @@ const lastnews = ref({})
 const teachers = ref({})
 const president = ref({})
 const about = ref({})
-const artciles = ref({})
+const artickleCategories = ref({});
+
 
 const muted = ref(true)
 
@@ -280,6 +281,11 @@ async function getAllTeachers() {
     const res = await Service.getAllTeachers(locale.value)
     teachers.value = res?.data
 }
+async function getArticleCategories() {
+    const res = await Service.getArticleCategories(locale.value)
+    artickleCategories.value = res.data
+    console.log(artickleCategories.value);
+}
 getAbout()
 getPresident()
 getBanners()
@@ -287,6 +293,8 @@ getNews()
 getStudentsVideos()
 getCourses()
 getAllTeachers()
+getArticleCategories()
+
 function hover(e) {
     // Query all video clips items
     document.querySelectorAll('.video-clips__item').forEach(item => {
