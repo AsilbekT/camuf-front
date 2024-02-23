@@ -204,7 +204,10 @@
 
     <div class="teachers">
         <div class="container">
-            <NuxtLink :to="localePath(`/staff/?role=professor`)" class="teachers__title">{{ $t('OurTeachers') }}</NuxtLink>
+            <div class="teachers__header flex items-center justify-between">
+                <NuxtLink :to="localePath(`/staff/?role=professor`)" class="teachers__title">{{ $t('OurTeachers') }}</NuxtLink>
+                <NuxtLink :to="localePath(`/staff/?role=all`)" class="text-xl">{{ $t('AllStaffs') }}</NuxtLink>
+            </div>
 
             <div class="teachers__list">
                 <!-- <div class="teachers__item" v-for="item in teachers?.results" :key="item">
