@@ -17,7 +17,9 @@
         <div class="container">
             <div class="about-user">
                 <img class="about-user__img" :src="president?.profile_image" alt="">
-                <NuxtLink :to="`/staff/${president?.id}/`" class="about-user__name">{{ president?.full_name }}</NuxtLink>
+                <NuxtLink :to="`/staff/${president?.id}/`" class="about-user__name">
+                    <span v-html="president?.full_name"></span>
+                </NuxtLink>
                 <h4 class="about-user__subtitle">{{ $t('UniversityRector') }}</h4>
             </div>
             <div class="about-text-wrapper">
