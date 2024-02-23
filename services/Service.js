@@ -165,8 +165,8 @@ export default {
       }
     );
   },
-  getAllStaffs(lang, params) {
-    return API().get("/staff/", {
+  getAllStaffs(lang, params, size, page) {
+    return API().get(`/staff/?page_size=${size}&page=${page}`, {
       headers: {
         "Accept-Language": lang,
       },
@@ -182,7 +182,7 @@ export default {
     });
   },
 
-  getDepartaments(lang){
+  getDepartaments(lang) {
     return API().get("/departments/", {
       headers: {
         "Accept-Language": lang,

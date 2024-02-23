@@ -6,8 +6,8 @@
         </div>
         <div class="p-[10px] flex flex-col " style="flex-grow: 1;">
             <div class="flex items-center justify-between mb-2">
-                <h4 class="block font-sans text-[16px] antialiased font-medium leading-relaxed text-blue-gray-900">
-                    {{ item?.full_name }}
+                <h4 class="block font-sans text-[16px] antialiased font-medium leading-relaxed text-blue-gray-900" v-html="item?.full_name">
+                    
                 </h4>
             </div>
             <p class="block font-sans text-[12px] mt-auto capitalize antialiased font-normal leading-normal text-gray-700 opacity-75">
