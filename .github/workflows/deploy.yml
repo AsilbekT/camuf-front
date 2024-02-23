@@ -1,0 +1,40 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20.11.1"
+
+      - name: Install PM2
+        run: npm install -g pm2
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build
+
+      - name: Deploy
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan 185.217.131.55 >> ~/.ssh/known_hosts
+          ssh -i ~/.ssh/id_rsa root@185.217.131.55 'source ~/.nvm/nvm.sh && cd /home/univer && git pull origin main && yarn install && yarn build && pm2 reload camuf-front'
+        env:
+          CI: true
