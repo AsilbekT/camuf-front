@@ -17,7 +17,7 @@
     <div class="journals-main">
         <div class="container">
             <div class="journals-left">
-                <h2 class="journals-title">{{ details?.data?.title }}</h2>
+                <h2 class="journals-title" v-html="details?.data?.title"></h2>
                 <NuxtLink v-for="item in details?.data?.authors" :key="item" class="mb-6 block"
                     :to="localePath(`/staff/${item?.slug}`)">
                     <span>{{ item?.full_name }}</span>
