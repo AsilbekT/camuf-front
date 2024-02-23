@@ -41,7 +41,7 @@
                         aria-activedescendant="listbox-option-3">
 
                         <!-- <li @click="selectDropdown(fRole)" class="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9" role="option"> -->
-                            <!-- <div class="flex items-center">
+                        <!-- <div class="flex items-center">
                                 <span class="font-normal ml-3 block truncate">{{ $t('AllStaffs') }}</span>
                             </div> -->
                         <!-- </li> -->
@@ -56,8 +56,8 @@
                 </div>
 
             </div>
-            <div class="teachers-main__wrapper">
-                <user-card v-for="item in teachers?.results" :key="item" :item="item" />
+            <div class="teachers-main__wrapper" ref="scrollComponent">
+                <user-card v-for="item in teacherArray" :key="item" :item="item" />
             </div>
         </div>
     </div>
@@ -134,23 +134,20 @@ POSITION_LEVEL_CHOICES.forEach(el => {
     }
 })
 
+const teacherArray = ref([])
+
 async function getAllStaffs() {
     if (role.value.length) {
         let params = {
             role: role.value
         }
-        if(role.value === 'all'){
-            const res = await Service.getAllStaffs(locale.value, {})
-            teachers.value = res?.data
-        } else {
-            const res = await Service.getAllStaffs(locale.value, params)
-            teachers.value = res?.data
-        }
-    } else {
-        const res = await Service.getAllStaffs(locale.value, {
-            role: 'rahbariyat'
-        })
+        const res = await Service.getAllStaffs(locale.value, params, 12, 1)
         teachers.value = res?.data
+        teacherArray.value = res?.data?.results
+    } else {
+        const res = await Service.getAllStaffs(locale.value, {}, 12, 1)
+        teachers.value = res?.data
+        teacherArray.value = res?.data?.results
     }
 }
 
@@ -161,13 +158,42 @@ function selectDropdown(item) {
     router.push({ query: { role: role.value } })
     getAllStaffs()
 }
+const pageCount = ref(1)
+async function handleScrollApi() {
+    if (role.value.length) {
+        let params = {
+            role: role.value
+        }
+        const res = await Service.getAllStaffs(locale.value, params, 12, pageCount.value)
+        teachers.value = res?.data
+        teacherArray.value.push(...res?.data?.results)
+    } else {
+        const res = await Service.getAllStaffs(locale.value, {}, 12, pageCount.value)
+        teachers.value = res?.data
+        teacherArray.value.push(...res?.data?.results)
+    }
+}
+
+
+const scrollComponent = ref(null)
+const handleScroll = (e) => {
+    let element = scrollComponent.value
+    if (teacherArray.value.length < teachers.value?.count) {
+        if (element.getBoundingClientRect().bottom < window.innerHeight) {
+            pageCount.value += 1
+            handleScrollApi()
+        }
+    }
+}
 
 const search = ref('')
 async function filter(event) {
     const res = await Service.searchStaffs(locale.value, {
         search: event.target.value
     })
+    pageCount.value = 1
     teachers.value = res?.data
+    teacherArray.value = res?.data.results
 }
 
 
@@ -177,6 +203,8 @@ onMounted(() => {
             dropdown.value = false
         }
     })
+
+    window.addEventListener("scroll", handleScroll)
 
 
 })

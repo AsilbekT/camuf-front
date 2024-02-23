@@ -81,7 +81,9 @@ const { locale } = useI18n()
 
 //variables
 const teacher = ref({});
-const { id: teacher_id } = useRoute().params;
+// const { id: teacher_id } = useRoute().params;
+
+const teacher_id = localStorage.getItem('teacherId')
 
 //functions
 async function getOneTeachers() {

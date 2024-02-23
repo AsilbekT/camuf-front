@@ -17,11 +17,13 @@
     <div class="journals-main">
         <div class="container">
             <div class="journals-left">
-                <h2 class="journals-title">{{ details?.data?.title }}</h2>
-                <NuxtLink v-for="item in details?.data?.authors" :key="item" class="mb-6 block" :to="`/teachers/${item}`">
-                    Sh.A. Kuramatova</NuxtLink>
-                <p class="journals-desc">
-                    {{ details?.data?.abstract }}
+                <h2 class="journals-title" v-html="details?.data?.title"></h2>
+                <NuxtLink v-for="item in details?.data?.authors" :key="item" class="mb-6 block"
+                    :to="localePath(`/staff/${item?.slug}`)">
+                    <span>{{ item?.full_name }}</span>
+                </NuxtLink>
+                <p class="journals-desc" v-html="details?.data?.abstract">
+
                 </p>
                 <ClientOnly>
                     <vue-pdf-app :theme="'light'" style="height: 700px; margin-bottom: 40px;"
@@ -93,7 +95,7 @@ import Service from "~/services/Service";
 
 const { id, slug } = useRoute().params;
 const details = ref({});
-
+const localePath = useLocalePath()
 // Fetch article details when the component is mounted
 async function getArticleDetail() {
     const res = await Service.getArticleDetail(id, slug);
