@@ -166,8 +166,8 @@
                         @click="isOpenMenu = false, smallMenu = menus" v-html="menu.name">
                     </NuxtLink>
                     <NuxtLink class="header-menu__btn cursor-pointer" :class="{ active: index === activeMenu.one.id }"
-                        :to="menu.link" v-else-if="menu.isLink && !menu.withQuery"
-                        @click="isOpenMenu = false, smallMenu = menus" v-html="menu.name">
+                        :to="menu.link" v-else-if="menu.isLink && !menu.withQuery" @click="isOpenMenu = false, smallMenu = menus"
+                        v-html="menu.name">
                     </NuxtLink>
                     <button v-else class="header-menu__btn" @click="changeMenu(menu, index)">
                         {{ menu.name }}
