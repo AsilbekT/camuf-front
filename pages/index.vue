@@ -282,7 +282,7 @@ async function getBanners() {
     banners.value = res.data
 }
 async function getCourses() {
-    const res = await Service.getAllCourses(locale.value)
+    const res = await Service.getAllCourses(6, locale.value)
     courses.value = res.data
 }
 async function getStudentsVideos() {
