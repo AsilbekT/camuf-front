@@ -17,7 +17,7 @@
         <div class="container">
             <div class="one-news__row">
                 <aside class="one-news__main">
-                    <h2 class="one-news__title">{{ news?.title }}</h2>
+                    <h2 class="one-news__title"><span v-html="news?.title"></span></h2>
                     <div class="one-news__date">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
                             <path
@@ -37,18 +37,17 @@
                 <aside class="one-news__right">
                     <div class="similar">
                         <h3 class="similar__title">{{ $t('SimilarNews') }}</h3>
-                        <div class="similar__row">
+                        <div class="similar__row flex flex-col gap-4">
                             <NuxtLink to="/news" class="similar__item" v-for="similar in similar_news" :key="similar.id">
                                 <div class="similar__img">
-                                    <img :src="similar.image" alt="" />
+                                    <img class="rounded-sm" :src="similar.image" alt="" />
                                 </div>
                                 <div class="similar__main">
                                     <h4 class="similar__sub-title">
-                                        {{ similar.title }}
+                                        <span v-html="similar.title"></span>
                                     </h4>
                                     <p class="similar__text">
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Ab, eveniet.
+                                        <span v-html="similar?.subtitle"></span>
                                     </p>
                                 </div>
                             </NuxtLink>
@@ -78,7 +77,6 @@ async function getNews() {
     similar_news.value = await res_similar.data.results.filter(
         (item) => item.id !== current_id
     );
-    console.log(similar_news.value);
 }
 getNews();
 

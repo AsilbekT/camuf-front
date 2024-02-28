@@ -15,7 +15,7 @@
     </div>
     <div class="about-course">
         <div class="container">
-            <h2 class="about-course__title">{{ details?.data?.title }}</h2>
+            <h2 class="about-course__title" v-html="details?.data?.title"></h2>
             <div class="about-course__row">
                 <div class="about-course__left">
                     <div class="about-course__img">

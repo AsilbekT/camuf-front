@@ -13,7 +13,7 @@
             </div>
             <p
                 class="block font-sans text-[12px] mt-auto capitalize antialiased font-normal leading-normal text-gray-700 opacity-75">
-                {{ item?.position }}
+                <span v-html="item?.position"></span>
             </p>
         </div>
         <div class="p-[10px] pt-0 mt-auto">
