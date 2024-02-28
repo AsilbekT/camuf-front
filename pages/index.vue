@@ -125,8 +125,8 @@
 
     <div class="latest-news">
         <div class="container">
-            <NuxtLink to="/news" class="latest-news__title">
-                {{ $t('LastNews') }}
+            <NuxtLink :to="localePath(`/new`)" class="latest-news__title">
+                {{ $t('News') }}
             </NuxtLink>
             <div class="latest-news__list">
                 <NewsCard v-for="item in lastnews?.results" :key="item" :item="item" />
@@ -183,9 +183,9 @@
                 <div class="speciality__item" v-for="(item, index) in courses?.results?.slice(0, 6)" :key="item">
                     <h4 class="speciality__item-num">
                         {{ index < 10 ? '0' + (index + 1) : (index + 1) }} </h4>
-                            <h2 class="speciality__item-title">
-                                {{ item?.title }}
-                            </h2>
+                            <NuxtLink :to="localePath(`/about-course/${item?.id}/`)" class="speciality__item-title">
+                                <span v-html="item?.title"></span>
+                            </NuxtLink>
                             <div class="speciality__item-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
                                     fill="none">
@@ -205,7 +205,8 @@
     <div class="teachers">
         <div class="container">
             <div class="teachers__header flex items-center justify-between">
-                <NuxtLink :to="localePath(`/staff/?role=professor`)" class="teachers__title">{{ $t('OurTeachers') }}</NuxtLink>
+                <NuxtLink :to="localePath(`/staff/?role=professor`)" class="teachers__title">{{ $t('OurTeachers') }}
+                </NuxtLink>
                 <NuxtLink :to="localePath(`/staff/?role=all`)" class="text-xl">{{ $t('AllStaffs') }}</NuxtLink>
             </div>
 

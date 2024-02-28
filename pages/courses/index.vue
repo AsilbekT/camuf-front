@@ -23,7 +23,8 @@
                         <img :src="item?.image" alt="">
                     </div>
                     <div class="courses-main__item-text-wrapper">
-                        <NuxtLink :to="`/about-course/${item?.id}/`" class="courses-main__item-title">{{ item?.title }}
+                        <NuxtLink :to="`/about-course/${item?.id}/`" class="courses-main__item-title">
+                            <span v-html="item?.title"></span>
                         </NuxtLink>
 
                         <h4 class="courses-main__item-code">{{ $t('DestinationCode') }}: {{ item?.course_id }}</h4>
