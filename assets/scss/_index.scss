@@ -390,14 +390,14 @@
       line-clamp: 2;
     }
     p {
-      display: -moz-box;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: normal;
-      -webkit-line-clamp: 6;
-      line-clamp: 6;
+      // display: -moz-box;
+      // display: -webkit-box;
+      // -webkit-box-orient: vertical;
+      // overflow: hidden;
+      // text-overflow: ellipsis;
+      // white-space: normal;
+      // -webkit-line-clamp: 6;
+      // line-clamp: 6;
     }
   }
   &__wrapper {

@@ -28,7 +28,9 @@
                         {{ $t('AllDirections') }}:
                     </h3>
                     <div class="other-categories__row">
-                        <NuxtLink :to="`/course/${category.id}`" class="other-categories__item" :class="{'active': details?.data?.category === category.id}" v-for="category in categories" :key="category.id">
+                        <NuxtLink :to="`/course/${category.id}`" class="other-categories__item"
+                            :class="{ 'active': details?.data?.category === category.id }" v-for="category in categories"
+                            :key="category.id">
                             {{ category.name }}
                         </NuxtLink>
                     </div>
@@ -46,7 +48,7 @@ const { locale } = useI18n()
 const categories = ref([])
 const { id } = useRoute().params
 async function getDetials() {
-    const res = await Service.getAboutCourse(id,locale.value)
+    const res = await Service.getAboutCourse(id, locale.value)
     details.value = res.data
 }
 
@@ -55,8 +57,10 @@ async function getCourseCategories() {
     categories.value = res.data.results
 }
 
-getDetials()
-getCourseCategories()
+watchEffect(() => {
+    getDetials()
+    getCourseCategories()
+})
 </script>
 
 <style lang="scss" scoped></style>

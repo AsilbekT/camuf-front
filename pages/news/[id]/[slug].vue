@@ -38,7 +38,7 @@
                     <div class="similar">
                         <h3 class="similar__title">{{ $t('SimilarNews') }}</h3>
                         <div class="similar__row flex flex-col gap-4">
-                            <NuxtLink to="/news" class="similar__item" v-for="similar in similar_news" :key="similar.id">
+                            <NuxtLink :to="`/news/${similar?.category}/${similar?.slug}/`" class="similar__item" v-for="similar in similar_news" :key="similar.id">
                                 <div class="similar__img">
                                     <img class="rounded-sm" :src="similar.image" alt="" />
                                 </div>
