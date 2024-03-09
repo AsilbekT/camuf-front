@@ -15,9 +15,9 @@
     </div>
     <div class="teachers-main">
         <div class="container">
-            <h2 class="teachers-main__title">{{ teachers?.name }}</h2>
+            <h2 class="teachers-main__title" v-html="teachers?.name"></h2>
             <img v-if="teachers?.image" :src="teachers?.image" alt="" class="teachers-main-img">
-            <p class="mb-10">{{ teachers?.description }}</p>
+            <p class="mb-10" v-html="teachers?.description"></p>
             <div class="teachers-main__wrapper">
                 <user-card v-for="item in teachers?.staff_members" :key="item" :item="item" />
             </div>

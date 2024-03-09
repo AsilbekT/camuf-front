@@ -1,7 +1,7 @@
 {
     "Graduates": "Bitiruvchilar",
     "Professor": "Professorlar",
-    "StudentCities": "Bitiruvchilar",
+    "StudentCities": "Universitet filiallari",
     "NumberOfStudents": "Talaba shaharlari",
     "UniversityRector": "Universitet rektori",
     "KnowMore": "Ko'proq bilish",
@@ -91,5 +91,6 @@
     "FooterText": "Elektron pochta manzilingizni kiriting, eng so'nggi universitet yangiliklari, maxsus tadbirlar va talabalar haqidagi xabarlar pochta qutingizga yuboriladi...",
     "FooterBtn": "Obuna bo'ling",
     "Staffs": "Hodimlar",
-    "AllStaffs": "Barcha hodimlar"
+    "AllStaffs": "Barcha hodimlar",
+    "location": "O'zbekiston, farg'ona, Burhoniddin Marg'inoniy ko'chasi 64"
 }

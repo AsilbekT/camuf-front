@@ -105,7 +105,7 @@
                             class="block mb-4 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
 
                         </h4>
-                        <p class="block mb-8 font-sans text-base antialiased font-normal leading-relaxed"
+                        <p class="desc flex flex-col overflow-hidden max-h-[205px] block mb-8 font-sans text-base antialiased font-normal leading-relaxed"
                             v-html="item?.description">
                         </p>
                         <NuxtLink :to="`/journals/${item.id}`"

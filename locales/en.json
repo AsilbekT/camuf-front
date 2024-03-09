@@ -1,7 +1,7 @@
 {
   "Graduates": "Graduates",
   "Professor": "Professors",
-  "StudentCities": "Student Cities",
+  "StudentCities": "University Branches",
   "NumberOfStudents": "Number of Students",
   "UniversityRector": "University Rector",
   "KnowMore": "Learn More",
@@ -91,6 +91,6 @@
   "FooterText": "Enter your email address to receive the latest university news, special events and student events delivered to your inbox...",
   "FooterBtn": "Subscribe",
   "Staffs": "Staffs",
-  "AllStaffs": "All staffs"
-
+  "AllStaffs": "All staffs",
+  "location": "Uzbekistan, Fergana, 64 Burkhoniddin Marginani"
 }
