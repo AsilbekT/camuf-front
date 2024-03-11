@@ -39,7 +39,7 @@
                 </svg>
             </button>
             <div class="header-menu__list h-full first-col">
-                <h3 class="header-menu__title">Menyular</h3>
+                <h3 class="header-menu__title">{{ $t('Menues') }}</h3>
                 <div class="header-menu__item" v-for="(menu, index) in menus" :key="`${index}`">
                     <NuxtLink class="header-menu__btn cursor-pointer" :class="{ active: index === activeMenu.one.id }"
                         to="/" v-if="menu.isLink" @click="isOpenMenu = false" @mouseenter="
