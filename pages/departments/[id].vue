@@ -4,11 +4,11 @@
         <div class="container">
             <ul class="teachers-banner__nav">
                 <li>
-                    <NuxtLink to="/">Главная страница</NuxtLink>
+                    <NuxtLink to="/">{{ $t('MainPage') }}</NuxtLink>
                 </li>
                 /
                 <li>
-                    <NuxtLink to="/">{{ teachers?.name }}</NuxtLink>
+                    <NuxtLink to="/" v-html="teachers?.name"></NuxtLink>
                 </li>
             </ul>
         </div>
