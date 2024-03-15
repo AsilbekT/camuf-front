@@ -556,7 +556,6 @@ async function getSections() {
     })
     const menuIndex = menus.value.findIndex(item => item.name === t('AboutTheUniversity'))
     menus.value[menuIndex].sub[1].sub = store.sections?.results
-    console.log(menus.value[menuIndex]);
 }
 
 
