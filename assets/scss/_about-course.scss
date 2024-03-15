@@ -1,0 +1,78 @@
+.about-course {
+  padding: 120px 0;
+  @include media(600px) {
+    padding: 80px 0;
+  }
+  &__row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 80px;
+    margin-top: 30px;
+    @include media(1200px) {
+      gap: 30px;
+    }
+  }
+
+  &__left {
+    flex: 1;
+    max-width: 800px;
+    @include media(1024px) {
+      max-width: 100%;
+    }
+  }
+
+  &__right {
+    flex: 0 0 300px;
+    @include media(1024px) {
+      display: none;
+    }
+  }
+
+  &__title {
+    @include font(700, 36px, 1.4);
+    color: var(--play-color);
+    @include media(1040px) {
+      font-size: 28px;
+    }
+    @include media(600px) {
+      font-size: 22px;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  &__text {
+    margin-top: 30px;
+  }
+}
+
+.other-categories {
+  &__title {
+    @include font(700, 24px, 1.4);
+    color: var(--play-color);
+    @include media(1040px) {
+      font-size: 28px;
+    }
+  }
+  &__row {
+  }
+  &__item {
+    display: block;
+    margin-top: 18px;
+
+    &.active {
+      font-weight: 600;
+      color: var(--play-color);
+    }
+  }
+}

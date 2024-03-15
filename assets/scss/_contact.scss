@@ -1,0 +1,183 @@
+.courses-banner {
+  height: 475px;
+  width: 100%;
+  position: relative;
+  @include media(1100px) {
+    height: 300px;
+  }
+  @include media(540px) {
+    height: 280px;
+  }
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--hero-bg);
+  }
+  .container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  &__nav {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 5px;
+    z-index: 1;
+
+    a {
+      z-index: 1;
+      color: var(--play-color);
+    }
+  }
+}
+
+.contact-faq {
+  padding-top: 120px ;
+  @include media(600px) {
+    padding-top: 80px;
+  }
+  &__title {
+    @include title;
+    color: var(--play-color);
+    margin-bottom: 40px;
+    text-transform: lowercase;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+  &__main {
+    margin-top: 20px;
+    
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+
+    @include media(1024px) {
+      margin-top: 0;
+      gap: 40px;
+    }
+    @include media(768px) {
+      grid-template-columns: 1fr;
+      gap: 30px;
+
+    }
+  }
+
+  &__lists {
+  }
+
+  &__sub-title {
+    @include font(700, 25px, 42px);
+    @include media(1024px) {
+      @include font(700, 22px, 26px);
+    }
+    @include media(768px) {
+      @include font(600, 18px, 22px);
+
+    }
+  }
+
+  &__list {
+    margin-top: 20px;
+    list-style-type: disc;
+  }
+
+
+  &__item {
+    margin-left: 20px;
+    @include font(400, 20px, 32px);
+    @include media(1024px) {
+      @include font(400, 16px, 24px);
+    }
+    @include media(768px) {
+      @include font(400, 16px, 20px);
+
+    }
+    @include media(425px) {
+      @include font(400, 14px, 18px);
+
+    }
+  }
+}
+.container {
+}
+
+.contact-main {
+  margin-top: 60px;
+  margin-bottom: 120px;
+  padding: 60px 0 120px 0;
+  background-color: rgba($color: #000000, $alpha: 0.15);
+  @include media(600px) {
+    padding-bottom: 80px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+  }
+  &__title {
+    @include title;
+    color: var(--play-color);
+    margin-bottom: 40px;
+    text-transform: lowercase;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+  &__items-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(385px, 1fr));
+    @include media(500px) {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    gap: 40px;
+  }
+  &__item {
+    &-text-wrapper {
+      padding: 20px 30px 30px;
+      border: 1px solid var(--text-color);
+    }
+    &-title {
+      @include font(700, 36px, 1.4);
+      color: var(--play-color);
+      @include media(1040px) {
+        font-size: 28px;
+      }
+      @include media(600px) {
+        font-size: 22px;
+      }
+    }
+    &-code {
+      @include font(400, 18px, 1.6);
+      margin-bottom: 30px;
+      @include media(1040px) {
+        font-size: 16px;
+      }
+    }
+    &-btn {
+      white-space: nowrap;
+      background: var(--play-color);
+      padding: 12px 40px;
+      @include font(600, 18px, 1.6);
+      color: var(--course-btn);
+      @include media(1040px) {
+        padding: 12px 24px;
+      }
+      @include media(600px) {
+        font-size: 14px;
+        padding: 12px;
+      }
+    }
+  }
+}

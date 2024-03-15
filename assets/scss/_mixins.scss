@@ -1,0 +1,26 @@
+@mixin font($fw,$fz,$lh) {
+    font-weight: $fw;
+    font-size: $fz;
+    line-height: $lh;
+}
+@mixin media($w) {
+    @media (max-width: $w) {
+        @content;
+    }
+}
+@mixin title {
+    color: var(--title-color);
+    @include font(800, 35px, 1.2);
+    text-transform: uppercase;
+    display: inline-block;
+    transition: all .3s ease;
+    @include media(890px) {
+        font-size: 28px;
+    }
+    @include media(600px) {
+        font-size: 24px;
+    }
+    &:hover {
+        color: var(--pr-color);
+    }
+}

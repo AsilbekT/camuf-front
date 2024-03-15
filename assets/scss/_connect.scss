@@ -1,0 +1,186 @@
+.connect {
+  padding: 120px 0;
+  @include media(600px) {
+    padding: 80px 0;
+  }
+  &__row {
+    display: flex;
+    gap: 60px;
+
+    @include media(768px){
+      flex-direction: column;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
+
+  &__main {
+    flex: 1;
+    
+  }
+
+  &__title {
+    @include title;
+    color: var(--play-color);
+    margin-bottom: 40px;
+    text-transform: lowercase;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+    @include media(768px){
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  &__text {
+    @include font(400, 14px, 16px);
+    color: var(--text-color);
+    @include media(768px){
+      text-align: center;
+    }
+  }
+
+  // &__form {
+  // }
+
+  &__map{
+    margin-top: 40px;
+    width: 100%;
+    
+    iframe{
+      width: 100%;
+    }
+  }
+}
+.connect-form {
+  margin-top: 20px;
+  &__row {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    @include media(1024px){
+      flex-direction: column
+    }
+
+  }
+
+  &__label {
+    @include font(400, 14px, 16px);
+    display: block;
+    width: calc(50% - 15px);
+
+    @include media(1024px){
+      width: 100%;
+    }
+    
+
+    &.full {
+      width: 100%;
+    }
+
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    @include font(400, 16px, 20px);
+    padding: 8px 12px;
+    border: 1px solid var(--footer-form);
+    background-color: var(--bg-color);
+  }
+
+  &__submit {
+    margin-top: 30px;
+    background: var(--footer-form);
+    color: #fff;
+    padding: 12px 24px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+    height: 100%;
+    @include media(425px){
+      text-align: center;
+      width: 100%;
+    }
+  }
+}
+
+
+.connect-info {
+  flex: 0 0 400px;
+
+  @include media(1024px){
+    flex: 0 0 300px;
+  }
+
+  &__item {
+  }
+
+  &__title {
+    @include font(500, 18px, normal);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    
+  }
+
+  &__row {
+    margin: 12px 0 24px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  &__icon {
+    flex: 0 0 20px;
+    height: 20px;
+
+    &.social{
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      border: 1px solid var(--border-color);
+      padding: 10px;
+      border-radius: 50%;
+      transition: .4s ease;
+
+      &:hover{
+        background-color: var(--border-color);
+        svg {
+          path,
+          line {
+            fill: #ffffff;
+            stroke: #ffffff;
+          }
+        }
+      }
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      path,
+      line {
+        fill: var(--title-color);
+        stroke: var(--title-color);
+      }
+    }
+
+  }
+  &__text {
+    @include font(400, 14px, 20px);
+
+    &.link:hover{
+      font-weight: 500;
+      color: var(--title-color);
+      cursor: pointer;
+    }
+  }
+}
+
+
