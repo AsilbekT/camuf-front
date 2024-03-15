@@ -197,4 +197,18 @@ export default {
       },
     });
   },
+  async getSections(lang) {
+    return API().get("/sections/", {
+      headers: {
+        "Accept-Language": lang,
+      },
+    });
+  },
+  async getSectionsDetails(lang, id) {
+    return API().get("/sections/" + id + "/", {
+      headers: {
+        "Accept-Language": lang,
+      },
+    });
+  },
 };
