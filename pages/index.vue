@@ -91,7 +91,12 @@
 
     <div class="home-jurnals">
         <div class="container">
-            <h2 class="home-jurnals__title">{{ $t('ScientificJournals') }}</h2>
+            <div class="teachers__header flex items-center justify-between">
+                <NuxtLink :to="localePath(`/journal/`)" class="teachers__title">{{ $t('ScientificJournals') }}
+                </NuxtLink>
+                <NuxtLink :to="localePath(`/journal/`)" class="text-xl">{{ $t('allJournals') }}</NuxtLink>
+            </div>
+            
             <div class="home-jurnals__wrapper">
                 <!-- <pre>{{  }}</pre> -->
                 <div v-for="item in store.articlesItems?.results" :key="item"

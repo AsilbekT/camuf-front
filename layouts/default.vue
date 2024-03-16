@@ -300,8 +300,11 @@ function translateMenu() {
 
                 },
                 {
-                    isLink: true,
-                    name: t('InternationalDepartment'),
+                    isLink: false,
+                    name: t('Sections'),
+                    sub: [
+
+                    ]
                 },
                 {
                     isLink: false,
@@ -314,10 +317,13 @@ function translateMenu() {
                                 {
                                     isLink: true,
                                     name: t('ActaCAMUScientificJournal'),
+                                    link: '/journal/',
+
                                 },
                                 {
                                     isLink: true,
                                     name: t('ActaCAMuArchive'),
+                                    link: '/journal/',
                                 },
                                 
                             ],
@@ -336,7 +342,6 @@ function translateMenu() {
                                     isLink: false,
                                     name: t('Departments'),
                                     sub: [
-
                                     ],
                                 },
                             ],
@@ -373,7 +378,7 @@ function translateMenu() {
                 {
                     isLink: 'true',
                     name: t('ContactInformation'),
-                    link: '/contact/'
+                    link: '/contact/',
                 },
             ],
         },
@@ -384,64 +389,82 @@ function translateMenu() {
                 {
                     isLink: 'true',
                     name: t('ElectronicLibrary'),
+                    link: '/journal/',
                 },
                 {
                     isLink: 'true',
                     name: t('OnlineLearningPlatform'),
+                    link: '/journal/',
+
                 },
                 {
                     isLink: 'true',
                     name: t('HEMIS'),
+                    link: 'https://hemis.camuf.uz/dashboard/login',
                 },
                 {
                     isLink: 'true',
                     name: t('ConfirmationDiploma'),
                 },
                 {
-                    isLink: 'false',
+                    isLink: false,
                     name: t('ElectronicLinks'),
                     sub: [
                         {
                             isLink: 'true',
-                            name: 'https://president.uz/',
+                            name: 'president.uz',
                             link: 'https://president.uz/',
                         },
                         {
                             isLink: 'true',
-                            name: 'https://www.gov.uz/uz',
+                            name: 'gov.uz',
                             link: 'https://www.gov.uz/uz',
                         },
                         {
                             isLink: 'true',
-                            name: 'http://ferghana.uz/',
+                            name: 'ferghana.uz',
+                            link: 'http://ferghana.uz/',
                         },
                         {
                             isLink: 'true',
-                            name: 'https://my.gov.uz/',
+                            name: 'my.gov.uz',
+                            link: 'https://my.gov.uz/',
                         },
                         {
                             isLink: 'true',
-                            name: 'http://www.minzdrav.uz/',
+                            name: 'ssv.ssv.uz',
+                            link: 'https://ssv.ssv.uz/',
                         },
                         {
                             isLink: 'true',
-                            name: 'http://edu.uz/uz',
+                            name: 'edu.uz',
+                            link: 'http://edu.uz/uz',
                         },
                         {
                             isLink: 'true',
-                            name: 'http://ziyonet.uz/',
+                            name: 'ziyonet.uz',
+                            link: 'http://ziyonet.uz/',
                         },
                         {
                             isLink: 'true',
-                            name: 'http://www.lex.uz/',
-                        },
-                    ],
+                            name: 'lex.uz',
+                            link: 'https://lex.uz/',
+                        }
+                    ]
                 },
+                
             ],
         },
         {
-            isLink: true,
-            name: t('Acceptance'),
+            isLink: false,
+            name: t('Admissions'),
+            sub: [
+                {  
+                    isLink: 'true',
+                    name: t('about_admission'),
+                    link: '/admission/',
+                }
+            ]
         },
     ]
 }
@@ -452,7 +475,7 @@ const smallMenu = ref()
 
 async function getTranslations() {
     await translateMenu()
-
+    await getSections()
     await getDepartaments()
     await getNewsCategories()
     await getCourseCategories()
@@ -521,6 +544,19 @@ async function getDepartaments() {
     menus.value[menuIndex].sub[3].sub[0].sub[0].sub = store.articles?.results
 }
 
+const sections = ref({})
+async function getSections() {
+    const res = await Service.getSections(locale.value);
+    store.sections = res.data;
+
+
+    store.sections?.results.forEach((category) => {
+        category.isLink = true
+        category.link = `/sections/${category.id}/`
+    })
+    const menuIndex = menus.value.findIndex(item => item.name === t('AboutTheUniversity'))
+    menus.value[menuIndex].sub[1].sub = store.sections?.results
+}
 
 
 
