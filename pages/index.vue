@@ -91,7 +91,12 @@
 
     <div class="home-jurnals">
         <div class="container">
-            <h2 class="home-jurnals__title">{{ $t('ScientificJournals') }}</h2>
+            <div class="teachers__header flex items-center justify-between">
+                <NuxtLink :to="localePath(`/journal/`)" class="teachers__title">{{ $t('ScientificJournals') }}
+                </NuxtLink>
+                <NuxtLink :to="localePath(`/journal/`)" class="text-xl">{{ $t('allJournals') }}</NuxtLink>
+            </div>
+            
             <div class="home-jurnals__wrapper">
                 <!-- <pre>{{  }}</pre> -->
                 <div v-for="item in store.articlesItems?.results" :key="item"
@@ -240,8 +245,7 @@ const lastnews = ref({})
 const teachers = ref({})
 const president = ref({})
 const about = ref({})
-const artickleCategories = ref({});
-
+const artciles = ref({})
 
 const muted = ref(true)
 
@@ -293,11 +297,6 @@ async function getAllTeachers() {
     const res = await Service.getAllTeachers(locale.value)
     teachers.value = res?.data
 }
-async function getArticleCategories() {
-    const res = await Service.getArticleCategories(locale.value)
-    artickleCategories.value = res.data
-    console.log(artickleCategories.value);
-}
 getAbout()
 getPresident()
 getBanners()
@@ -305,8 +304,6 @@ getNews()
 getStudentsVideos()
 getCourses()
 getAllTeachers()
-getArticleCategories()
-
 function hover(e) {
     // Query all video clips items
     document.querySelectorAll('.video-clips__item').forEach(item => {
