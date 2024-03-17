@@ -578,15 +578,15 @@ const index = ref([])
 // is menu open
 const isOpenMenu = ref(false);
 
-watch(isOpenMenu, () => {
-    if (isOpenMenu.value) {
-        document.body.style.maxHeight = '100vh'
-        document.body.style.overflow = 'hidden'
-    } else {
-        document.body.style.maxHeight = 'auto'
-        document.body.style.overflow = 'auto'
-    }
-})
+// watch(isOpenMenu, () => {
+//     if (isOpenMenu.value) {
+//         document.body.style.maxHeight = '100vh'
+//         document.body.style.overflow = 'hidden'
+//     } else {
+//         document.body.style.maxHeight = 'auto'
+//         document.body.style.overflow = 'auto'
+//     }
+// })
 
 // functions
 function changeMenu(menu, i) {
