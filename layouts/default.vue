@@ -325,7 +325,7 @@ function translateMenu() {
                                     name: t('ActaCAMuArchive'),
                                     link: '/journal/',
                                 },
-                                
+
                             ],
                         },
                     ],
@@ -449,17 +449,22 @@ function translateMenu() {
                             isLink: 'true',
                             name: 'lex.uz',
                             link: 'https://lex.uz/',
+                        },
+                        {
+                            isLink: 'true',
+                            name: "Medical Planet",
+                            link: "https://www.youtube.com/@medic_planet"
                         }
                     ]
                 },
-                
+
             ],
         },
         {
             isLink: false,
             name: t('Admissions'),
             sub: [
-                {  
+                {
                     isLink: 'true',
                     name: t('about_admission'),
                     link: '/admission/',
