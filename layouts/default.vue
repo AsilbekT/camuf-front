@@ -454,6 +454,11 @@ function translateMenu() {
                             isLink: 'true',
                             name: "Medical Planet",
                             link: "https://www.youtube.com/@medic_planet"
+                        },
+                        {
+                            isLink: 'true',
+                            name: "Portfolio",
+                            link: "http://192.168.1.145/portfolio/"
                         }
                     ]
                 },
