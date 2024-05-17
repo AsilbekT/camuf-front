@@ -95,10 +95,11 @@ import Service from "~/services/Service";
 
 const { id, slug } = useRoute().params;
 const details = ref({});
+const { locale } = useI18n()
 const localePath = useLocalePath()
 // Fetch article details when the component is mounted
 async function getArticleDetail() {
-    const res = await Service.getArticleDetail(id, slug);
+    const res = await Service.getArticleDetail(id, slug, locale.value);
     details.value = res.data;
     console.log(details.value.data.article_file); // Log the PDF URL to verify it's correct
 }

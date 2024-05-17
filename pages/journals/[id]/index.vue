@@ -51,7 +51,7 @@
                             v-html="item?.abstract">
                         </p>
                         <div class="flex items-center justify-between">
-                            <span class="text-sm">{{ $t('UploadedOn') }} May 12, 2023</span>
+                            <span class="text-sm">{{ $t('UploadedOn') }} {{ item?.publication_date }}</span>
                             <div class="flex gap-6 items-center">
                                 <div class="flex gap-2 items-center">
                                     <!DOCTYPE svg
@@ -101,14 +101,36 @@
 
 <script setup>
 import Service from "~/services/Service";
+import { defineProps, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useRoute, useLocalePath } from 'nuxt3';
+import { useIntersectionObserver } from '@vueuse/core';
+
+const props = defineProps({
+  date: {
+    type: String,
+    required: true
+  }
+});
+
+const { formatDate } = useI18n();
+
+function formattedDate(dateString) {
+  const date = new Date(dateString);
+  return formatDate(date, { year: 'numeric', month: 'long', day: 'numeric' });
+}
 
 const articles = ref({})
 const { id } = useRoute().params
 const { locale } = useI18n()
 const localePath = useLocalePath()
+const nextUrl = ref(null);
+
 async function getAllArticles() {
     const res = await Service.getCategoryArticle(id, locale.value)
+    console.log(res)
     articles.value = res.data
+    nextUrl.value = res.next;
 }
 getAllArticles()
 
@@ -116,6 +138,8 @@ const search = ref("")
 const start = ref("")
 const end = ref("")
 const rev = ref("")
+
+
 function funcStart(e) {
     const selectedDate = new Date(e.target.value);
     const formattedDate = selectedDate.toISOString().split('T')[0];

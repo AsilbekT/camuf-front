@@ -20,7 +20,9 @@
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
     "@videojs-player/vue": "^1.0.0",
+    "@vueuse/core": "^10.9.0",
     "axios": "^1.6.5",
+    "date-fns": "^3.6.0",
     "nuxt-swiper": "^1.2.2",
     "sass": "^1.69.4",
     "video.js": "^8.9.0",

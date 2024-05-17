@@ -131,6 +131,15 @@ export default {
       },
     });
   },
+  loadMoreArticles(nextUrl, locale) {
+    try {
+      const response = axios.get(nextUrl, { params: { locale } });
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching more articles:", error);
+      throw error;
+    }
+  },
   getArticleDetail(id, slug, lang) {
     return API().get(`/articlecategories/${id}/articles/${slug}/`, {
       headers: {
