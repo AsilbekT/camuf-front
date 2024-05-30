@@ -124,8 +124,8 @@ export default {
       },
     });
   },
-  getCategoryArticle(id, lang) {
-    return API().get(`/articlecategories/${id}/articles/`, {
+  getCategoryArticle(id, lang, size) {
+    return API().get(`/articlecategories/${id}/articles/?page_size=${size}`, {
       headers: {
         "Accept-Language": lang,
       },
