@@ -101,10 +101,8 @@
 
 <script setup>
 import Service from "~/services/Service";
-import { defineProps, ref } from 'vue';
+import { defineProps } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useRoute, useLocalePath } from 'nuxt3';
-import { useIntersectionObserver } from '@vueuse/core';
 
 const props = defineProps({
   date: {
@@ -124,13 +122,9 @@ const articles = ref({})
 const { id } = useRoute().params
 const { locale } = useI18n()
 const localePath = useLocalePath()
-const nextUrl = ref(null);
-
 async function getAllArticles() {
     const res = await Service.getCategoryArticle(id, locale.value)
-    console.log(res)
     articles.value = res.data
-    nextUrl.value = res.next;
 }
 getAllArticles()
 
@@ -138,8 +132,6 @@ const search = ref("")
 const start = ref("")
 const end = ref("")
 const rev = ref("")
-
-
 function funcStart(e) {
     const selectedDate = new Date(e.target.value);
     const formattedDate = selectedDate.toISOString().split('T')[0];
