@@ -1,4 +1,5 @@
 {
+  "Portfolio": "Portföy",
   "Menues": "Menüler",
   "Graduates": "Mezunlar",
   "Professors": "Profesörler",
@@ -93,5 +94,10 @@
   "FooterBtn": "Abone",
   "Staffs": "Çalışanlar",
   "AllStaffs": "Tüm çalışanlar",
-  "location": "Özbekistan, Fergana, 64 Burhoniddin Marghinani str"
+  "location": "Özbekistan, Fergana, 64 Burhoniddin Marghinani str",
+  "Admissions": "Kabuller",
+  "about_admission": "Giriş Hakkında",
+  "AdmissionsNotOpen": "Kabuller henüz açılmadı.",
+  "allJournals": "Bütün dergiler",
+  "Sections": "Bölümler"
 }

@@ -94,7 +94,8 @@
   &__title {
     pointer-events: none !important;
     z-index: 1;
-    @include font(700, 72px, 1.1);
+    @include font(700, 54px, 1.1);
+    text-align: center;
     color: var(--title-color);
     margin-bottom: 40px;
     width: 100%;

@@ -258,17 +258,21 @@
   position: fixed;
   top: -100%;
   width: 100%;
-  height: 100%;
+  // height: 100%;
+  height: auto;
   z-index: 50;
   transition: 0.5s ease;
   left: 50%;
   transform: translateX(-50%);
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,.06);
+  // border-bottom: 1px solid white;
 
   @include media(1024px) {
     top: 0;
     left: -100%;
     transform: translateX(0);
     background-color: rgba(0, 0, 0, 0.4);
+    height: 100%;
   }
 
   &.active {
@@ -343,9 +347,9 @@
     }
   }
 
-  &__back{
+  &__back {
     @include media(480px) {
-      span{
+      span {
         display: none;
       }
     }
@@ -381,7 +385,7 @@
     padding: 6px 0;
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       bottom: 0;
       left: 0;
@@ -389,7 +393,9 @@
       height: 0.1em;
       background-color: var(--play-color);
       opacity: 0;
-      transition: opacity 400ms, transform 300ms;
+      transition:
+        opacity 400ms,
+        transform 300ms;
     }
 
     &::after {

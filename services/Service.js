@@ -131,6 +131,15 @@ export default {
       },
     });
   },
+  loadMoreArticles(nextUrl, locale) {
+    try {
+      const response = axios.get(nextUrl, { params: { locale } });
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching more articles:", error);
+      throw error;
+    }
+  },
   getArticleDetail(id, slug, lang) {
     return API().get(`/articlecategories/${id}/articles/${slug}/`, {
       headers: {
@@ -192,6 +201,20 @@ export default {
 
   getAllDepartments(lang, id) {
     return API().get("/departments/" + id + "/", {
+      headers: {
+        "Accept-Language": lang,
+      },
+    });
+  },
+  async getSections(lang) {
+    return API().get("/sections/", {
+      headers: {
+        "Accept-Language": lang,
+      },
+    });
+  },
+  async getSectionsDetails(lang, id) {
+    return API().get("/sections/" + id + "/", {
       headers: {
         "Accept-Language": lang,
       },

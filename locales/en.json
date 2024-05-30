@@ -1,4 +1,5 @@
 {
+  "Portfolio": "Portfolio",
   "Menues": "Menues",
   "Graduates": "Graduates",
   "Professors": "Professors",
@@ -93,5 +94,10 @@
   "FooterBtn": "Subscribe",
   "Staffs": "Staffs",
   "AllStaffs": "All staffs",
-  "location": "Uzbekistan, Fergana, 64 Burkhoniddin Marginani"
+  "location": "Uzbekistan, Fergana, 64 Burkhoniddin Marginani",
+  "Admissions": "Admissions",
+  "about_admission": "About Admission",
+  "AdmissionsNotOpen": "Admissions are not open yet.",
+  "allJournals": "All journals",
+  "Sections": "Departments"
 }

@@ -422,8 +422,69 @@ function translateMenu() {
           withQuery: true,
         },
         {
-          isLink: true,
-          name: t("InternationalDepartment"),
+            isLink: false,
+            // name: 'Universitet haqida',
+            name: t('AboutTheUniversity'),
+            link: '/about/',
+            sub: [
+                {
+                    isLink: true,
+                    name: t('Leadership'),
+                    // link: "{ path: '/staff/', query: { role: 'professor' }}",
+                    link: 'staff',
+                    withQuery: true
+
+                },
+                {
+                    isLink: false,
+                    name: t('Sections'),
+                    sub: [
+
+                    ]
+                },
+                {
+                    isLink: false,
+                    name: t('DepartmentOfSpirituality'),
+                    sub: [
+                        {
+                            isLink: false,
+                            name: t('ScientificDepartment'),
+                            sub: [
+                                {
+                                    isLink: true,
+                                    name: t('ActaCAMUScientificJournal'),
+                                    link: '/journal/',
+
+                                },
+                                {
+                                    isLink: true,
+                                    name: t('ActaCAMuArchive'),
+                                    link: '/journal/',
+                                },
+
+                            ],
+                        },
+                    ],
+                },
+                {
+                    isLink: false,
+                    name: t('Faculties'),
+                    sub: [
+                        {
+                            isLink: false,
+                            name: t('FacultyOfMedicine'),
+                            sub: [
+                                {
+                                    isLink: false,
+                                    name: t('Departments'),
+                                    sub: [
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
         },
         {
           isLink: false,
@@ -508,16 +569,114 @@ function translateMenu() {
           name: t("ElectronicLibrary"),
         },
         {
-          isLink: "true",
-          name: t("OnlineLearningPlatform"),
+            isLink: false,
+            name: t('Communication'),
+            sub: [
+                {
+                    isLink: 'true',
+                    name: t('LeaveMessage'),
+                    link: '/connect/'
+                },
+                {
+                    isLink: 'true',
+                    name: t('ContactInformation'),
+                    link: '/contact/',
+                },
+            ],
         },
         {
-          isLink: "true",
-          name: t("HEMIS"),
+            isLink: false,
+            name: t('ElectronicResources'),
+            sub: [
+                {
+                    isLink: 'true',
+                    name: t('Portfolio'),
+                    link: "http://192.168.1.145/portfolio/"
+                },
+                {
+                    isLink: 'true',
+                    name: t('ElectronicLibrary'),
+                    link: '/journal/',
+                },
+                {
+                    isLink: 'true',
+                    name: t('OnlineLearningPlatform'),
+                    link: '/journal/',
+
+                },
+                {
+                    isLink: 'true',
+                    name: t('HEMIS'),
+                    link: 'https://hemis.camuf.uz/dashboard/login',
+                },
+                {
+                    isLink: 'true',
+                    name: t('ConfirmationDiploma'),
+                },
+                {
+                    isLink: false,
+                    name: t('ElectronicLinks'),
+                    sub: [
+                        {
+                            isLink: 'true',
+                            name: 'president.uz',
+                            link: 'https://president.uz/',
+                        },
+                        {
+                            isLink: 'true',
+                            name: 'gov.uz',
+                            link: 'https://www.gov.uz/uz',
+                        },
+                        {
+                            isLink: 'true',
+                            name: 'ferghana.uz',
+                            link: 'http://ferghana.uz/',
+                        },
+                        {
+                            isLink: 'true',
+                            name: 'my.gov.uz',
+                            link: 'https://my.gov.uz/',
+                        },
+                        {
+                            isLink: 'true',
+                            name: 'ssv.ssv.uz',
+                            link: 'https://ssv.ssv.uz/',
+                        },
+                        {
+                            isLink: 'true',
+                            name: 'edu.uz',
+                            link: 'http://edu.uz/uz',
+                        },
+                        {
+                            isLink: 'true',
+                            name: 'ziyonet.uz',
+                            link: 'http://ziyonet.uz/',
+                        },
+                        {
+                            isLink: 'true',
+                            name: 'lex.uz',
+                            link: 'https://lex.uz/',
+                        },
+                        {
+                            isLink: 'true',
+                            name: "Medical Planet",
+                            link: "https://www.youtube.com/@medic_planet"
+                        }
+                    ]
+                },
+
+            ],
         },
         {
-          isLink: "true",
-          name: t("ConfirmationDiploma"),
+            isLink: false,
+            name: t('Admissions'),
+            sub: [
+                {
+                    isLink: 'true',
+                    name: t('about_admission'),
+                    link: '/admission/',
+                }
+            ]
         },
         {
           isLink: "false",
@@ -571,14 +730,14 @@ function translateMenu() {
 const smallMenu = ref();
 
 async function getTranslations() {
-  await translateMenu();
-
-  await getDepartaments();
-  await getNewsCategories();
-  await getCourseCategories();
-  await getArticleCategories();
-  // smal menus
-  smallMenu.value = menus.value;
+    await translateMenu()
+    await getSections()
+    await getDepartaments()
+    await getNewsCategories()
+    await getCourseCategories()
+    await getArticleCategories()
+    // smal menus
+    smallMenu.value = menus.value
 }
 //============================================ menus array ============================================
 
@@ -641,6 +800,22 @@ async function getDepartaments() {
   menus.value[menuIndex].sub[3].sub[0].sub[0].sub = store.articles?.results;
 }
 
+const sections = ref({})
+async function getSections() {
+    const res = await Service.getSections(locale.value);
+    store.sections = res.data;
+
+
+    store.sections?.results.forEach((category) => {
+        category.isLink = true
+        category.link = `/sections/${category.id}/`
+    })
+    const menuIndex = menus.value.findIndex(item => item.name === t('AboutTheUniversity'))
+    menus.value[menuIndex].sub[1].sub = store.sections?.results
+}
+
+
+
 //============================================ header menu ============================================
 //variables
 const activeMenu = reactive({
@@ -658,15 +833,15 @@ const index = ref([]);
 // is menu open
 const isOpenMenu = ref(false);
 
-watch(isOpenMenu, () => {
-  if (isOpenMenu.value) {
-    document.body.style.maxHeight = "100vh";
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.maxHeight = "auto";
-    document.body.style.overflow = "auto";
-  }
-});
+// watch(isOpenMenu, () => {
+//     if (isOpenMenu.value) {
+//         document.body.style.maxHeight = '100vh'
+//         document.body.style.overflow = 'hidden'
+//     } else {
+//         document.body.style.maxHeight = 'auto'
+//         document.body.style.overflow = 'auto'
+//     }
+// })
 
 // functions
 function changeMenu(menu, i) {
