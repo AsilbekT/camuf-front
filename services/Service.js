@@ -220,4 +220,8 @@ export default {
       },
     });
   },
+
+  registerCourse(formdata) {
+    return API().post("/appliedstudents/", formdata);
+  },
 };

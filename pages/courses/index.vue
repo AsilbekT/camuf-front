@@ -8,7 +8,7 @@
                 </li>
                 /
                 <li>
-                    <NuxtLink to="/">{{ $t('Course') }}</NuxtLink>
+                    <NuxtLink to="/">{{ $t('Directions') }}</NuxtLink>
                 </li>
             </ul>
         </div>
