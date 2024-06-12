@@ -242,16 +242,13 @@
                 </ul>
               </div>
             </div>
-            <div class="space-y-2">
+            <div class="space-y-2" v-if="formData.socialStatus != `Yo'q` && formData.socialStatus != ''">
               <label
                 class="text-sm font-medium leading-none"
                 for="social-status-file"
-                >Ijtimoiy holat fayli</label
+                >Ijtimoiy holat fayli </label
               >
               <input
-                :disabled="
-                  formData.socialStatus == '' || formData.socialStatus == `Yo'q`
-                "
                 @change="handleFileChange($event, 'socialStatusFile')"
                 class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 id="social-status-file"
@@ -624,7 +621,7 @@ const handleSubmit = async () => {
   formdata.append("diploma", formData.diplomaFile);
   formdata.append("schooling", formData.schooling);
   formdata.append("social_status", formData.socialStatus);
-  if (formData.socialStatus != `yo'q`) {
+  if (formData.socialStatus != `Yo'q`) {
     formdata.append("social_status_file", formData.socialStatusFile);
   }
   formdata.append("phone_number", formData.phoneNumber);
