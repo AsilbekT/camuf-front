@@ -249,7 +249,9 @@
                 >Ijtimoiy holat fayli</label
               >
               <input
-                :disabled="formData.socialStatus == ''"
+                :disabled="
+                  formData.socialStatus == '' || formData.socialStatus == `yo'q`
+                "
                 @change="handleFileChange($event, 'socialStatusFile')"
                 class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 id="social-status-file"
@@ -292,6 +294,10 @@
 <script setup>
 import { reactive, ref } from "vue";
 import Service from "~/services/Service";
+import { useToast } from "vue-toastification";
+import { useReCaptcha } from "vue-recaptcha-v3";
+
+const { executeRecaptcha } = useReCaptcha();
 const { id } = useRoute().params;
 const formData = reactive({
   lastName: "",
@@ -600,6 +606,8 @@ const handleFileChange = (event, field) => {
 };
 
 const handleSubmit = async () => {
+  const token = await executeRecaptcha("homepage");
+  console.log("reCAPTCHA token:", token);
   const formdata = new FormData();
   formdata.append("program", id);
   formdata.append("surname", formData.lastName);
@@ -613,11 +621,19 @@ const handleSubmit = async () => {
   formdata.append("diploma", formData.diplomaFile);
   formdata.append("schooling", formData.schooling);
   formdata.append("social_status", formData.socialStatus);
-  formdata.append("social_status_file", formData.socialStatusFile);
+  if (formData.socialStatus != `yo'q`) {
+    formdata.append("social_status_file", formData.socialStatusFile);
+  }
   formdata.append("phone_number", formData.phoneNumber);
   formdata.append("email", formData.email);
   const data = await Service.registerCourse(formdata);
-  console.log(data);
+  if (data.status < 299) {
+    useToast().success(
+      "Arizangiz qabul qilindi, tez orada siz bilan bog'lanamiz!"
+    );
+  } else {
+    useToast().error("Ma'lumotni to'g'ri to'ldiring!");
+  }
 };
 </script>
 

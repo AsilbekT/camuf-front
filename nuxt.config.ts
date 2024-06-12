@@ -1,7 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss", "nuxt-swiper", "@nuxtjs/i18n",],
+  modules: [
+    "@pinia/nuxt",
+    "@nuxtjs/tailwindcss",
+    "nuxt-swiper",
+    "@nuxtjs/i18n",
+  ],
   i18n: {
     defaultLocale: "uz",
     langDir: "./locales/",
@@ -30,7 +35,5 @@ export default defineNuxtConfig({
   },
   css: ["@/assets/scss/main.scss"],
   ssr: false,
-  plugins: [
-    '~/plugins/dateFilter.js'
-  ]
+  plugins: ["~/plugins/dateFilter.js"],
 });
