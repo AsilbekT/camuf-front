@@ -4,6 +4,6 @@ import { VueReCaptcha } from "vue-recaptcha-v3";
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(VueReCaptcha, {
-    siteKey: "6LfCkZMjAAAAAMexycEsa00fS08h9YRU16xsaFg8", // Replace with your site key
+    siteKey: "6LfRKPcpAAAAAM4No_Nd7RLm-AYHpQ-t8Sd0JmRV", // Replace with your site key
   });
 });
