@@ -32,7 +32,7 @@
           </div>
           <div class="courses-main__item-text-wrapper">
             <NuxtLink
-              :to="`/addmission/${item?.id}/`"
+              :to="`/admission/${item?.id}/`"
               class="courses-main__item-title"
             >
               <span v-html="item?.title"></span>
@@ -42,7 +42,7 @@
               {{ $t("DestinationCode") }}: {{ item?.course_id }}
             </h4>
             <NuxtLink
-              :to="`/addmission/${item?.id}/`"
+              :to="`/admission/${item?.id}/`"
               class="courses-main__item-btn"
               >{{ $t("LeaveMessage") }}
             </NuxtLink>
