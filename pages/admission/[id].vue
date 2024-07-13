@@ -294,7 +294,9 @@ import { reactive, ref } from "vue";
 import Service from "~/services/Service";
 import { useToast } from "vue-toastification";
 import { useReCaptcha } from "vue-recaptcha-v3";
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const { executeRecaptcha } = useReCaptcha();
 const { id } = useRoute().params;
 const formData = reactive({
@@ -621,6 +623,7 @@ const handleSubmit = async () => {
   formdata.append("diploma", formData.diplomaFile);
   formdata.append("schooling", formData.schooling);
   formdata.append("social_status", formData.socialStatus);
+  formdata.append("completed", true);
   if (formData.socialStatus != `Yo'q`) {
     formdata.append("social_status_file", formData.socialStatusFile);
   }
@@ -631,6 +634,7 @@ const handleSubmit = async () => {
     useToast().success(
       "Arizangiz qabul qilindi, tez orada siz bilan bog'lanamiz!"
     );
+    router.push('/')
   } else {
     useToast().error("Ma'lumotni to'g'ri to'ldiring!");
   }
