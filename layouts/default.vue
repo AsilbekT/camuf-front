@@ -268,7 +268,7 @@
         <div
           class="header-menu__item"
           v-for="(menu, index) in smallMenu"
-          :key="`${index}`"
+          :key="index"
         >
           <NuxtLink
             class="header-menu__btn cursor-pointer"
@@ -276,7 +276,7 @@
             :to="{ path: menu.link, query: { role: 'rahbariyat' } }"
             v-if="menu.isLink && menu.withQuery"
             @click="(isOpenMenu = false), (smallMenu = menus)"
-            v-html="menu.name"
+            v-html="menu?.name"
           >
           </NuxtLink>
           <NuxtLink
@@ -716,6 +716,11 @@ function translateMenu() {
       isLink: true,
       link: "/admission/",
       name: t("Acceptance"),
+    },
+    {
+      isLink: true,
+      link: "/vacancy/",
+      name: t("vacancy"),
     },
   ];
 }

@@ -77,3 +77,46 @@ body {
 @import "about-course";
 @import "contact";
 @import "connect";
+
+
+.employment-btn {
+  @extend %pr-btn;
+  margin-top: 60px;
+}
+.emplyoment-title {
+  @include title;
+  line-height: 1.5;
+  letter-spacing: 1px;
+}
+.employment-list {
+  padding-top: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  @include media(1175px) {
+    grid-template-columns: 1fr;
+  }
+  gap: 40px;
+  li {
+    color: var(--card-journal-text);
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    ul {
+      padding-top: 25px;
+      padding-left: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      li {
+        list-style: disc;
+        font-size: 18px;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+}
+
+.employment-desc {
+  margin-top: 50px;
+}
