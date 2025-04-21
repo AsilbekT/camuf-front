@@ -76,7 +76,10 @@
               v-html="item?.abstract"
             ></p>
             <div class="flex items-center justify-between">
-              <span class="text-sm">{{ $t("UploadedOn") }} May 12, 2023</span>
+              <span class="text-sm"
+                >{{ $t("UploadedOn") }}
+                {{ formatDateInUzbek(item?.date_created) }}</span
+              >
               <div class="flex gap-6 items-center">
                 <div class="flex gap-2 items-center">
                   <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
@@ -165,6 +168,31 @@ const props = defineProps({
 });
 
 const { formatDate } = useI18n();
+
+function formatDateInUzbek(dateStr) {
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime())) {
+    return "Noto'g'ri sana formati";
+  }
+  const months = [
+    "yanvar",
+    "fevral",
+    "mart",
+    "aprel",
+    "may",
+    "iyun",
+    "iyul",
+    "avgust",
+    "sentabr",
+    "oktabr",
+    "noyabr",
+    "dekabr",
+  ];
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+  return `${day}-${month}, ${year}-yil`;
+}
 
 function formattedDate(dateString) {
   const date = new Date(dateString);
