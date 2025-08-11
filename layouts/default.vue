@@ -585,7 +585,7 @@ function translateMenu() {
             {
               isLink: "true",
               name: t("Portfolio"),
-              link: "http://192.168.1.145/portfolio/",
+              link: "http://94.141.76.114/",
             },
             {
               isLink: "true",

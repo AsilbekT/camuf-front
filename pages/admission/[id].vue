@@ -8,6 +8,43 @@
           <h1 class="contact__title">Qabulga yozilish</h1>
         </div>
         <form class="space-y-6 contact__form" @submit.prevent="handleSubmit">
+          <div class="space-y-2">
+            <label class="text-sm font-medium leading-none" for="language">Ta'lim tili</label>
+            <button
+              @click="toggleDropdown('language')"
+              type="button"
+              class="flex h-10 w-full select-btn items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            >
+              <span>{{ formData.language ? formData.language : "Ta'lim tilini tanlang" }}</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-down h-4 w-4 opacity-50"
+                aria-hidden="true"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+            <div v-if="dropdown.language" class="relative">
+              <ul class="absolute w-full list bg-white border border-input rounded-md shadow-lg z-10">
+                <li
+                  v-for="label in languageOptions"
+                  :key="label.code"
+                  @click="selectLanguage(label.code)"
+                  class="px-3 py-2 cursor-pointer hover:bg-gray-100"
+                >
+                  {{ label.name }}
+                </li>
+              </ul>
+            </div>
+          </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-2">
               <label class="text-sm font-medium leading-none" for="last-name"
@@ -299,6 +336,11 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const { executeRecaptcha } = useReCaptcha();
 const { id } = useRoute().params;
+const languageOptions = [
+  { code: "uz", name: "O'zbek" },
+  { code: "ru", name: "Rus" },
+];
+
 const formData = reactive({
   lastName: "",
   firstName: "",
@@ -314,6 +356,7 @@ const formData = reactive({
   socialStatusFile: null,
   phoneNumber: "",
   email: "",
+  language: "", 
 });
 
 const countries = [
@@ -571,6 +614,7 @@ const onVerify = (token) => {
 };
 const schoolingOptions = ["O'rta maktab", "Litsey", "Bilim yurti", "Boshqa"];
 
+
 const socialStatusOptions = [
   "Yoshlar daftari",
   "Ayollar daftari",
@@ -583,10 +627,16 @@ const dropdown = ref({
   schooling: false,
   socialStatus: false,
   countrie: false,
+  language: false,
 });
 
 const toggleDropdown = (field) => {
   dropdown.value[field] = !dropdown.value[field];
+};
+
+const selectLanguage = (value) => {
+  formData.language = value;
+  dropdown.value.language = false;
 };
 
 const selectSchooling = (value) => {
@@ -624,6 +674,7 @@ const handleSubmit = async () => {
   formdata.append("schooling", formData.schooling);
   formdata.append("social_status", formData.socialStatus);
   formdata.append("completed", true);
+  formdata.append("language", formData.language);
   if (formData.socialStatus != `Yo'q`) {
     formdata.append("social_status_file", formData.socialStatusFile);
   }
