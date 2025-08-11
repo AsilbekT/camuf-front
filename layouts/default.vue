@@ -719,7 +719,7 @@ function translateMenu() {
     },
     {
       isLink: true,
-      link: "/vacancy/",
+      link: "/careers/",
       name: t("vacancy"),
     },
   ];
