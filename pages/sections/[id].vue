@@ -4,11 +4,11 @@
         <div class="container">
             <ul class="teachers-banner__nav">
                 <li>
-                    <NuxtLink to="/">{{ $t('MainPage') }}</NuxtLink>
+                    <NuxtLink :to="localePath('/')">{{ $t('MainPage') }}</NuxtLink>
                 </li>
-                /
+                <span class="breadcrumb-separator">/</span>
                 <li>
-                    <NuxtLink to="/" v-html="teachers?.name"></NuxtLink>
+                    <NuxtLink :to="localePath('/')" v-html="teachers?.name"></NuxtLink>
                 </li>
             </ul>
         </div>

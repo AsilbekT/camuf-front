@@ -8,11 +8,11 @@
     <div class="container">
       <ul class="courses-banner__nav">
         <li>
-          <NuxtLink to="/">{{ $t("MainPage") }}</NuxtLink>
+          <NuxtLink :to="localePath('/')">{{ $t("MainPage") }}</NuxtLink>
         </li>
-        /
+        <span class="breadcrumb-separator">/</span>
         <li>
-          <NuxtLink to="/">{{ $t("Contact") }}</NuxtLink>
+          <NuxtLink :to="localePath('/')">{{ $t("Contact") }}</NuxtLink>
         </li>
       </ul>
     </div>

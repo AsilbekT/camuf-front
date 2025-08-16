@@ -4,11 +4,11 @@
         <div class="container">
             <ul class="teachers-banner__nav">
                 <li>
-                    <NuxtLink to="/">{{ $t('MainPage') }}</NuxtLink>
+                    <NuxtLink :to="localePath('/')">{{ $t('MainPage') }}</NuxtLink>
                 </li>
-                /
+                <span class="breadcrumb-separator">/</span>
                 <li>
-                    <NuxtLink to="/">{{ $t('Teachers') }}</NuxtLink>
+                    <NuxtLink :to="localePath('/')">{{ $t('Teachers') }}</NuxtLink>
                 </li>
             </ul>
         </div>
@@ -21,8 +21,8 @@
                     <div class="teachers__item-img">
                         <img :src="item.profile_image" alt="">
                     </div>
-                    <NuxtLink :to="`/teachers/${item.id}`" lass="teachers__item-name cursor-pointer">
-                        {{ item.full_name }}
+                    <NuxtLink :to="localePath(`/teachers/${item.id}`)" lass="teachers__item-name cursor-pointer">
+                        {{ item?.name }}
                     </NuxtLink>
                 </div>
             </div>

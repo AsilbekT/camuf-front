@@ -4,11 +4,11 @@
         <div class="container">
             <ul class="news-banner__nav">
                 <li>
-                    <NuxtLink to="/">{{ $t('MainPage') }}</NuxtLink>
+                    <NuxtLink :to="localePath('/')">{{ $t('MainPage') }}</NuxtLink>
                 </li>
-                /
+                <span class="breadcrumb-separator">/</span>
                 <li>
-                    <NuxtLink to="/">{{ $t('News') }}</NuxtLink>
+                    <NuxtLink :to="localePath('/')">{{ $t('News') }}</NuxtLink>
                 </li>
             </ul>
         </div>
@@ -38,7 +38,7 @@
                     <div class="similar">
                         <h3 class="similar__title">{{ $t('SimilarNews') }}</h3>
                         <div class="similar__row flex flex-col gap-4">
-                            <NuxtLink :to="`/news/${similar?.category}/${similar?.slug}/`" class="similar__item" v-for="similar in similar_news" :key="similar.id">
+                            <NuxtLink :to="localePath(`/news/${similar?.category}/${similar?.slug}/`)" class="similar__item" v-for="similar in similar_news" :key="similar.id">
                                 <div class="similar__img">
                                     <img class="rounded-sm" :src="similar.image" alt="" />
                                 </div>

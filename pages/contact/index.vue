@@ -4,11 +4,11 @@
     <div class="container">
       <ul class="courses-banner__nav">
         <li>
-          <NuxtLink to="/">{{ $t('MainPage') }}</NuxtLink>
+          <NuxtLink :to="localePath('/')">{{ $t('MainPage') }}</NuxtLink>
         </li>
-        /
+        <span class="breadcrumb-separator">/</span>
         <li>
-          <NuxtLink to="/">{{ $t('Contact') }}</NuxtLink>
+          <NuxtLink :to="localePath('/')">{{ $t('Contact') }}</NuxtLink>
         </li>
       </ul>
     </div>
@@ -40,10 +40,10 @@
       <div class="contact-main__items-wrapper">
         <div class="contact-main__item" v-for="item in courses?.results" :key="item">
           <div class="contact-main__item-text-wrapper">
-            <NuxtLink :to="`/about-course/${item?.id}`" class="contact-main__item-title">{{ item?.title }}
+            <NuxtLink :to="localePath(`/about-course/${item?.id}`)" class="contact-main__item-title">{{ item?.title }}
             </NuxtLink>
             <h4 class="contact-main__item-code">{{ $t('DestinationCode') }}: {{ item?.course_id }}</h4>
-            <NuxtLink :to="`/about-course/${item?.id}`" class="contact-main__item-btn">{{ $t('DetailedInformation') }}
+            <NuxtLink :to="localePath(`/about-course/${item?.id}`)" class="contact-main__item-btn">{{ $t('DetailedInformation') }}
             </NuxtLink>
           </div>
         </div>

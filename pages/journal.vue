@@ -4,11 +4,11 @@
         <div class="container">
             <ul class="news-banner__nav">
                 <li>
-                    <NuxtLink to="/">{{ $t('MainPage') }}</NuxtLink>
+                    <NuxtLink :to="localePath('/')">{{ $t('MainPage') }}</NuxtLink>
                 </li>
-                /
+                <span class="breadcrumb-separator">/</span>
                 <li>
-                    <NuxtLink to="/">{{ $t('Journals') }}</NuxtLink>
+                    <NuxtLink :to="localePath('/')">{{ $t('Journals') }}</NuxtLink>
                 </li>
             </ul>
         </div>
@@ -32,7 +32,7 @@
                         <p class="desc flex flex-col overflow-hidden max-h-[205px] block mb-8 font-sans text-base antialiased font-normal leading-relaxed"
                             v-html="item?.description">
                         </p>
-                        <NuxtLink :to="`/journals/${item.id}`"
+                        <NuxtLink :to="localePath(`/journals/${item.id}`)"
                             class="flex mt-auto items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center  uppercase align-middle transition-all rounded-lg select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-gray-900/10 active:bg-gray-900/20">
                             {{ $t('More') }}<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2" class="w-4 h-4">

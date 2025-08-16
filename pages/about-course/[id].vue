@@ -4,11 +4,11 @@
         <div class="container">
             <ul class="courses-banner__nav">
                 <li>
-                    <NuxtLink to="/"> {{ $t('MainPage') }} </NuxtLink>
+                    <NuxtLink :to="localePath('/')"> {{ $t('MainPage') }} </NuxtLink>
                 </li>
-                /
+                <span class="breadcrumb-separator">/</span>
                 <li>
-                    <NuxtLink to="/">{{ $t('Course') }}</NuxtLink>
+                    <NuxtLink :to="localePath('/')">{{ $t('Course') }}</NuxtLink>
                 </li>
             </ul>
         </div>
@@ -28,7 +28,7 @@
                         {{ $t('AllDirections') }}:
                     </h3>
                     <div class="other-categories__row">
-                        <NuxtLink :to="`/course/${category.id}`" class="other-categories__item"
+                        <NuxtLink :to="localePath(`/course/${category.id}`)" class="other-categories__item"
                             :class="{ 'active': details?.data?.category === category.id }" v-for="category in categories"
                             :key="category.id">
                             {{ category.name }}
@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
-</template>¸
+</template>
 
 <script setup>
 import Service from "~/services/Service";

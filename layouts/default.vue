@@ -1,13 +1,13 @@
 <template>
   <header class="header" :class="{ 'fixed-header': scrolledNav }">
     <div class="container">
-      <NuxtLink to="/" class="site-logo">
+      <NuxtLink :to="localePath('/')" class="site-logo">
         <img src="@/assets/images/png/logo.png" alt="" />
       </NuxtLink>
       <nav class="header-nav">
         <ul class="header-nav-list">
           <li>
-            <NuxtLink to="/about">{{ $t("AboutUs") }}</NuxtLink>
+            <NuxtLink :to="localePath('/about')">{{ $t("AboutUs") }}</NuxtLink>
           </li>
         </ul>
       </nav>
@@ -51,7 +51,7 @@
           viewBox="0 0 24 24"
         >
           <path
-            :fill="dark ? '#fff' : '000'"
+            fill="currentColor"
             d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275q-.275-.275-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7q.275-.275.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275q.275.275.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275z"
           />
         </svg>
@@ -66,7 +66,7 @@
           <NuxtLink
             class="header-menu__btn cursor-pointer"
             :class="{ active: index === activeMenu.one.id }"
-            :to="menu.link ? menu.link : '/'"
+            :to="menu.link ? localePath(menu.link) : localePath('/')"
             v-if="menu.isLink"
             @click="isOpenMenu = false"
             @mouseenter="
@@ -104,7 +104,7 @@
           >
             <NuxtLink
               class="header-menu__btn"
-              :to="{ path: item.link, query: { role: 'rahbariyat' } }"
+              :to="{ path: localePath(item.link), query: { role: 'rahbariyat' } }"
               v-if="item.isLink && item.withQuery"
               @click="isOpenMenu = false"
               @mouseenter="
@@ -116,7 +116,7 @@
             ></NuxtLink>
             <NuxtLink
               class="header-menu__btn"
-              :to="item.link ? item.link : '/'"
+              :to="item.link ? localePath(item.link) : localePath('/')"
               v-else-if="item.isLink && !item.withQuery"
               @click="isOpenMenu = false"
               @mouseenter="
@@ -153,7 +153,7 @@
           >
             <NuxtLink
               class="header-menu__btn"
-              :to="item.link"
+              :to="localePath(item.link)"
               v-if="item.isLink"
               @click="isOpenMenu = false"
               @mouseenter="(activeMenu.three = ''), (activeMenu.four = '')"
@@ -182,7 +182,7 @@
           >
             <NuxtLink
               class="header-menu__btn cursor-pointer"
-              :to="item.link"
+              :to="localePath(item.link)"
               v-if="item.isLink"
               @click="isOpenMenu = false"
               @mouseenter="activeMenu.four = ''"
@@ -212,7 +212,7 @@
             <NuxtLink
               class="header-menu__btn"
               @click="isOpenMenu = false"
-              :to="item.link"
+              :to="localePath(item.link)"
               v-if="item.isLink"
               v-html="item.name"
             ></NuxtLink>
@@ -273,7 +273,7 @@
           <NuxtLink
             class="header-menu__btn cursor-pointer"
             :class="{ active: index === activeMenu.one.id }"
-            :to="{ path: menu.link, query: { role: 'rahbariyat' } }"
+            :to="{ path: localePath(menu.link), query: { role: 'rahbariyat' } }"
             v-if="menu.isLink && menu.withQuery"
             @click="(isOpenMenu = false), (smallMenu = menus)"
             v-html="menu?.name"
@@ -282,7 +282,7 @@
           <NuxtLink
             class="header-menu__btn cursor-pointer"
             :class="{ active: index === activeMenu.one.id }"
-            :to="menu.link"
+            :to="localePath(menu.link)"
             v-else-if="menu.isLink && !menu.withQuery"
             @click="(isOpenMenu = false), (smallMenu = menus)"
             v-html="menu.name"
@@ -317,7 +317,7 @@
   <NuxtPage />
   <footer class="footer">
     <div class="container">
-      <NuxtLink to="/" class="site-logo">
+      <NuxtLink :to="localePath('/')" class="site-logo">
         <img src="@/assets/images/png/logo.png" alt="" />
       </NuxtLink>
       <ul class="footer__list">
