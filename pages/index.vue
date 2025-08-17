@@ -149,6 +149,9 @@
                 1270: {
                     slidesPerView: 4
                 }
+            }" :modules="[SwiperNavigation]" :navigation="{
+                nextEl: '.button-next',
+                prevEl: '.button-prev'
             }" :space-between="40">
                 <SwiperSlide v-for="item in studentsVideos?.results" :key="item">
                     <div class="video-clips__item" @mousemove="hover($event)" @click="hover($event)"
@@ -165,6 +168,12 @@
                     </div>
                 </SwiperSlide>
             </Swiper>
+            <button class="button-next">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Huge Icons by Hugeicons - undefined --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 6s6 4.419 6 6s-6 6-6 6" color="currentColor"/></svg>
+            </button>
+            <button class="button-prev">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Huge Icons by Hugeicons - undefined --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 6s-6 4.419-6 6s6 6 6 6" color="currentColor"/></svg>
+            </button>
         </div>
     </div>
 
@@ -212,7 +221,7 @@
             <div class="teachers__header flex items-center justify-between">
                 <NuxtLink :to="localePath(`/staff/?role=professor`)" class="teachers__title">{{ $t('OurTeachers') }}
                 </NuxtLink>
-                <NuxtLink :to="localePath(`/staff/?role=all`)" class="text-xl">{{ $t('AllStaffs') }}</NuxtLink>
+                <NuxtLink :to="localePath(`/staff/?role=all`)" class="text-xl all-teacher-link">{{ $t('AllStaffs') }}</NuxtLink>
             </div>
 
             <div class="teachers__list">

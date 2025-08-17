@@ -22,13 +22,13 @@
            {{ $t('ContactSubTitle') }}
           </h3>
           <ul class="contact-faq__list">
-            <li class="contact-faq__item">Обучение в двух системах></li>
-            <li class="contact-faq__item">5-дневная учебная система</li>
-            <li class="contact-faq__item">Сочетание теории и практики</li>
-            <li class="contact-faq__item">Путешествия по программе Work&Travel</li>
-            <li class="contact-faq__item">Проведение занятий в современных клиниках</li>
-            <li class="contact-faq__item">Современный кампус и симуляционный центр</li>
-            <li class="contact-faq__item"> Прямой доступ к всемирной сети библиотек</li>
+            <li class="contact-faq__item">{{ $t('TwoSystemEducation') }}</li>
+            <li class="contact-faq__item">{{ $t('FiveDaySystem') }}</li>
+            <li class="contact-faq__item">{{ $t('TheoryPracticeCombination') }}</li>
+            <li class="contact-faq__item">{{ $t('WorkTravelProgram') }}</li>
+            <li class="contact-faq__item">{{ $t('ModernClinicsClasses') }}</li>
+            <li class="contact-faq__item">{{ $t('ModernCampusSimCenter') }}</li>
+            <li class="contact-faq__item">{{ $t('DirectAccessLibraries') }}</li>
           </ul>
         </div>
       </div>

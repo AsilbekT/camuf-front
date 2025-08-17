@@ -388,6 +388,13 @@ onMounted(async () => {
       langOpen.value = false;
     }
   });
+
+  // Add click outside handler for header menu
+  window.addEventListener("click", (e) => {
+    if (isOpenMenu.value && !e.target.closest('.header-menu') && !e.target.closest('.header-menu-btn')) {
+      isOpenMenu.value = false;
+    }
+  });
 });
 
 watch(locale, async () => {

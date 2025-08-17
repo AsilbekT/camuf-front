@@ -61,7 +61,7 @@
                     <h2 class="teacher-main__title"> {{ $t('DetailedInformation') }}</h2>
                     <p class="teacher-main__text" v-html="teacher.body"></p>
                     <!-- <div class="teacher-main__socials teacher-socials">
-                        <h4 class="teacher-socials__title">Ijtimoiy tarmoqlar</h4>
+                        <h4 class="teacher-socials__title">{{ $t('SocialNetworks') }}</h4>
 
                         <ul class="teacher-socials__list">
                             <li class="teacher-socials__item">

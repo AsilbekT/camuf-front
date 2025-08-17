@@ -47,18 +47,17 @@
           class="whitespace-nowrap text-lg font-semibold leading-none tracking-tight"
           data-id="9"
         >
-          Success!
+          {{ $t('SuccessTitle') }}
         </h2>
         <p id="radix-:r5:" class="text-sm text-muted-foreground" data-id="10">
-          Your form has been submitted successfully. We will be in touch with
-          you shortly.
+          {{ $t('SuccessMessage') }}
         </p>
       </div>
       <div data-id="11">
         <button
           class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
         >
-          Close
+          {{ $t('CloseButton') }}
         </button>
       </div>
     </div>
@@ -80,7 +79,7 @@
       >
         <path d="M18 6 6 18"></path>
         <path d="m6 6 12 12"></path></svg
-      ><span class="sr-only">Close</span>
+      ><span class="sr-only">{{ $t('CloseButton') }}</span>
     </button>
   </div>
 </template>

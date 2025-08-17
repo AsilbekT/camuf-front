@@ -15,7 +15,7 @@
               type="button"
               class="flex h-10 w-full select-btn items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
             >
-              <span>{{ formData.language ? formData.language : "Ta'lim tilini tanlang" }}</span>
+              <span>{{ formData.language ? formData.language : $t('SelectEducationLanguage') }}</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -116,7 +116,7 @@
                 class="flex h-10 w-full select-btn items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
               >
                 <span>{{
-                  formData.country ? formData.country : "Mamlakantni tanlang"
+                  formData.country ? formData.country : $t('SelectCountry')
                 }}</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -185,7 +185,7 @@
                 <span>{{
                   formData.schooling
                     ? formData.schooling
-                    : "Ta'lim darajasini tanlang"
+                    : $t('SelectEducationLevel')
                 }}</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -236,7 +236,7 @@
               <label
                 class="text-sm font-medium leading-none"
                 for="social-status"
-                >Ijtimoiy holat</label
+                >{{ $t('SocialStatus') }}</label
               >
               <button
                 @click="toggleDropdown('socialStatus')"
@@ -246,7 +246,7 @@
                 <span>{{
                   formData.socialStatus
                     ? formData.socialStatus
-                    : "Ijtimoiy holatni tanlang"
+                    : $t('SelectSocialStatus')
                 }}</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -283,7 +283,7 @@
               <label
                 class="text-sm font-medium leading-none"
                 for="social-status-file"
-                >Ijtimoiy holat fayli </label
+                >{{ $t('SocialStatusFile') }}</label
               >
               <input
                 @change="handleFileChange($event, 'socialStatusFile')"
@@ -296,30 +296,30 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-2">
               <label class="text-sm font-medium leading-none" for="phone-number"
-                >Telefon raqami</label
+                >{{ $t('PhoneNumber') }}</label
               >
               <input
                 v-model="formData.phoneNumber"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 id="phone-number"
-                placeholder="Telefon raqamingizni kiriting"
+                :placeholder="$t('EnterPhoneNumber')"
               />
             </div>
             <div class="space-y-2">
               <label class="text-sm font-medium leading-none" for="email"
-                >Email</label
+                >{{ $t('Email') }}</label
               >
               <input
                 v-model="formData.email"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 id="email"
-                placeholder="Emailingizni kiriting"
+                :placeholder="$t('EnterEmail')"
                 type="email"
               />
             </div>
           </div>
           <vue-recaptcha @verify="onVerify"></vue-recaptcha>
-          <button class="contact__submit" type="submit">Yuborish</button>
+          <button class="contact__submit" type="submit">{{ $t('Submit') }}</button>
         </form>
       </div>
     </div>

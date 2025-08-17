@@ -43,7 +43,7 @@
       <div class="journals-right h-[fit-content] sticky">
         <button @click="downloadFile" class="book-item__btn">
           <img src="@/assets/images/svg/down.svg" alt="" />
-          <span>скачать файл</span>
+          <span>{{ $t('DownloadFile') }}</span>
         </button>
       </div>
     </div>
