@@ -69,9 +69,6 @@
                             </div>
                         </section>
 
-                        <img src="@/assets/images/jpg/photo_2025-08-1800.52.06.jpeg"
-                            alt="Medical professionals in hospital setting" class="article-image" loading="lazy" />
-
                         <section>
                             <h2>{{ $t('CareerOpportunities') }}</h2>
                             <p>{{ $t('CareerOpportunitiesDesc') }}</p>
