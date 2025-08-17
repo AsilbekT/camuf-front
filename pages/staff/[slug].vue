@@ -84,10 +84,10 @@ const teacher = ref({});
 // const { id: teacher_id } = useRoute().params;
 
 const teacher_id = localStorage.getItem('teacherId')
-
+const route = useRoute()
 //functions
 async function getOneTeachers() {
-    const res = await Service.getOneTeachers(teacher_id,locale.value);
+    const res = await Service.getOneTeachers(route.params.slug,locale.value);
     teacher.value = res?.data;
     console.log(res?.data);
 }

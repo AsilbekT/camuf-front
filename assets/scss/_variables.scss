@@ -17,6 +17,12 @@
   --footer-form: rgba(44, 94, 255, 1);
   --special-item-title: #2c5eff;
   --card: #ffffff17;
+  --highlight-bg: #ffffff17;
+  --highlight-border: #2c5eff;
+  --section-border: #2c5eff;
+  --program-border: #2c5eff;
+  --country-border: #2c5eff;
+  --cta-border: #2c5eff;
 }
 .dark {
   --bg-color: #f4f4f4;
@@ -37,4 +43,10 @@
   --card-journal: #fff;
   --card-journal-text: rgba(55, 65, 81, 1);
   --input-date: light;
+  --highlight-bg: #f8f9fa;
+  --highlight-border: #3550a7;
+  --section-border: #e0e0e0;
+  --program-border: #e0e0e0;
+  --country-border: #e0e0e0;
+  --cta-border: #e0e0e0;
 }

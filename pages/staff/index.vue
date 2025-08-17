@@ -205,9 +205,81 @@ onMounted(() => {
     })
 
     window.addEventListener("scroll", handleScroll)
-
-
 })
+
+// SEO Meta Tags
+useHead({
+    title: 'CAMU Staff Directory - Faculty & Administrative Staff',
+    meta: [
+        {
+            name: 'keywords',
+            content: 'CAMU, Central Asian Medical University, staff directory, faculty members, professors, lecturers, researchers, administrative staff, medical faculty, university staff, academic staff, department heads, deans, medical education staff, healthcare professionals, teaching staff, research staff, academic leadership, university administration, medical university staff, Uzbekistan medical staff, Central Asia medical faculty, medical research staff, clinical staff, academic advisors, teaching assistants, research assistants, laboratory technicians, medical librarians, IT support staff, human resources, finance officers, admissions counselors, student services, career services, alumni relations, executive staff, visiting professors, emeritus professors, adjunct faculty, medical technology staff, healthcare innovation staff, medical curriculum staff, international medical staff, medical sciences faculty, health sciences staff, medical training staff, clinical education staff, medical facilities staff, medical library staff, medical laboratories staff, medical equipment staff, medical research center staff, medical innovation hub staff'
+        }
+    ]
+});
+
+useSeoMeta({
+    title: 'CAMU Staff Directory - Faculty & Administrative Staff',
+    ogTitle: 'CAMU Staff Directory - Faculty & Administrative Staff',
+    description: 'Meet the distinguished faculty and administrative staff of Central Asian Medical University (CAMU). Discover our experienced professors, researchers, department heads, and administrative professionals dedicated to medical education excellence.',
+    ogDescription: 'Meet the distinguished faculty and administrative staff of Central Asian Medical University (CAMU). Discover our experienced professors, researchers, department heads, and administrative professionals dedicated to medical education excellence.',
+    ogImage: '/logo.png',
+    ogUrl: 'https://camu.edu/staff',
+    twitterCard: 'summary_large_image',
+    twitterTitle: 'CAMU Staff Directory - Faculty & Administrative Staff',
+    twitterDescription: 'Meet the distinguished faculty and administrative staff of Central Asian Medical University (CAMU). Discover our experienced professors, researchers, department heads, and administrative professionals dedicated to medical education excellence.',
+    twitterImage: '/logo.png',
+    ogSiteName: 'CAMU - Central Asian Medical University',
+    ogType: 'website'
+});
+
+useSchemaOrg([
+    defineWebPage({
+        name: 'CAMU Staff Directory - Faculty & Administrative Staff',
+        description: 'Meet the distinguished faculty and administrative staff of Central Asian Medical University (CAMU). Discover our experienced professors, researchers, department heads, and administrative professionals dedicated to medical education excellence.',
+        url: 'https://camu.edu/staff',
+        image: '/favicon.ico',
+        publisher: {
+            '@type': 'Organization',
+            name: 'CAMU - Central Asian Medical University',
+            logo: {
+                '@type': 'ImageObject',
+                url: '/favicon.ico'
+            }
+        }
+    }),
+    defineCollectionPage({
+        name: 'CAMU Staff Directory',
+        description: 'Comprehensive directory of faculty members, researchers, and administrative staff at Central Asian Medical University. Browse by position, department, or search for specific staff members.',
+        url: 'https://camu.edu/staff',
+        image: '/favicon.ico',
+        publisher: {
+            '@type': 'Organization',
+            name: 'CAMU - Central Asian Medical University',
+            logo: {
+                '@type': 'ImageObject',
+                url: '/favicon.ico'
+            }
+        },
+        breadcrumb: {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+                {
+                    '@type': 'ListItem',
+                    position: 1,
+                    name: 'Main Page',
+                    item: 'https://camu.edu'
+                },
+                {
+                    '@type': 'ListItem',
+                    position: 2,
+                    name: 'Staff Directory',
+                    item: 'https://camu.edu/staff'
+                }
+            ]
+        }
+    })
+]);
 
 </script>
 

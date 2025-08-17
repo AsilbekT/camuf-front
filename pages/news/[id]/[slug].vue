@@ -83,6 +83,53 @@ getNews();
 
 const dark = ref(localStorage.getItem('dark') ? true : false);
 
+// SEO Meta Tags
+useHead({
+    title: news.value ? `${news.value.title?.replace(/<[^>]*>/g, '')} - CAMU News` : 'CAMU News',
+    meta: [
+        {
+            name: 'keywords',
+            content: 'CAMU, Central Asian Medical University, medical education, university news, medical university, higher education, academic news, medical studies, healthcare education, Uzbekistan education, medical cooperation, university partnerships, medical research, academic development, medical faculty, nursing education, medical technology, healthcare innovation, medical curriculum, student life, medical campus, international education, medical sciences, health sciences, medical training, clinical education, medical facilities, medical library, medical laboratories, medical equipment, medical research center, medical innovation hub'
+        }
+    ]
+});
+
+useSeoMeta({
+    title: news.value ? `${news.value.title?.replace(/<[^>]*>/g, '')} - CAMU News` : 'CAMU News',
+    ogTitle: news.value ? `${news.value.title?.replace(/<[^>]*>/g, '')} - CAMU News` : 'CAMU News',
+    description: news.value?.subtitle || news.value?.body?.replace(/<[^>]*>/g, '').substring(0, 160) || 'Latest news and updates from Central Asian Medical University (CAMU). Stay informed about medical education, research, and university developments.',
+    ogDescription: news.value?.subtitle || news.value?.body?.replace(/<[^>]*>/g, '').substring(0, 160) || 'Latest news and updates from Central Asian Medical University (CAMU). Stay informed about medical education, research, and university developments.',
+    ogImage: news.value?.image || '/favicon.ico',
+    ogUrl: `https://camu.edu/news/${id}/${slug}`,
+    twitterCard: 'summary_large_image',
+    twitterTitle: news.value ? `${news.value.title?.replace(/<[^>]*>/g, '')} - CAMU News` : 'CAMU News',
+    twitterDescription: news.value?.subtitle || news.value?.body?.replace(/<[^>]*>/g, '').substring(0, 160) || 'Latest news and updates from Central Asian Medical University (CAMU). Stay informed about medical education, research, and university developments.',
+    twitterImage: news.value?.image || '/favicon.ico',
+    ogSiteName: 'CAMU - Central Asian Medical University',
+    ogType: 'article',
+    articlePublishedTime: news.value?.date_created || new Date().toISOString(),
+    articleModifiedTime: news.value?.date_updated || news.value?.date_created || new Date().toISOString(),
+    articleAuthor: 'CAMU University',
+    articleSection: 'News'
+});
+
+useSchemaOrg([
+    defineWebPage({
+        name: news.value ? `${news.value.title?.replace(/<[^>]*>/g, '')} - CAMU News` : 'CAMU News',
+        description: news.value?.subtitle || news.value?.body?.replace(/<[^>]*>/g, '').substring(0, 200) || 'Latest news and updates from Central Asian Medical University (CAMU). Stay informed about medical education, research, and university developments.',
+        url: `https://camu.edu/news/${id}/${slug}`,
+        image: news.value?.image || '/favicon.ico',
+        publisher: {
+            '@type': 'Organization',
+            name: 'CAMU - Central Asian Medical University',
+            logo: {
+                '@type': 'ImageObject',
+                url: '/favicon.ico'
+            }
+        }
+    })
+]);
+
 </script>
 
 <style lang="scss" scoped></style>
