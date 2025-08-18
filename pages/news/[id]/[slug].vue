@@ -99,12 +99,12 @@ useSeoMeta({
     ogTitle: news.value ? `${news.value.title?.replace(/<[^>]*>/g, '')} - CAMU News` : 'CAMU News',
     description: news.value?.subtitle || news.value?.body?.replace(/<[^>]*>/g, '').substring(0, 160) || 'Latest news and updates from Central Asian Medical University (CAMU). Stay informed about medical education, research, and university developments.',
     ogDescription: news.value?.subtitle || news.value?.body?.replace(/<[^>]*>/g, '').substring(0, 160) || 'Latest news and updates from Central Asian Medical University (CAMU). Stay informed about medical education, research, and university developments.',
-    ogImage: news.value?.image || '/favicon.ico',
+    ogImage: news.value?.image || '/logo.png',
     ogUrl: `https://camu.edu/news/${id}/${slug}`,
     twitterCard: 'summary_large_image',
     twitterTitle: news.value ? `${news.value.title?.replace(/<[^>]*>/g, '')} - CAMU News` : 'CAMU News',
     twitterDescription: news.value?.subtitle || news.value?.body?.replace(/<[^>]*>/g, '').substring(0, 160) || 'Latest news and updates from Central Asian Medical University (CAMU). Stay informed about medical education, research, and university developments.',
-    twitterImage: news.value?.image || '/favicon.ico',
+    twitterImage: news.value?.image || '/logo.png',
     ogSiteName: 'CAMU - Central Asian Medical University',
     ogType: 'article',
     articlePublishedTime: news.value?.date_created || new Date().toISOString(),
@@ -124,7 +124,7 @@ useSeoMeta({
 //             name: 'CAMU - Central Asian Medical University',
 //             logo: {
 //                 '@type': 'ImageObject',
-//                 url: '/favicon.ico'
+//                 url: '/logo.png'
 //             }
 //         }
 //     })
