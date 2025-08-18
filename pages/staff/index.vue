@@ -233,53 +233,53 @@ useSeoMeta({
     ogType: 'website'
 });
 
-useSchemaOrg([
-    defineWebPage({
-        name: 'CAMU Staff Directory - Faculty & Administrative Staff',
-        description: 'Meet the distinguished faculty and administrative staff of Central Asian Medical University (CAMU). Discover our experienced professors, researchers, department heads, and administrative professionals dedicated to medical education excellence.',
-        url: 'https://camu.edu/staff',
-        image: '/favicon.ico',
-        publisher: {
-            '@type': 'Organization',
-            name: 'CAMU - Central Asian Medical University',
-            logo: {
-                '@type': 'ImageObject',
-                url: '/favicon.ico'
-            }
-        }
-    }),
-    defineCollectionPage({
-        name: 'CAMU Staff Directory',
-        description: 'Comprehensive directory of faculty members, researchers, and administrative staff at Central Asian Medical University. Browse by position, department, or search for specific staff members.',
-        url: 'https://camu.edu/staff',
-        image: '/favicon.ico',
-        publisher: {
-            '@type': 'Organization',
-            name: 'CAMU - Central Asian Medical University',
-            logo: {
-                '@type': 'ImageObject',
-                url: '/favicon.ico'
-            }
-        },
-        breadcrumb: {
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-                {
-                    '@type': 'ListItem',
-                    position: 1,
-                    name: 'Main Page',
-                    item: 'https://camu.edu'
-                },
-                {
-                    '@type': 'ListItem',
-                    position: 2,
-                    name: 'Staff Directory',
-                    item: 'https://camu.edu/staff'
-                }
-            ]
-        }
-    })
-]);
+// useSchemaOrg([
+//     defineWebPage({
+//         name: 'CAMU Staff Directory - Faculty & Administrative Staff',
+//         description: 'Meet the distinguished faculty and administrative staff of Central Asian Medical University (CAMU). Discover our experienced professors, researchers, department heads, and administrative professionals dedicated to medical education excellence.',
+//         url: 'https://camu.edu/staff',
+//         image: '/favicon.ico',
+//         publisher: {
+//             '@type': 'Organization',
+//             name: 'CAMU - Central Asian Medical University',
+//             logo: {
+//                 '@type': 'ImageObject',
+//                 url: '/favicon.ico'
+//             }
+//         }
+//     }),
+//     defineCollectionPage({
+//         name: 'CAMU Staff Directory',
+//         description: 'Comprehensive directory of faculty members, researchers, and administrative staff at Central Asian Medical University. Browse by position, department, or search for specific staff members.',
+//         url: 'https://camu.edu/staff',
+//         image: '/favicon.ico',
+//         publisher: {
+//             '@type': 'Organization',
+//             name: 'CAMU - Central Asian Medical University',
+//             logo: {
+//                 '@type': 'ImageObject',
+//                 url: '/favicon.ico'
+//             }
+//         },
+//         breadcrumb: {
+//             '@type': 'BreadcrumbList',
+//             itemListElement: [
+//                 {
+//                     '@type': 'ListItem',
+//                     position: 1,
+//                     name: 'Main Page',
+//                     item: 'https://camu.edu'
+//                 },
+//                 {
+//                     '@type': 'ListItem',
+//                     position: 2,
+//                     name: 'Staff Directory',
+//                     item: 'https://camu.edu/staff'
+//                 }
+//             ]
+//         }
+//     })
+// ]);
 
 </script>
 

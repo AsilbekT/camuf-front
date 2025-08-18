@@ -113,22 +113,22 @@ useSeoMeta({
     articleSection: 'News'
 });
 
-useSchemaOrg([
-    defineWebPage({
-        name: news.value ? `${news.value.title?.replace(/<[^>]*>/g, '')} - CAMU News` : 'CAMU News',
-        description: news.value?.subtitle || news.value?.body?.replace(/<[^>]*>/g, '').substring(0, 200) || 'Latest news and updates from Central Asian Medical University (CAMU). Stay informed about medical education, research, and university developments.',
-        url: `https://camu.edu/news/${id}/${slug}`,
-        image: news.value?.image || '/favicon.ico',
-        publisher: {
-            '@type': 'Organization',
-            name: 'CAMU - Central Asian Medical University',
-            logo: {
-                '@type': 'ImageObject',
-                url: '/favicon.ico'
-            }
-        }
-    })
-]);
+// useSchemaOrg([
+//     defineWebPage({
+//         name: news.value ? `${news.value.title?.replace(/<[^>]*>/g, '')} - CAMU News` : 'CAMU News',
+//         description: news.value?.subtitle || news.value?.body?.replace(/<[^>]*>/g, '').substring(0, 200) || 'Latest news and updates from Central Asian Medical University (CAMU). Stay informed about medical education, research, and university developments.',
+//         url: `https://camu.edu/news/${id}/${slug}`,
+//         image: news.value?.image || '/favicon.ico',
+//         publisher: {
+//             '@type': 'Organization',
+//             name: 'CAMU - Central Asian Medical University',
+//             logo: {
+//                 '@type': 'ImageObject',
+//                 url: '/favicon.ico'
+//             }
+//         }
+//     })
+// ]);
 
 </script>
 
