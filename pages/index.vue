@@ -130,7 +130,7 @@
 
     <div class="latest-news">
         <div class="container">
-            <NuxtLink :to="localePath(`/new`)" class="latest-news__title">
+            <NuxtLink :to="localePath(`/news`)" class="latest-news__title">
                 {{ $t('News') }}
             </NuxtLink>
             <div class="latest-news__list">
