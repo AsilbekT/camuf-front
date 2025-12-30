@@ -114,10 +114,24 @@
               "
               v-html="item.name"
             ></NuxtLink>
+            <a
+              class="header-menu__btn"
+              :href="item.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              v-else-if="item.isLink && !item.withQuery && isExternalLink(item.link)"
+              @click="isOpenMenu = false"
+              @mouseenter="
+                (activeMenu.two = ''),
+                  (activeMenu.three = ''),
+                  (activeMenu.four = '')
+              "
+              v-html="item.name"
+            ></a>
             <NuxtLink
               class="header-menu__btn"
               :to="item.link ? localePath(item.link) : localePath('/')"
-              v-else-if="item.isLink && !item.withQuery"
+              v-else-if="item.isLink && !item.withQuery && !isExternalLink(item.link)"
               @click="isOpenMenu = false"
               @mouseenter="
                 (activeMenu.two = ''),
@@ -151,10 +165,20 @@
             v-for="item in activeMenu.two.sub"
             :key="item"
           >
+            <a
+              class="header-menu__btn"
+              :href="item.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              v-if="item.isLink && isExternalLink(item.link)"
+              @click="isOpenMenu = false"
+              @mouseenter="(activeMenu.three = ''), (activeMenu.four = '')"
+              v-html="item.name"
+            ></a>
             <NuxtLink
               class="header-menu__btn"
               :to="localePath(item.link)"
-              v-if="item.isLink"
+              v-else-if="item.isLink && !isExternalLink(item.link)"
               @click="isOpenMenu = false"
               @mouseenter="(activeMenu.three = ''), (activeMenu.four = '')"
               v-html="item.name"
@@ -180,10 +204,20 @@
             v-for="item in activeMenu.three.sub"
             :key="item"
           >
+            <a
+              class="header-menu__btn cursor-pointer"
+              :href="item.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              v-if="item.isLink && isExternalLink(item.link)"
+              @click="isOpenMenu = false"
+              @mouseenter="activeMenu.four = ''"
+              v-html="item.name"
+            ></a>
             <NuxtLink
               class="header-menu__btn cursor-pointer"
               :to="localePath(item.link)"
-              v-if="item.isLink"
+              v-else-if="item.isLink && !isExternalLink(item.link)"
               @click="isOpenMenu = false"
               @mouseenter="activeMenu.four = ''"
               v-html="item.name"
@@ -209,11 +243,20 @@
             v-for="item in activeMenu.four.sub"
             :key="item"
           >
+            <a
+              class="header-menu__btn"
+              :href="item.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              v-if="item.isLink && isExternalLink(item.link)"
+              @click="isOpenMenu = false"
+              v-html="item.name"
+            ></a>
             <NuxtLink
               class="header-menu__btn"
               @click="isOpenMenu = false"
               :to="localePath(item.link)"
-              v-if="item.isLink"
+              v-else-if="item.isLink && !isExternalLink(item.link)"
               v-html="item.name"
             ></NuxtLink>
             <!-- item -->
@@ -279,11 +322,22 @@
             v-html="menu?.name"
           >
           </NuxtLink>
+          <a
+            class="header-menu__btn cursor-pointer"
+            :class="{ active: index === activeMenu.one.id }"
+            :href="menu.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            v-else-if="menu.isLink && !menu.withQuery && isExternalLink(menu.link)"
+            @click="(isOpenMenu = false), (smallMenu = menus)"
+            v-html="menu.name"
+          >
+          </a>
           <NuxtLink
             class="header-menu__btn cursor-pointer"
             :class="{ active: index === activeMenu.one.id }"
             :to="localePath(menu.link)"
-            v-else-if="menu.isLink && !menu.withQuery"
+            v-else-if="menu.isLink && !menu.withQuery && !isExternalLink(menu.link)"
             @click="(isOpenMenu = false), (smallMenu = menus)"
             v-html="menu.name"
           >
@@ -353,7 +407,14 @@ import Service from "~/services/Service";
 import { useStore } from "~/store/store";
 const { locale, locales, t } = useI18n();
 const switchLocalePath = useSwitchLocalePath();
+const localePath = useLocalePath();
 const store = useStore();
+
+// Helper function to check if link is external
+function isExternalLink(link) {
+  if (!link) return false;
+  return link.startsWith('http://') || link.startsWith('https://');
+}
 const scrolledNav = ref(false);
 const updateScroll = () => {
   const scrollposition = window.scrollY;
