@@ -592,7 +592,7 @@ function translateMenu() {
             {
               isLink: "true",
               name: t("Portfolio"),
-              link: "http://94.141.76.114/",
+              link: "http://94.141.76.114:7070/portfolio",
             },
             {
               isLink: "true",
@@ -608,6 +608,16 @@ function translateMenu() {
               isLink: "true",
               name: t("HEMIS"),
               link: "https://hemis.camuf.uz/dashboard/login",
+            },
+            {
+              isLink: "true",
+              name: t("HEMIS_STUDENT"),
+              link: "https://student.camuf.uz/dashboard/login",
+            },
+            {
+              isLink: "true",
+              name: t("MOODLE"),
+              link: "http://94.141.76.114:7070/moodle",
             },
             {
               isLink: "true",
