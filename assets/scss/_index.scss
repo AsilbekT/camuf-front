@@ -585,6 +585,26 @@
   }
 }
 
+.home-courses {
+  margin-bottom: 120px;
+  @include media(600px) {
+    margin-bottom: 80px;
+  }
+  &__title {
+    @include title;
+    margin-bottom: 50px;
+    @include media(900px) {
+      margin-bottom: 20px;
+    }
+  }
+  &__btn {
+    @extend %pr-btn;
+    display: block;
+    width: fit-content;
+    margin: 50px auto 0;
+  }
+}
+
 .speciality {
   margin-bottom: 120px;
   .container {
@@ -703,11 +723,11 @@
   }
   &__list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 30px;
     @include media(600px) {
-      gap: 20px;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
     }
   }
   .all-teacher-link {

@@ -5,17 +5,17 @@
         class="mx-auto max-w-3xl space-y-8 py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8"
       >
         <div class="space-y-2 text-center">
-          <h1 class="contact__title">Qabulga yozilish</h1>
+          <h1 class="contact__title">{{ $t('ApplyForAdmission') }}</h1>
         </div>
         <form class="space-y-6 contact__form" @submit.prevent="handleSubmit">
           <div class="space-y-2">
-            <label class="text-sm font-medium leading-none" for="language">Ta'lim tili</label>
+            <label class="text-sm font-medium leading-none" for="language">{{ $t('EducationLanguage') }}</label>
             <button
               @click="toggleDropdown('language')"
               type="button"
               class="flex h-10 w-full select-btn items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
             >
-              <span>{{ formData.language ? formData.language : $t('SelectEducationLanguage') }}</span>
+              <span>{{ selectedLabels.language || $t('SelectEducationLanguage') }}</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -32,15 +32,15 @@
                 <path d="m6 9 6 6 6-6"></path>
               </svg>
             </button>
-            <div v-if="dropdown.language" class="relative">
+            <div v-if="dropdown.language" class="relative select-dropdown">
               <ul class="absolute w-full list bg-white border border-input rounded-md shadow-lg z-10">
                 <li
-                  v-for="label in languageOptions"
-                  :key="label.code"
-                  @click="selectLanguage(label.code)"
+                  v-for="option in languageOptions"
+                  :key="option.value"
+                  @click="selectLanguage(option.value)"
                   class="px-3 py-2 cursor-pointer hover:bg-gray-100"
                 >
-                  {{ label.name }}
+                  {{ option.label }}
                 </li>
               </ul>
             </div>
@@ -48,54 +48,54 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-2">
               <label class="text-sm font-medium leading-none" for="last-name"
-                >Familiya</label
+                >{{ $t('Surname') }}</label
               >
               <input
                 v-model="formData.lastName"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 id="last-name"
-                placeholder="Familiyangizni kiriting"
+                :placeholder="$t('EnterSurname')"
               />
             </div>
             <div class="space-y-2">
               <label class="text-sm font-medium leading-none" for="first-name"
-                >Ism</label
+                >{{ $t('Name') }}</label
               >
               <input
                 v-model="formData.firstName"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 id="first-name"
-                placeholder="Ismingizni kiriting"
+                :placeholder="$t('EnterName')"
               />
             </div>
           </div>
           <div class="space-y-2">
             <label class="text-sm font-medium leading-none" for="third-name"
-              >Otasining ismi</label
+              >{{ $t('FatherName') }}</label
             >
             <input
               v-model="formData.thirdName"
               class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               id="third-name"
-              placeholder="Otasining ismini kiriting"
+              :placeholder="$t('EnterFatherName')"
             />
           </div>
           <div class="space-y-2">
             <label
               class="text-sm font-medium leading-none"
               for="passport-number"
-              >Pasport raqami</label
+              >{{ $t('PassportNumber') }}</label
             >
             <input
               v-model="formData.passportNumber"
               class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               id="passport-number"
-              placeholder="Pasport raqamingizni kiriting"
+              :placeholder="$t('EnterPassportNumber')"
             />
           </div>
           <div class="space-y-2">
             <label class="text-sm font-medium leading-none" for="passport-file"
-              >Pasport fayli</label
+              >{{ $t('PassportFile') }}</label
             >
             <input
               @change="handleFileChange($event, 'passportFile')"
@@ -108,16 +108,14 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-2">
               <label class="text-sm font-medium leading-none" for="countrie"
-                >Mamlakat</label
+                >{{ $t('Country') }}</label
               >
               <button
                 @click="toggleDropdown('countrie')"
                 type="button"
                 class="flex h-10 w-full select-btn items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
               >
-                <span>{{
-                  formData.country ? formData.country : $t('SelectCountry')
-                }}</span>
+                <span>{{ selectedLabels.country || $t('SelectCountry') }}</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -134,7 +132,7 @@
                   <path d="m6 9 6 6 6-6"></path>
                 </svg>
               </button>
-              <div v-if="dropdown.countrie" class="relative">
+              <div v-if="dropdown.countrie" class="relative select-dropdown">
                 <ul
                   class="absolute w-full list bg-white border border-input rounded-md shadow-lg z-10"
                 >
@@ -151,42 +149,38 @@
             </div>
             <div class="space-y-2">
               <label class="text-sm font-medium leading-none" for="region"
-                >Viloyat</label
+                >{{ $t('Region') }}</label
               >
               <input
                 v-model="formData.region"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 id="region"
-                placeholder="Viloyatingizni kiriting"
+                :placeholder="$t('EnterRegion')"
               />
             </div>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-2">
               <label class="text-sm font-medium leading-none" for="district"
-                >Tuman</label
+                >{{ $t('District') }}</label
               >
               <input
                 v-model="formData.district"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 id="district"
-                placeholder="Tumaningizni kiriting"
+                :placeholder="$t('EnterDistrict')"
               />
             </div>
             <div class="space-y-2">
               <label class="text-sm font-medium leading-none" for="schooling"
-                >Ta'lim</label
+                >{{ $t('EducationLevel') }}</label
               >
               <button
                 @click="toggleDropdown('schooling')"
                 type="button"
                 class="flex h-10 w-full select-btn items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
               >
-                <span>{{
-                  formData.schooling
-                    ? formData.schooling
-                    : $t('SelectEducationLevel')
-                }}</span>
+                <span>{{ selectedLabels.schooling || $t('SelectEducationLevel') }}</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -203,17 +197,17 @@
                   <path d="m6 9 6 6 6-6"></path>
                 </svg>
               </button>
-              <div v-if="dropdown.schooling" class="relative">
+              <div v-if="dropdown.schooling" class="relative select-dropdown">
                 <ul
                   class="absolute w-full list bg-white border border-input rounded-md shadow-lg z-10"
                 >
                   <li
-                    v-for="label in schoolingOptions"
-                    :key="label"
-                    @click="selectSchooling(label)"
+                    v-for="option in schoolingOptions"
+                    :key="option.value"
+                    @click="selectSchooling(option.value)"
                     class="px-3 py-2 cursor-pointer hover:bg-gray-100"
                   >
-                    {{ label }}
+                    {{ option.label }}
                   </li>
                 </ul>
               </div>
@@ -221,7 +215,7 @@
           </div>
           <div class="space-y-2">
             <label class="text-sm font-medium leading-none" for="diploma-file"
-              >Diplom fayli</label
+              >{{ $t('DiplomaFile') }}</label
             >
             <input
               @change="handleFileChange($event, 'diplomaFile')"
@@ -243,11 +237,7 @@
                 type="button"
                 class="flex h-10 w-full select-btn items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
               >
-                <span>{{
-                  formData.socialStatus
-                    ? formData.socialStatus
-                    : $t('SelectSocialStatus')
-                }}</span>
+                <span>{{ selectedLabels.socialStatus || $t('SelectSocialStatus') }}</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -264,17 +254,17 @@
                   <path d="m6 9 6 6 6-6"></path>
                 </svg>
               </button>
-              <div v-if="dropdown.socialStatus" class="relative">
+              <div v-if="dropdown.socialStatus" class="relative select-dropdown">
                 <ul
                   class="absolute w-full list bg-white border border-input rounded-md shadow-lg z-10"
                 >
                   <li
-                    v-for="label in socialStatusOptions"
-                    :key="label"
-                    @click="selectSocialStatus(label)"
+                    v-for="option in socialStatusOptions"
+                    :key="option.value"
+                    @click="selectSocialStatus(option.value)"
                     class="px-3 py-2 cursor-pointer hover:bg-gray-100"
                   >
-                    {{ label }}
+                    {{ option.label }}
                   </li>
                 </ul>
               </div>
@@ -327,19 +317,20 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import { reactive, ref, computed } from "vue";
 import Service from "~/services/Service";
 import { useToast } from "vue-toastification";
 import { useReCaptcha } from "vue-recaptcha-v3";
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const { t } = useI18n()
 const { executeRecaptcha } = useReCaptcha();
 const { id } = useRoute().params;
-const languageOptions = [
-  { code: "uz", name: "O'zbek" },
-  { code: "ru", name: "Rus" },
-];
+const languageOptions = computed(() => [
+  { value: "uz", label: t("LangUz") },
+  { value: "ru", label: t("LangRu") },
+]);
 
 const formData = reactive({
   lastName: "",
@@ -612,16 +603,33 @@ const countries = [
 const onVerify = (token) => {
   console.log("Recaptcha token:", token);
 };
-const schoolingOptions = ["O'rta maktab", "Litsey", "Bilim yurti", "Boshqa"];
+const schoolingOptions = computed(() => [
+  { value: "O'rta maktab", label: t("SchoolSecondary") },
+  { value: "Litsey", label: t("SchoolLyceum") },
+  { value: "Bilim yurti", label: t("SchoolCollege") },
+  { value: "Boshqa", label: t("SchoolOther") },
+]);
 
 
-const socialStatusOptions = [
-  "Yoshlar daftari",
-  "Ayollar daftari",
-  "Temir daftar",
-  "Yo'q",
-  "Boshqa",
-];
+const socialStatusOptions = computed(() => [
+  { value: "Yoshlar daftari", label: t("SocialYouth") },
+  { value: "Ayollar daftari", label: t("SocialWomen") },
+  { value: "Temir daftar", label: t("SocialIron") },
+  { value: "Yo'q", label: t("SocialNone") },
+  { value: "Boshqa", label: t("SocialOther") },
+]);
+
+const selectedLabels = computed(() => ({
+  language:
+    languageOptions.value.find((o) => o.value === formData.language)?.label || "",
+  country: countries.find((o) => o.code === formData.country)?.name || "",
+  schooling:
+    schoolingOptions.value.find((o) => o.value === formData.schooling)?.label ||
+    "",
+  socialStatus:
+    socialStatusOptions.value.find((o) => o.value === formData.socialStatus)
+      ?.label || "",
+}));
 
 const dropdown = ref({
   schooling: false,
@@ -682,12 +690,10 @@ const handleSubmit = async () => {
   formdata.append("email", formData.email);
   const data = await Service.registerCourse(formdata);
   if (data.status < 299) {
-    useToast().success(
-      "Arizangiz qabul qilindi, tez orada siz bilan bog'lanamiz!"
-    );
+    useToast().success(t("ApplicationSuccess"));
     router.push('/')
   } else {
-    useToast().error("Ma'lumotni to'g'ri to'ldiring!");
+    useToast().error(t("FillCorrectly"));
   }
 };
 </script>

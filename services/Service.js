@@ -102,6 +102,13 @@ export default {
       },
     });
   },
+  getCoursePrograms(id, lang) {
+    return API().get(`/coursecategories/${id}/programs/`, {
+      headers: {
+        "Accept-Language": lang,
+      },
+    });
+  },
   getAboutCourse(id, lang) {
     return API().get(`/courses/${id}/`, {
       headers: {

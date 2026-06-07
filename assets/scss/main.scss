@@ -12,10 +12,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html {
   height: 100%;
   scroll-behavior: smooth;
 }
+
 body {
   height: 100%;
   display: flex;
@@ -24,26 +26,38 @@ body {
   color: var(--text-color);
   @include font(400, 20px, 1.2);
   background: var(--bg-color);
+
   @include media(720px) {
     font-size: 16px;
   }
 }
+
 .user-card {
+
   p,
   h4,
   a {
     color: var(--card-journal-text);
   }
-  background: var(--card-journal);
+
+  background: transparent;
+  box-shadow: none !important;
+  border-radius: 0;
+  border: 1px solid rgba($color: #2c5eff, $alpha: 0.5);
+
   .user {
-    width: calc(100% - 20px);
+    width: 100%;
+    margin: 0 !important;
     height: 0;
-    padding-bottom: 130%;
+    padding-bottom: 115%;
     overflow: hidden;
     position: relative;
+    border-radius: 0 !important;
+
     @include media(400px) {
-      padding-bottom: 100%;
+      padding-bottom: 110%;
     }
+
     img {
       position: absolute;
       top: 0;
@@ -54,16 +68,37 @@ body {
       object-position: top;
     }
   }
+
+  h4 {
+    font-size: 17px !important;
+  }
+
   .user-button {
     background: var(--pr-color);
-    color: #fff;
+    color: var(--play-color);
+    border: 1px solid var(--pr-color);
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 8px 16px !important;
+    transition: all 0.3s ease;
+
+    &:hover {
+      opacity: 0.8;
+      color: #fff;
+      transform: none !important;
+    }
   }
 }
+
 .container {
   width: 100%;
   max-width: 1540px;
   margin: 0 auto;
   padding: 0 20px;
+
+  @media (max-width: 1540px) {
+    padding: 0 15px;
+  }
 }
 
 @import "default";
@@ -83,31 +118,38 @@ body {
   @extend %pr-btn;
   margin-top: 60px;
 }
+
 .emplyoment-title {
   @include title;
   line-height: 1.5;
   letter-spacing: 1px;
 }
+
 .employment-list {
   padding-top: 100px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+
   @include media(1175px) {
     grid-template-columns: 1fr;
   }
+
   gap: 40px;
+
   li {
     color: var(--card-journal-text);
     font-weight: 500;
     font-size: 22px;
     letter-spacing: 0.5px;
     line-height: 1.5;
+
     ul {
       padding-top: 25px;
       padding-left: 40px;
       display: flex;
       flex-direction: column;
       gap: 15px;
+
       li {
         list-style: disc;
         font-size: 18px;

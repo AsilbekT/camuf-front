@@ -2,12 +2,15 @@
   height: 475px;
   width: 100%;
   position: relative;
+
   @include media(1100px) {
     height: 300px;
   }
+
   @include media(540px) {
     height: 280px;
   }
+
   &__bg {
     position: absolute;
     top: 0;
@@ -17,6 +20,7 @@
     object-fit: cover;
     z-index: 0;
   }
+
   &::after {
     content: "";
     position: absolute;
@@ -26,11 +30,13 @@
     height: 100%;
     background: var(--hero-bg);
   }
+
   .container {
     height: 100%;
     display: flex;
     align-items: center;
   }
+
   &__nav {
     display: flex;
     list-style: none;
@@ -47,79 +53,184 @@
 
 .courses-main {
   padding: 120px 0;
+
   @include media(600px) {
     padding: 80px 0;
   }
+
   &__title {
     @include title;
     color: var(--play-color);
     margin-bottom: 40px;
     text-transform: lowercase;
+
     &::first-letter {
       text-transform: uppercase;
     }
   }
+
+  &__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  &__tab {
+    padding: 12px 24px;
+    border: 1px solid #3550a7;
+    border-radius: 0;
+    background: transparent;
+    color: var(--play-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    @include font(400, 16px, 1.2);
+
+    p {
+      margin: 0;
+    }
+
+    &:hover {
+      color: var(--special-item-title);
+    }
+
+    &.active {
+      background: #3550a7;
+      color: #fff;
+    }
+
+    @include media(600px) {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  }
+
   &__items-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(385px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+
     @include media(500px) {
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 16px;
     }
-    gap: 40px;
+
   }
+
   &__item {
     display: flex;
     flex-direction: column;
+    border: 1px solid rgba($color: #2c5eff, $alpha: 0.5);
+
     &-img {
       img {
         width: 100%;
-        height: 278px;
+        height: 190px;
         object-fit: cover;
+
         @include media(600px) {
-          height: 180px;
+          height: 120px;
         }
       }
     }
+
     &-text-wrapper {
-      padding: 20px 30px 30px;
-      border: 1px solid var(--text-color);
-      border-top-color: transparent;
+      padding: 16px 20px 20px;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-    }
-    &-title {
-      @include font(700, 36px, 1.4);
-      color: var(--play-color);
-      @include media(1040px) {
-        font-size: 28px;
-      }
+
       @include media(600px) {
-        font-size: 22px;
+        padding: 12px;
       }
     }
-    &-code {
-      @include font(400, 18px, 1.6);
-      margin-bottom: 30px;
+
+    &-title {
+      @include font(700, 24px, 1.4);
+      color: var(--play-color);
+
       @include media(1040px) {
+        font-size: 20px;
+      }
+
+      @include media(600px) {
         font-size: 16px;
       }
     }
+
+    &-code {
+      @include font(400, 15px, 1.6);
+      margin-bottom: 20px;
+
+      @include media(1040px) {
+        font-size: 14px;
+      }
+
+      @include media(600px) {
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
+    }
+
     &-btn {
       margin-top: auto;
-      width: fit-content;
+      width: 100%;
+      text-align: center;
       white-space: nowrap;
-      background: var(--play-color);
-      padding: 12px 40px;
-      @include font(600, 18px, 1.6);
-      color: var(--course-btn);
+      background: var(--pr-color);
+      color: var(--play-color);
+      border: 1px solid var(--pr-color);
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      padding: 8px 14px !important;
+      transition: all 0.3s ease;
+
+      &:hover {
+        opacity: 0.8;
+        color: #fff;
+        transform: none !important;
+      }
+
+      @include font(600, 15px, 1.6);
+
       @include media(1040px) {
-        padding: 12px 24px;
+        padding: 10px 20px;
       }
+
       @include media(600px) {
-        font-size: 14px;
-        padding: 12px;
+        font-size: 12px;
+        padding: 6px 12px;
       }
+    }
+  }
+}
+
+.courses-empty {
+  border: 1px solid var(--text-color);
+  padding: 60px 30px;
+  text-align: center;
+
+  @include media(600px) {
+    padding: 40px 16px;
+  }
+
+  &__title {
+    @include font(700, 28px, 1.4);
+    color: var(--play-color);
+    margin-bottom: 16px;
+
+    @include media(600px) {
+      font-size: 20px;
+    }
+  }
+
+  &__text {
+    @include font(400, 18px, 1.6);
+    max-width: 600px;
+    margin: 0 auto;
+
+    @include media(600px) {
+      font-size: 14px;
     }
   }
 }

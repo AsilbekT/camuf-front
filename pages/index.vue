@@ -177,42 +177,40 @@
         </div>
     </div>
 
-    <div class="speciality">
+    <div class="home-courses">
         <div class="container">
-            <div class="speciality__text-wrapper">
-                <NuxtLink :to="localePath('/courses/')" class="speciality__title">
-                    {{ $t('BachelorMajors') }}
-
-                </NuxtLink>
-                <p class="speciality__desc">
-                    {{ $t('SpecialityTextOne') }}
-                    <br>
-                    <br>
-                    {{ $t('SpecialityTextTwo') }}
-                </p>
-                <NuxtLink class="speciality__btn" :to="localePath('/courses/')">{{ $t('AllDirections') }}</NuxtLink>
-
+            <h2 class="home-courses__title">{{ $t('OurCourses') }}</h2>
+            <div class="courses-main__tabs">
+                <button v-for="category in courseCategories?.results" :key="category.id" type="button"
+                    class="courses-main__tab" :class="{ active: activeCategory === category.id }"
+                    @click="selectCategory(category.id)">
+                    <span v-html="category?.name"></span>
+                </button>
             </div>
-            <div class="speciality__list">
-                <div class="speciality__item" v-for="(item, index) in courses?.results?.slice(0, 6)" :key="item">
-                    <h4 class="speciality__item-num">
-                        {{ index < 10 ? '0' + (index + 1) : (index + 1) }} </h4>
-                            <NuxtLink :to="localePath(`/about-course/${item?.id}/`)" class="speciality__item-title">
-                                <span v-html="item?.title"></span>
-                            </NuxtLink>
-                            <div class="speciality__item-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
-                                    fill="none">
-                                    <path
-                                        d="M0.93934 17.9667C0.353553 18.5525 0.353553 19.5022 0.93934 20.088C1.52513 20.6738 2.47487 20.6738 3.06066 20.088L0.93934 17.9667ZM20.527 2.00032C20.527 1.17189 19.8555 0.500317 19.027 0.500317L5.52703 0.500316C4.6986 0.500316 4.02703 1.17189 4.02703 2.00032C4.02703 2.82874 4.6986 3.50032 5.52703 3.50032H17.527V15.5003C17.527 16.3287 18.1986 17.0003 19.027 17.0003C19.8555 17.0003 20.527 16.3287 20.527 15.5003L20.527 2.00032ZM3.06066 20.088L20.0877 3.06098L17.9664 0.939657L0.93934 17.9667L3.06066 20.088Z"
-                                        fill="#161C31" />
-                                </svg>
-                            </div>
-                            <div class="speciality__item-img">
-                                <img :src="item?.image" alt="">
-                            </div>
+            <div v-if="programs?.results?.length" class="courses-main__items-wrapper">
+                <div class="courses-main__item" v-for="item in programs?.results?.slice(0, 4)" :key="item?.id">
+                    <div class="courses-main__item-img">
+                        <img :src="item?.image" alt="">
+                    </div>
+                    <div class="courses-main__item-text-wrapper">
+                        <NuxtLink :to="localePath(`/about-course/${item?.id}/`)" class="courses-main__item-title">
+                            <span v-html="item?.title"></span>
+                        </NuxtLink>
+                        <h4 class="courses-main__item-code">{{ $t('DestinationCode') }}: {{ item?.course_id }}</h4>
+                        <NuxtLink :to="localePath(`/about-course/${item?.id}/`)" class="courses-main__item-btn">{{
+                            $t('DetailedInformation') }}
+                        </NuxtLink>
+                    </div>
                 </div>
             </div>
+            <div v-else-if="programs?.results" class="courses-empty">
+                <h3 class="courses-empty__title">{{ $t('NoCoursesTitle') }}</h3>
+                <p class="courses-empty__text">{{ $t('NoCoursesText') }}</p>
+            </div>
+            <NuxtLink class="home-courses__btn"
+                :to="localePath(activeCategory ? `/courses/?category=${activeCategory}` : '/courses/')">
+                {{ $t('AllDirections') }}
+            </NuxtLink>
         </div>
     </div>
 
@@ -248,7 +246,9 @@ const store = useStore()
 const { locale } = useI18n()
 const localePath = useLocalePath()
 const banners = ref([])
-const courses = ref({})
+const courseCategories = ref({})
+const programs = ref({})
+const activeCategory = ref(null)
 const studentsVideos = ref({})
 const lastnews = ref({})
 const teachers = ref({})
@@ -294,9 +294,22 @@ async function getBanners() {
     const res = await Service.getBanners(locale.value)
     banners.value = res.data
 }
-async function getCourses() {
-    const res = await Service.getAllCourses(6, locale.value)
-    courses.value = res.data
+async function getCourseCategories() {
+    const res = await Service.getCourseCategories(locale.value)
+    courseCategories.value = res.data
+    const categories = res.data?.results || []
+    if (!categories.length) return
+    activeCategory.value = categories[0].id
+    await getPrograms(activeCategory.value)
+}
+async function getPrograms(id) {
+    const res = await Service.getCoursePrograms(id, locale.value)
+    programs.value = res.data
+}
+function selectCategory(id) {
+    if (activeCategory.value === id) return
+    activeCategory.value = id
+    getPrograms(id)
 }
 async function getStudentsVideos() {
     const res = await Service.getStudentsVideos(locale.value)
@@ -311,7 +324,7 @@ getPresident()
 getBanners()
 getNews()
 getStudentsVideos()
-getCourses()
+getCourseCategories()
 getAllTeachers()
 function hover(e) {
     // Query all video clips items

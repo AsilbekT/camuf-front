@@ -417,12 +417,8 @@ function isExternalLink(link) {
 }
 const scrolledNav = ref(false);
 const updateScroll = () => {
-  const scrollposition = window.scrollY;
-  if (scrollposition > 800) {
-    scrolledNav.value = true;
-    return;
-  }
-  scrolledNav.value = false;
+  const threshold = window.innerWidth <= 600 ? 100 : 800;
+  scrolledNav.value = window.scrollY > threshold;
 };
 const dark = ref(localStorage.getItem("dark") ? true : false);
 const langOpen = ref(false);
@@ -837,7 +833,7 @@ async function getCourseCategories() {
 
   course_categories.value.forEach((category) => {
     category.isLink = true;
-    category.link = `/course/${category.id}/`;
+    category.link = `/courses/?category=${category.id}`;
   });
   const menuIndex = menus.value.findIndex(
     (item) => item.name === t("Directions")
