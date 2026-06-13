@@ -44,6 +44,7 @@
                 </li>
               </ul>
             </div>
+            <p v-if="errors.language" class="text-sm text-red-500 mt-1">{{ errors.language }}</p>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-2">
@@ -53,9 +54,11 @@
               <input
                 v-model="formData.lastName"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                :class="{ 'border-red-500': errors.lastName }"
                 id="last-name"
                 :placeholder="$t('EnterSurname')"
               />
+              <p v-if="errors.lastName" class="text-sm text-red-500">{{ errors.lastName }}</p>
             </div>
             <div class="space-y-2">
               <label class="text-sm font-medium leading-none" for="first-name"
@@ -64,9 +67,11 @@
               <input
                 v-model="formData.firstName"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                :class="{ 'border-red-500': errors.firstName }"
                 id="first-name"
                 :placeholder="$t('EnterName')"
               />
+              <p v-if="errors.firstName" class="text-sm text-red-500">{{ errors.firstName }}</p>
             </div>
           </div>
           <div class="space-y-2">
@@ -76,9 +81,11 @@
             <input
               v-model="formData.thirdName"
               class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              :class="{ 'border-red-500': errors.thirdName }"
               id="third-name"
               :placeholder="$t('EnterFatherName')"
             />
+            <p v-if="errors.thirdName" class="text-sm text-red-500">{{ errors.thirdName }}</p>
           </div>
           <div class="space-y-2">
             <label
@@ -89,9 +96,11 @@
             <input
               v-model="formData.passportNumber"
               class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              :class="{ 'border-red-500': errors.passportNumber }"
               id="passport-number"
               :placeholder="$t('EnterPassportNumber')"
             />
+            <p v-if="errors.passportNumber" class="text-sm text-red-500">{{ errors.passportNumber }}</p>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-2">
@@ -134,6 +143,7 @@
                   </li>
                 </ul>
               </div>
+              <p v-if="errors.country" class="text-sm text-red-500 mt-1">{{ errors.country }}</p>
             </div>
             <div class="space-y-2">
               <label class="text-sm font-medium leading-none" for="region"
@@ -142,9 +152,11 @@
               <input
                 v-model="formData.region"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                :class="{ 'border-red-500': errors.region }"
                 id="region"
                 :placeholder="$t('EnterRegion')"
               />
+              <p v-if="errors.region" class="text-sm text-red-500">{{ errors.region }}</p>
             </div>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -155,9 +167,11 @@
               <input
                 v-model="formData.district"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                :class="{ 'border-red-500': errors.district }"
                 id="district"
                 :placeholder="$t('EnterDistrict')"
               />
+              <p v-if="errors.district" class="text-sm text-red-500">{{ errors.district }}</p>
             </div>
             <div class="space-y-2">
               <label class="text-sm font-medium leading-none" for="schooling"
@@ -167,6 +181,7 @@
                 @click="toggleDropdown('schooling')"
                 type="button"
                 class="flex h-10 w-full select-btn items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                :class="{ 'border-red-500': errors.schooling }"
               >
                 <span>{{ selectedLabels.schooling || $t('SelectEducationLevel') }}</span>
                 <svg
@@ -199,6 +214,7 @@
                   </li>
                 </ul>
               </div>
+              <p v-if="errors.schooling" class="text-sm text-red-500 mt-1">{{ errors.schooling }}</p>
             </div>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -212,6 +228,7 @@
                 @click="toggleDropdown('socialStatus')"
                 type="button"
                 class="flex h-10 w-full select-btn items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                :class="{ 'border-red-500': errors.socialStatus }"
               >
                 <span>{{ selectedLabels.socialStatus || $t('SelectSocialStatus') }}</span>
                 <svg
@@ -244,6 +261,7 @@
                   </li>
                 </ul>
               </div>
+              <p v-if="errors.socialStatus" class="text-sm text-red-500 mt-1">{{ errors.socialStatus }}</p>
             </div>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -254,9 +272,11 @@
               <input
                 v-model="formData.phoneNumber"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                :class="{ 'border-red-500': errors.phoneNumber }"
                 id="phone-number"
                 :placeholder="$t('EnterPhoneNumber')"
               />
+              <p v-if="errors.phoneNumber" class="text-sm text-red-500">{{ errors.phoneNumber }}</p>
             </div>
             <div class="space-y-2">
               <label class="text-sm font-medium leading-none" for="email"
@@ -265,10 +285,12 @@
               <input
                 v-model="formData.email"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                :class="{ 'border-red-500': errors.email }"
                 id="email"
                 :placeholder="$t('EnterEmail')"
                 type="email"
               />
+              <p v-if="errors.email" class="text-sm text-red-500">{{ errors.email }}</p>
             </div>
           </div>
           <vue-recaptcha @verify="onVerify"></vue-recaptcha>
@@ -307,8 +329,60 @@ const formData = reactive({
   socialStatus: "",
   phoneNumber: "",
   email: "",
-  language: "", 
+  language: "",
 });
+
+const errors = reactive({
+  lastName: "",
+  firstName: "",
+  thirdName: "",
+  passportNumber: "",
+  country: "",
+  region: "",
+  district: "",
+  schooling: "",
+  socialStatus: "",
+  phoneNumber: "",
+  email: "",
+  language: "",
+});
+
+const validateForm = () => {
+  let valid = true;
+
+  const required = (key) => {
+    if (!formData[key] || !formData[key].toString().trim()) {
+      errors[key] = t("ErrorRequired");
+      valid = false;
+    } else {
+      errors[key] = "";
+    }
+  };
+
+  required("language");
+  required("lastName");
+  required("firstName");
+  required("thirdName");
+  required("passportNumber");
+  required("country");
+  required("region");
+  required("district");
+  required("schooling");
+  required("socialStatus");
+  required("phoneNumber");
+
+  if (!formData.email || !formData.email.trim()) {
+    errors.email = t("ErrorRequired");
+    valid = false;
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+    errors.email = t("ErrorEmail");
+    valid = false;
+  } else {
+    errors.email = "";
+  }
+
+  return valid;
+};
 
 const countries = [
   { code: "AF", name: "Afghanistan" },
@@ -564,19 +638,19 @@ const onVerify = (token) => {
   console.log("Recaptcha token:", token);
 };
 const schoolingOptions = computed(() => [
-  { value: "O'rta maktab", label: t("SchoolSecondary") },
-  { value: "Litsey", label: t("SchoolLyceum") },
-  { value: "Bilim yurti", label: t("SchoolCollege") },
-  { value: "Boshqa", label: t("SchoolOther") },
+  { value: "secondary_school", label: t("SchoolSecondary") },
+  { value: "lyceum", label: t("SchoolLyceum") },
+  { value: "college", label: t("SchoolCollege") },
+  { value: "other", label: t("SchoolOther") },
 ]);
 
 
 const socialStatusOptions = computed(() => [
-  { value: "Yoshlar daftari", label: t("SocialYouth") },
-  { value: "Ayollar daftari", label: t("SocialWomen") },
-  { value: "Temir daftar", label: t("SocialIron") },
-  { value: "Yo'q", label: t("SocialNone") },
-  { value: "Boshqa", label: t("SocialOther") },
+  { value: "youth_register", label: t("SocialYouth") },
+  { value: "women_register", label: t("SocialWomen") },
+  { value: "iron_register", label: t("SocialIron") },
+  { value: "none", label: t("SocialNone") },
+  { value: "other", label: t("SocialOther") },
 ]);
 
 const selectedLabels = computed(() => ({
@@ -622,6 +696,8 @@ const selectSocialStatus = (value) => {
 };
 
 const handleSubmit = async () => {
+  if (!validateForm()) return;
+
   const token = await executeRecaptcha("homepage");
   console.log("reCAPTCHA token:", token);
   const formdata = new FormData();
@@ -642,7 +718,14 @@ const handleSubmit = async () => {
   const data = await Service.registerCourse(formdata);
   if (data.status < 299) {
     useToast().success(t("ApplicationSuccess"));
-    router.push('/')
+    router.push('/');
+  } else if (data.status === 400) {
+    const body = await data.json().catch(() => null);
+    if (body?.non_field_errors || body?.email || body?.passport_number) {
+      useToast().error(t("ErrorDuplicate"));
+    } else {
+      useToast().error(t("FillCorrectly"));
+    }
   } else {
     useToast().error(t("FillCorrectly"));
   }
