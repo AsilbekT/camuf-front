@@ -93,18 +93,6 @@
               :placeholder="$t('EnterPassportNumber')"
             />
           </div>
-          <div class="space-y-2">
-            <label class="text-sm font-medium leading-none" for="passport-file"
-              >{{ $t('PassportFile') }}</label
-            >
-            <input
-              @change="handleFileChange($event, 'passportFile')"
-              class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              id="passport-file"
-              accept="application/pdf"
-              type="file"
-            />
-          </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-2">
               <label class="text-sm font-medium leading-none" for="countrie"
@@ -213,18 +201,6 @@
               </div>
             </div>
           </div>
-          <div class="space-y-2">
-            <label class="text-sm font-medium leading-none" for="diploma-file"
-              >{{ $t('DiplomaFile') }}</label
-            >
-            <input
-              @change="handleFileChange($event, 'diplomaFile')"
-              class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              id="diploma-file"
-              accept="application/pdf"
-              type="file"
-            />
-          </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-2">
               <label
@@ -268,19 +244,6 @@
                   </li>
                 </ul>
               </div>
-            </div>
-            <div class="space-y-2" v-if="formData.socialStatus != `Yo'q` && formData.socialStatus != ''">
-              <label
-                class="text-sm font-medium leading-none"
-                for="social-status-file"
-                >{{ $t('SocialStatusFile') }}</label
-              >
-              <input
-                @change="handleFileChange($event, 'socialStatusFile')"
-                class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                id="social-status-file"
-                type="file"
-              />
             </div>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -337,14 +300,11 @@ const formData = reactive({
   firstName: "",
   thirdName: "",
   passportNumber: "",
-  passportFile: null,
   country: "",
   region: "",
   district: "",
   schooling: "",
-  diplomaFile: null,
   socialStatus: "",
-  socialStatusFile: null,
   phoneNumber: "",
   email: "",
   language: "", 
@@ -661,10 +621,6 @@ const selectSocialStatus = (value) => {
   dropdown.value.socialStatus = false;
 };
 
-const handleFileChange = (event, field) => {
-  formData[field] = event.target.files[0];
-};
-
 const handleSubmit = async () => {
   const token = await executeRecaptcha("homepage");
   console.log("reCAPTCHA token:", token);
@@ -674,18 +630,13 @@ const handleSubmit = async () => {
   formdata.append("name", formData.firstName);
   formdata.append("fathers_name", formData.thirdName);
   formdata.append("passport_number", formData.passportNumber);
-  formdata.append("passport_pdf", formData.passportFile);
   formdata.append("country", formData.country);
   formdata.append("region", formData.region);
   formdata.append("district", formData.district);
-  formdata.append("diploma", formData.diplomaFile);
   formdata.append("schooling", formData.schooling);
   formdata.append("social_status", formData.socialStatus);
   formdata.append("completed", true);
   formdata.append("language", formData.language);
-  if (formData.socialStatus != `Yo'q`) {
-    formdata.append("social_status_file", formData.socialStatusFile);
-  }
   formdata.append("phone_number", formData.phoneNumber);
   formdata.append("email", formData.email);
   const data = await Service.registerCourse(formdata);
